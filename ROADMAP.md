@@ -42,26 +42,33 @@ redesigned downstream.
   interactions, opportunity ranking, threat detection, recommendation generation, the four-band
   confidence model, false-positive/bias control, the learning loop, and human oversight.
 
-## Phase 5 — Surfaces (▶ Next)
+## Phase 5 — Surfaces (✅ Website UX complete)
 
-- **04 Website UX** ⏭️ **Recommended next** — render the intelligence into the recognition
-  experience: the self-diagnosis flagship tool (the Brain in *fast-judgement* mode) and
-  per-pattern recognition pages. The website is the first evidence-depth tier of the one
-  cognition funnel that runs through to delivery. Briefs:
-  `20-growmerce-intelligence-brain/Growmerce_Intelligence_OS.md` (§6, cognition modes) and
-  `19-commerce-intelligence-patterns/Website_Intelligence_Usage.md`.
+- **04 Website UX** ✅ — the **Commerce Intelligence Experience**: how the website converts
+  intelligence into user experience. Documented **primarily around user states** (Curiosity →
+  Recognition → Diagnosis → Evidence → Trust → Action → Commitment), not a page inventory, with
+  retention/return loops that turn visitors into recurring intelligence users. The website is the
+  user-facing interface of the Intelligence Brain (20), running fast-judgement mode and bridging
+  to deep diagnosis. No code, no visual design — experience strategy only.
+
+## Phase 6 — Expression (▶ Next)
+
+- **03 Brand Identity** ⏭️ **Recommended next** — the visual and brand system that *expresses* the
+  Website UX. Because 04 is defined as a user-state journey through progressive certainty, brand
+  can now design around psychology (the command center, the commerce ecosystem map, recognition
+  cards, the executive report, the state-by-state reveal) rather than decorating pages. Brief: the
+  `04-website-ux/` workstream.
 
 ---
 
-## Why 04 Website UX is next
+## Why 03 Brand Identity is next
 
-The Pattern Engine (19) is the vocabulary and the Brain (20) is the mind; the website is how the
-market meets them. With *how Growmerce thinks* now defined, the website can finally do its one
-job — make a visitor say *"that is exactly what is happening in my business"* — and convert that
-recognition into a lead and an engagement. The self-diagnosis tool is literally the Brain
-running in fast-judgement mode. Every other surface (TikTok, lead magnets, sales, diagnostics)
-also draws on the Brain, but the website is the highest-leverage next build because it is the
-front door to the entire cognition funnel.
+The Pattern Engine (19) is the vocabulary, the Brain (20) is the mind, and the Website UX (04) is
+the experience — defined as a user-state journey through progressive certainty. What's missing
+before a real build is **how it looks**. Brand identity now has the strongest possible brief: not
+"make us a logo," but "give visual form to a commerce intelligence operating system that guides a
+decision-maker from curiosity to commitment." Designing brand *after* the experience (rather than
+before) means the visual system expresses the correct psychology instead of constraining it.
 
 ---
 

@@ -13,8 +13,8 @@ intelligence** engine. This document tracks the status of each strategic workstr
 |---|---|---|
 | 01 | Company Strategy | ✅ Complete |
 | 02 | Commerce Intelligence Architecture | ✅ Complete |
-| 03 | (reserved) | — |
-| 04 | Website UX | ⏭️ **Recommended next** (now built on the Brain) |
+| 03 | Brand Identity | ⏭️ **Recommended next** |
+| 04 | Website UX | ✅ **Just completed** |
 | 05 | (reserved) | — |
 | 06 | Commerce Diagnostic | ✅ Complete |
 | 07 | AI Agent Architecture | ✅ Complete |
@@ -29,14 +29,40 @@ intelligence** engine. This document tracks the status of each strategic workstr
 | 17 | Commerce Knowledge Assets | ✅ Complete |
 | 18 | Industry / Marketplace / Channel / Occasion Playbooks | ✅ Complete |
 | **19** | **Commerce Intelligence Patterns** | ✅ Complete |
-| **20** | **Growmerce Intelligence Brain** | ✅ **Just completed** |
+| **20** | **Growmerce Intelligence Brain** | ✅ Complete |
 
 > Workstream numbering reflects the strategic build order. Reserved slots are placeholders for
 > work not yet opened.
 
 ---
 
-## Latest milestone — 20 Growmerce Intelligence Brain
+## Latest milestone — 04 Website UX
+
+The **Commerce Intelligence Experience** is defined (v1) — *how the website converts intelligence
+into user experience.* It is documented as the user-facing interface of the Intelligence Brain
+(20), organised **primarily around user states and cognitive transitions**, not a page inventory.
+
+**Delivered (23 documents):**
+- **Two primary spines:** `User_State_Journey.md` (Curiosity → Recognition → Diagnosis → Evidence
+  → Trust → Action → Commitment; pages are containers for states) and
+  `Intelligence_Retention_and_Return_Loops.md` (visitors → recurring intelligence users; "I want
+  to come back").
+- Strategy, IA (commerce-intelligence navigation, not Home/Services/About/Contact), and every
+  major surface (homepage command-center, guided diagnostic, Spotlight-style structured input,
+  pattern recognition, executive report preview, outcome-organised tools, market pages).
+- Conversion & reach: lead capture (value-before-capture), WhatsApp/consultation, mobile/TikTok
+  landing.
+- Trust layer: Trust & Proof system, Arabic Fusha UX, edge cases (graceful, never fabricating).
+- The spine: `Website_to_Intelligence_Brain_Mapping.md` — every surface mapped to a user state,
+  the Brain (20), the patterns (19), the action, and the outcome.
+- Every surface carries a **User-State Transition block** (state entering/leaving · friction ·
+  trust gained · intelligence revealed · next action).
+- Governance: Decisions, Open Questions, Backlog.
+
+**Core principle:** prove intelligence, don't claim it; user states are primary, pages secondary;
+the site is an intelligence platform you want to return to, not a brochure you bounce from.
+
+### Prior milestone — 20 Growmerce Intelligence Brain
 
 The **central intelligence operating system** is defined (v1) — *how Growmerce thinks.* The
 Brain reasons over the Pattern Engine (19) to turn signals into evidence-backed, confidence-
@@ -66,17 +92,18 @@ Website Intelligence Usage brief.
 
 ## Strategic position
 
-Growmerce now has architecture, diagnostics, AI agents, sales, delivery, knowledge assets,
-playbooks, the intelligence **patterns** (19), **and** the intelligence **brain** (20) that
-reasons over them. The foundation for *how Growmerce thinks* is complete. The next leverage
-point is the **website** — the surface where the world first meets that intelligence and says
-*"that is exactly what is happening in my business."*
+Growmerce now has the intelligence **patterns** (19), the intelligence **brain** (20) that
+reasons over them, and the **website experience** (04) that turns that intelligence into a felt,
+returnable user journey. *How Growmerce thinks* and *how the world experiences that thinking* are
+both defined. What remains before a build is **how it looks** — the brand and visual system that
+expresses this experience.
 
 ---
 
 ## Recommended next workstream
 
-**04 — Website UX**, now built directly on the Brain (20) and the Pattern Engine (19). Build the
-self-diagnosis flagship tool (the Brain in fast-judgement mode) and per-pattern recognition
-pages. Briefs: `20-growmerce-intelligence-brain/Growmerce_Intelligence_OS.md` (fast-judgement
-mode, §6) and `19-commerce-intelligence-patterns/Website_Intelligence_Usage.md`.
+**03 — Brand Identity.** With the Website UX defined as a user-state journey through progressive
+certainty, the visual system can now be designed to *express that psychology* — the command
+center, the commerce ecosystem map, recognition cards, the executive report, and the
+state-by-state reveal. Brief: the `04-website-ux/` workstream (especially `User_State_Journey.md`,
+`Homepage_Experience.md`, `Trust_and_Proof_System.md`, and `Arabic_Content_UX.md`).
