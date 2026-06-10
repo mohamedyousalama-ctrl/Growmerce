@@ -150,6 +150,22 @@ Growmerce/
 │   ├── Decisions.md
 │   └── Backlog.md
 │
+├── 22-intelligence-supply-chain/             # How Growmerce PRODUCES OUTPUT ACCURACY
+│   ├── README.md
+│   ├── 01_Intelligence_Supply_Chain_Overview.md   # the 12-stage pipeline
+│   ├── 02_Signal_Taxonomy.md                 # every signal category, rated
+│   ├── 03_Intelligence_Source_Hierarchy.md   # 5 tiers; what outranks/overrides what
+│   ├── 04_Intelligence_Acquisition_Strategy.md    # where intelligence comes from
+│   ├── 05_Verification_and_Trust_System.md   # how hallucinations are avoided
+│   ├── 06_Evidence_Scoring_Engine.md         # evidence → computed confidence
+│   ├── 07_Output_Accuracy_Framework.md       # THE CORE — what determines accuracy
+│   ├── 08_Intelligence_Failure_Modes.md      # detection / mitigation / recovery
+│   ├── 09_Intelligence_Quality_Control.md    # checkpoints before every output
+│   ├── 10_Competitive_Advantage_of_the_Supply_Chain.md  # why competitors conclude worse
+│   ├── Decisions.md                           # Governance
+│   ├── Open_Questions.md
+│   └── Backlog.md
+│
 └── 99-project-management/
     └── Repository_Tree.md                     # This file
 ```
@@ -215,6 +231,14 @@ folders to the tree above:
   sales, WhatsApp, service delivery)
 - Governance: 4 files (Messaging Guardrails, Open Questions, Decisions, Backlog)
 - Defines **how Growmerce speaks**, not how it looks (that is 03)
+
+**22 — Commerce Intelligence Supply Chain (14 documents)**
+- Overview: 1 file (README)
+- The 10 required core documents: pipeline overview, signal taxonomy, source hierarchy, acquisition
+  strategy, verification & trust, evidence scoring, output accuracy framework, failure modes, quality
+  control, competitive advantage
+- Governance: 3 files (Decisions, Open Questions, Backlog)
+- Defines **how Growmerce produces output accuracy** — the production discipline beneath the Brain (20)
 
 **19 — Commerce Intelligence Patterns (27 documents)**
 - Foundation: 3 files (README, Purpose, Strategy)

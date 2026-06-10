@@ -31,13 +31,42 @@ intelligence** engine. This document tracks the status of each strategic workstr
 | **19** | **Commerce Intelligence Patterns** | ✅ Complete |
 | **20** | **Growmerce Intelligence Brain** | ✅ Complete |
 | **21** | **Brand Narrative System** | ✅ Complete |
+| **22** | **Commerce Intelligence Supply Chain** | ✅ **Just completed** |
 
 > Workstream numbering reflects the strategic build order. Reserved slots are placeholders for
 > work not yet opened.
 
 ---
 
-## Latest milestone — 03 Brand Identity
+## Latest milestone — 22 Commerce Intelligence Supply Chain
+
+**How Growmerce produces output accuracy** is defined (v1) — the machinery that converts raw market
+signals into trusted commerce intelligence. The defensible answer to *"why should I trust Growmerce's
+recommendation?"* is now explicit: **because Growmerce runs a superior Intelligence Supply Chain**,
+not because it has AI. Framed and built like an intelligence-production firm (Bloomberg / Moody's /
+credit bureau), not a SaaS startup.
+
+**Delivered (14 documents):**
+- **The pipeline (01):** the twelve-stage supply chain (Signal → … → Delivery), each with failure
+  modes and quality controls.
+- **Inputs (02–04):** the Signal Taxonomy (every signal category, rated), the five-tier Source
+  Hierarchy (what outranks/overrides what; AI inference is Tier 5), and the Acquisition Strategy
+  (where intelligence comes from + the acquisition ladder + coverage).
+- **The engine (05–06):** the Verification & Trust System (how hallucinations, weak evidence, and
+  contradictions are caught) and the Evidence Scoring Engine (how evidence becomes computed
+  confidence).
+- **The core (07):** the Output Accuracy Framework — an eight-factor model of what determines output
+  quality and why it improves over time.
+- **Robustness (08–09):** the Intelligence Failure Modes catalogue (detection/mitigation/recovery)
+  and Quality Control checkpoints before every output.
+- **The moat (10):** why agencies, consultants, dashboards, generic AI tools, marketplace
+  consultants, and SaaS companies see less and conclude worse.
+- Governance: Decisions, Open Questions, Backlog (supply-chain hardening).
+
+**Core principle:** the recommendation isn't trustworthy because it's AI — it's trustworthy because
+of the verified, tiered, quality-gated, outcome-calibrated supply chain behind it.
+
+### Prior milestone — 03 Brand Identity
 
 The **strategic identity brief** is defined (v1) — how Growmerce should *look*, translated directly
 from how it thinks (20), speaks (21), and is experienced (04). This is **not** the design itself
@@ -141,18 +170,21 @@ Website Intelligence Usage brief.
 
 ## Strategic position
 
-The full strategic foundation is now in place: Growmerce knows **what's true** (patterns, 19),
-**how it thinks** (the Brain, 20), **how it's experienced** (Website UX, 04), **how it speaks**
-(Brand Narrative, 21), and **how it should look** (the Brand Identity brief, 03). The strategy
-documentation phase is complete end-to-end — from intelligence to experience to voice to visual
-brief. The next move is no longer documentation: it is **visual creation.**
+The strategic foundation is in place across two axes. **Intelligence:** what's true (patterns, 19),
+how it thinks (the Brain, 20), and now **how it produces trusted, accurate output** (the Intelligence
+Supply Chain, 22) — the production discipline beneath the Brain. **Expression:** how it's experienced
+(Website UX, 04), how it speaks (Brand Narrative, 21), and how it should look (the Brand Identity
+brief, 03). Growmerce can now answer not only "how does it think?" but the harder question **"how does
+it know it's right?"** Two tracks remain: **visual creation** (Claude Design) and **supply-chain
+hardening** (engineering the machinery in 22).
 
 ---
 
 ## Recommended next step
 
-**Claude Design — visual exploration.** The strategic identity brief (`03-brand-identity/`,
-especially `Claude_Design_Brief.md`) is the handoff. Claude Design should begin exploring the logo,
-typography, colour, and the intelligence visual systems against the brief's evaluation criteria —
-giving Growmerce a face that a serious operator trusts on sight. This is a design/build step, not
-another strategic documentation workstream.
+**Claude Design — visual exploration** remains the primary next step on the expression track: the
+identity brief (`03-brand-identity/Claude_Design_Brief.md`) is the handoff. In parallel, on the
+intelligence track, **supply-chain hardening** (`22-intelligence-supply-chain/Backlog.md`) is the
+engineering path — taxonomy schema, tier rules, verification/scoring calibration, and outcome capture
+— that turns the defined supply chain into running machinery. Neither is another strategic
+documentation workstream; both are build steps.

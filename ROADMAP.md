@@ -70,12 +70,23 @@ redesigned downstream.
   visual language, mobile-first) and the `Claude_Design_Brief.md` handoff. No code, no logo files,
   no mockups — a brief for Claude Design.
 
-## Phase 8 — Visual creation (▶ Next)
+## Phase 8 — Intelligence production (✅ Supply Chain complete)
 
-- **Claude Design — visual exploration** ⏭️ **Recommended next** — not another strategy workstream.
-  Using `03-brand-identity/Claude_Design_Brief.md`, explore the logo, type, colour, and intelligence
-  visual systems, evaluated against the brief's five criteria. The strategy phase (intelligence →
-  experience → voice → identity brief) is complete; the next move is to give Growmerce a face.
+- **22 Commerce Intelligence Supply Chain** ✅ — **how Growmerce produces output accuracy.** The
+  production discipline beneath the Intelligence Brain (20): the twelve-stage pipeline (Signal →
+  Delivery), the Signal Taxonomy, the five-tier Source Hierarchy, the Acquisition Strategy,
+  Verification, the Evidence Scoring Engine, the Output Accuracy Framework, the Failure-Modes
+  catalogue, Quality Control checkpoints, and the supply-chain competitive advantage. The defensible
+  answer to "why trust Growmerce?" — built like an intelligence firm, not a SaaS startup.
+
+## Phase 9 — Creation & hardening (▶ Next)
+
+- **Claude Design — visual exploration** ⏭️ **Recommended next (expression track)** — using
+  `03-brand-identity/Claude_Design_Brief.md`, explore logo, type, colour, and the intelligence visual
+  systems against the brief's five criteria.
+- **Supply-chain hardening** (intelligence track) — using `22-intelligence-supply-chain/Backlog.md`,
+  engineer the machinery (taxonomy schema, tier rules, verification/scoring calibration, outcome
+  capture). Both are build steps, not further strategic documentation.
 
 ---
 
