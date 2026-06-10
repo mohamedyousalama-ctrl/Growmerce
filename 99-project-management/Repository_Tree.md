@@ -150,6 +150,27 @@ Growmerce/
 │   ├── Decisions.md
 │   └── Backlog.md
 │
+├── 23-commerce-knowledge-system/             # WHAT GROWMERCE KNOWS (the institutional understanding)
+│   ├── README.md
+│   ├── 01_Commerce_Knowledge_System_Overview.md   # what it is + how it connects to everything
+│   ├── 02_Commerce_Knowledge_Domains.md      # the 16 knowledge domains
+│   ├── 03_Knowledge_Objects_Framework.md     # the 14 building blocks of knowledge
+│   ├── 04_Marketplace_Knowledge_System.md    # domain doctrine (transferable)
+│   ├── 05_Pricing_and_Promotion_Knowledge.md
+│   ├── 06_Customer_Behavior_Knowledge.md
+│   ├── 07_Occasion_and_Demand_Knowledge.md
+│   ├── 08_Competitor_and_Market_Knowledge.md
+│   ├── 09_Knowledge_to_Pattern_Mapping.md    # knowledge vs pattern vs signal vs evidence vs rec
+│   ├── 10_Knowledge_to_Brain_Mapping.md      # where knowledge enters reasoning
+│   ├── 11_Knowledge_Compounding_Model.md     # how knowledge grows / strengthens / retires
+│   ├── 12_Knowledge_Quality_Framework.md     # validation / trust / versioning
+│   ├── 13_Knowledge_Gaps_and_Unknowns.md     # preventing false certainty
+│   ├── 14_Commerce_Ontology_Foundation.md    # the entities & relationships of commerce
+│   ├── 15_Why_Growmerce_Knows_More.md        # the executive case (the knowledge moat)
+│   ├── Decisions.md                           # Governance
+│   ├── Open_Questions.md
+│   └── Backlog.md
+│
 ├── 22-intelligence-supply-chain/             # How Growmerce PRODUCES OUTPUT ACCURACY
 │   ├── README.md
 │   ├── 01_Intelligence_Supply_Chain_Overview.md   # the 12-stage pipeline
@@ -231,6 +252,16 @@ folders to the tree above:
   sales, WhatsApp, service delivery)
 - Governance: 4 files (Messaging Guardrails, Open Questions, Decisions, Backlog)
 - Defines **how Growmerce speaks**, not how it looks (that is 03)
+
+**23 — Commerce Knowledge System (19 documents)**
+- Foundation: 4 files (overview, domains, objects framework, commerce ontology)
+- Domain doctrine: 5 files (marketplace, pricing/promotion, customer behaviour, occasion/demand,
+  competitor/market)
+- Connections: 2 files (knowledge→pattern, knowledge→brain)
+- Trust & growth: 3 files (compounding, quality, gaps & unknowns)
+- Executive case: 1 file (why Growmerce knows more)
+- README + governance: 4 files
+- Defines **what Growmerce knows** — the institutional understanding beneath patterns/brain/supply chain
 
 **22 — Commerce Intelligence Supply Chain (14 documents)**
 - Overview: 1 file (README)
