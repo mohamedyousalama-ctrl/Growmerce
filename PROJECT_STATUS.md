@@ -13,8 +13,8 @@ intelligence** engine. This document tracks the status of each strategic workstr
 |---|---|---|
 | 01 | Company Strategy | ✅ Complete |
 | 02 | Commerce Intelligence Architecture | ✅ Complete |
-| 03 | Brand Identity | ⏭️ **Recommended next** |
-| 04 | Website UX | ✅ **Just completed** |
+| 03 | Brand Identity | ✅ **Just completed** |
+| 04 | Website UX | ✅ Complete |
 | 05 | (reserved) | — |
 | 06 | Commerce Diagnostic | ✅ Complete |
 | 07 | AI Agent Architecture | ✅ Complete |
@@ -30,14 +30,38 @@ intelligence** engine. This document tracks the status of each strategic workstr
 | 18 | Industry / Marketplace / Channel / Occasion Playbooks | ✅ Complete |
 | **19** | **Commerce Intelligence Patterns** | ✅ Complete |
 | **20** | **Growmerce Intelligence Brain** | ✅ Complete |
-| **21** | **Brand Narrative System** | ✅ **Just completed** |
+| **21** | **Brand Narrative System** | ✅ Complete |
 
 > Workstream numbering reflects the strategic build order. Reserved slots are placeholders for
 > work not yet opened.
 
 ---
 
-## Latest milestone — 21 Brand Narrative System
+## Latest milestone — 03 Brand Identity
+
+The **strategic identity brief** is defined (v1) — how Growmerce should *look*, translated directly
+from how it thinks (20), speaks (21), and is experienced (04). This is **not** the design itself
+(no code, no logo files, no mockups); it is the brief Claude Design will use, so visual exploration
+starts from a fully-defined company.
+
+**Delivered (22 documents):**
+- **Foundation:** Purpose, Brand Identity Strategy, Brand Positioning Summary (the north star),
+  Personality→Visual Principles (each narrative trait → a visual principle).
+- **Visual direction:** Direction A evolved into **Growmerce Commerce Intelligence OS** (calm,
+  premium, Arabic-first command center); logo direction brief; Arabic name & naming system
+  (جرومرس); typography (Arabic-first); colour (semantic roles, profit≠revenue, confidence scale);
+  layout; iconography; motion.
+- **Intelligence visual systems:** the Intelligence-OS visual metaphor, the platform ecosystem map
+  (never a logo wall), the executive-decision-brief report/diagnostic language, the trust &
+  confidence visual language (a core differentiator), and mobile-first.
+- **The handoff:** `Claude_Design_Brief.md` — everything Claude Design needs to begin.
+- Governance: Decisions, Open Questions, Backlog.
+
+**Core principle:** make people feel "this company understands online sales deeply," never "this is
+a nice-looking agency." Calm intelligence over hype; Arabic-first; evidence and confidence made
+visible.
+
+### Prior milestone — 21 Brand Narrative System
 
 **How Growmerce speaks** is defined (v1) — the narrative operating system governing language
 across every surface (website, diagnostics, reports, TikTok, sales, WhatsApp, delivery, future
@@ -117,21 +141,18 @@ Website Intelligence Usage brief.
 
 ## Strategic position
 
-Growmerce now has the intelligence **patterns** (19), the intelligence **brain** (20) that reasons
-over them, the **website experience** (04) that turns that intelligence into a felt, returnable
-journey, and the **brand narrative** (21) that governs how it all *speaks*. *How Growmerce thinks*,
-*how the world experiences that thinking*, and *how Growmerce speaks* are all defined. What remains
-before a build is **how it looks** — the visual system that expresses the narrative and the
-experience.
+The full strategic foundation is now in place: Growmerce knows **what's true** (patterns, 19),
+**how it thinks** (the Brain, 20), **how it's experienced** (Website UX, 04), **how it speaks**
+(Brand Narrative, 21), and **how it should look** (the Brand Identity brief, 03). The strategy
+documentation phase is complete end-to-end — from intelligence to experience to voice to visual
+brief. The next move is no longer documentation: it is **visual creation.**
 
 ---
 
-## Recommended next workstream
+## Recommended next step
 
-**03 — Brand Identity.** Brand identity should *express* the narrative system (21) and the website
-experience (04), not invent them. With the worldview, voice, personality, and user-state journey
-defined, the visual system has the strongest possible brief: give visual form to a calm,
-evidence-driven commerce intelligence operating system — the command center, ecosystem map,
-recognition cards, executive report, and state-by-state reveal — designed around psychology and
-voice, not decoration. Briefs: `21-brand-narrative-system/` (especially `Brand_Personality_Framework.md`,
-`Narrative_Pillars.md`) and `04-website-ux/` (`User_State_Journey.md`, `Trust_and_Proof_System.md`).
+**Claude Design — visual exploration.** The strategic identity brief (`03-brand-identity/`,
+especially `Claude_Design_Brief.md`) is the handoff. Claude Design should begin exploring the logo,
+typography, colour, and the intelligence visual systems against the brief's evaluation criteria —
+giving Growmerce a face that a serious operator trusts on sight. This is a design/build step, not
+another strategic documentation workstream.

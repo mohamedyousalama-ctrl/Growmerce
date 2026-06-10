@@ -59,25 +59,34 @@ redesigned downstream.
   reports, TikTok, sales, WhatsApp, delivery, future SaaS). The spoken form of the Intelligence
   Brain (20): evidence-aware, confidence-calibrated, operator-grade, hype-free. No visuals.
 
-## Phase 7 — Expression (▶ Next)
+## Phase 7 — Expression (✅ Brand Identity brief complete)
 
-- **03 Brand Identity** ⏭️ **Recommended next** — the visual and brand system that *expresses* the
-  narrative (21) and the website experience (04). Brand identity should give visual form to an
-  already-defined worldview, voice, and user-state journey — designing around psychology and voice
-  rather than inventing them or decorating pages. Briefs: `21-brand-narrative-system/` and
-  `04-website-ux/`.
+- **03 Brand Identity** ✅ — the **strategic identity brief**: how Growmerce should *look*,
+  translated from how it thinks (20), speaks (21), and is experienced (04). Defines the
+  positioning-to-visual mapping, the **Commerce Intelligence OS** visual direction (calm, premium,
+  Arabic-first command center), and principles for logo, Arabic naming (جرومرس), typography, colour,
+  layout, iconography, and motion — plus the intelligence-specific visual systems (the Intelligence-
+  OS metaphor, the platform ecosystem map, the executive-report language, the trust & confidence
+  visual language, mobile-first) and the `Claude_Design_Brief.md` handoff. No code, no logo files,
+  no mockups — a brief for Claude Design.
+
+## Phase 8 — Visual creation (▶ Next)
+
+- **Claude Design — visual exploration** ⏭️ **Recommended next** — not another strategy workstream.
+  Using `03-brand-identity/Claude_Design_Brief.md`, explore the logo, type, colour, and intelligence
+  visual systems, evaluated against the brief's five criteria. The strategy phase (intelligence →
+  experience → voice → identity brief) is complete; the next move is to give Growmerce a face.
 
 ---
 
-## Why 03 Brand Identity is next
+## Why Claude Design is next (not more documentation)
 
-The Pattern Engine (19) is the vocabulary of *what's true*, the Brain (20) is the mind, the Website
-UX (04) is the experience, and the Brand Narrative (21) is the voice. What's missing before a real
-build is **how it looks**. Brand identity now has the strongest possible brief: not "make us a
-logo," but "give visual form to a calm, evidence-driven commerce intelligence operating system —
-one with a defined worldview, voice, and user-state journey." Designing the visual system *after*
-the narrative and experience means it expresses the correct psychology and voice instead of
-constraining or contradicting them. Identity should express the narrative, not invent it.
+The strategic foundation is complete: what's true (19), how it thinks (20), how it's experienced
+(04), how it speaks (21), and how it should look (03). Every layer a designer needs is now
+documented, culminating in the `Claude_Design_Brief.md` handoff. The remaining gap is not knowledge
+— it's the visuals themselves. So the next step is **visual creation by Claude Design**, working
+from the brief, rather than another strategic documentation workstream. The brief was deliberately
+written last so the design expresses a fully-defined company instead of guessing at one.
 
 ---
 
