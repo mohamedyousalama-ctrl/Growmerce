@@ -102,6 +102,30 @@ Growmerce/
 │   ├── Decisions.md
 │   └── Backlog.md
 │
+├── 21-brand-narrative-system/                # How Growmerce SPEAKS (the voice, not the visuals)
+│   ├── README.md
+│   ├── Purpose.md
+│   ├── Growmerce_Worldview.md                # Foundation — the worldview
+│   ├── What_Growmerce_Believes.md            #   34 core beliefs
+│   ├── What_Growmerce_Rejects.md             #   33 rejections
+│   ├── Narrative_Pillars.md                  # The voice — 6 recurring messages
+│   ├── Brand_Personality_Framework.md        #   personality (and what it's not)
+│   ├── Vocabulary_System.md                  #   use / prefer / avoid / never
+│   ├── Trust_Language_Framework.md           #   calibrated honesty (differentiator)
+│   ├── Evidence_and_Confidence_Communication.md  # wired to the Brain (20)
+│   ├── Narrative_by_User_State.md            # Applied — by state (Curiosity → Return)
+│   ├── Narrative_for_Website.md              # Applied — by surface
+│   ├── Narrative_for_Diagnostics.md
+│   ├── Narrative_for_Reports.md
+│   ├── Narrative_for_TikTok.md
+│   ├── Narrative_for_Sales_Conversations.md
+│   ├── Narrative_for_WhatsApp.md
+│   ├── Narrative_for_Service_Delivery.md
+│   ├── Messaging_Guardrails.md               # Governance — the "never say" bright lines
+│   ├── Open_Questions.md
+│   ├── Decisions.md
+│   └── Backlog.md
+│
 └── 99-project-management/
     └── Repository_Tree.md                     # This file
 ```
@@ -149,6 +173,15 @@ folders to the tree above:
 - Spine: 1 file (Website → Intelligence Brain Mapping)
 - Governance: 3 files (Open Questions, Decisions, Backlog)
 - Organising principle: **user states primary, pages secondary**
+
+**21 — Brand Narrative System (22 documents)**
+- Worldview foundation: 4 files (README, Purpose, Worldview, Believes, Rejects — note: 5 incl.
+  README/Purpose)
+- The voice: 5 files (Pillars, Personality, Vocabulary, Trust-Language, Evidence & Confidence)
+- Applied narrative: 8 files (by user state + 7 surfaces: website, diagnostics, reports, TikTok,
+  sales, WhatsApp, service delivery)
+- Governance: 4 files (Messaging Guardrails, Open Questions, Decisions, Backlog)
+- Defines **how Growmerce speaks**, not how it looks (that is 03)
 
 **19 — Commerce Intelligence Patterns (27 documents)**
 - Foundation: 3 files (README, Purpose, Strategy)
