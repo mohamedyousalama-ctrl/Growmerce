@@ -150,6 +150,27 @@ Growmerce/
 │   ├── Decisions.md
 │   └── Backlog.md
 │
+├── 24-intelligence-object-architecture/      # SOFTWARE-READY ARCHITECTURE (objects → engines)
+│   ├── README.md
+│   ├── 01_Intelligence_Object_Architecture.md     # base object, provenance DAG, invariants
+│   ├── 02_Signal_Object.md                   # the intelligence objects (10 facets each)
+│   ├── 03_Evidence_Object.md
+│   ├── 04_Knowledge_Object.md
+│   ├── 05_Pattern_Object.md
+│   ├── 06_Recommendation_Object.md
+│   ├── 07_Opportunity_Object.md
+│   ├── 08_Threat_Object.md
+│   ├── 09_Commerce_Entity_Model.md           # the ontology as schemas
+│   ├── 10_Intelligence_Relationship_Model.md # the full edge catalogue
+│   ├── 11_Confidence_Object_Model.md         # confidence as a value object
+│   ├── 12_Intelligence_Versioning_Model.md   # append-only, pinned lineage, time-travel
+│   ├── 13_Retrieval_Architecture.md          # CRITICAL — grounded retrieval (no hallucination)
+│   ├── 14_Future_Knowledge_Graph_Foundation.md
+│   ├── 15_Why_This_Architecture_Scales.md    # engine→object mapping; scales in trust
+│   ├── Decisions.md                           # Governance
+│   ├── Open_Questions.md
+│   └── Backlog.md
+│
 ├── 23-commerce-knowledge-system/             # WHAT GROWMERCE KNOWS (the institutional understanding)
 │   ├── README.md
 │   ├── 01_Commerce_Knowledge_System_Overview.md   # what it is + how it connects to everything
@@ -252,6 +273,15 @@ folders to the tree above:
   sales, WhatsApp, service delivery)
 - Governance: 4 files (Messaging Guardrails, Open Questions, Decisions, Backlog)
 - Defines **how Growmerce speaks**, not how it looks (that is 03)
+
+**24 — Intelligence Object Architecture (19 documents)**
+- Architecture: 1 file (base object, provenance DAG, invariants)
+- Intelligence objects: 7 files (Signal, Evidence, Knowledge, Pattern, Recommendation, Opportunity,
+  Threat — each across 10 facets)
+- Model: 4 files (entity model, relationship/edge catalogue, confidence value object, versioning)
+- Critical + foundation + proof: 3 files (grounded retrieval, knowledge-graph foundation, why it scales)
+- README + governance: 4 files
+- Software-ready architecture: turns 19/20/22/23 into buildable objects → the four engines
 
 **23 — Commerce Knowledge System (19 documents)**
 - Foundation: 4 files (overview, domains, objects framework, commerce ontology)
