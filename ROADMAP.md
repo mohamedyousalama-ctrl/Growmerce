@@ -51,24 +51,33 @@ redesigned downstream.
   user-facing interface of the Intelligence Brain (20), running fast-judgement mode and bridging
   to deep diagnosis. No code, no visual design — experience strategy only.
 
-## Phase 6 — Expression (▶ Next)
+## Phase 6 — Voice (✅ Brand Narrative complete)
+
+- **21 Brand Narrative System** ✅ — **how Growmerce speaks** (not how it looks). The narrative
+  operating system: worldview, beliefs, rejections, six pillars, personality, vocabulary,
+  trust-language, and per-state/per-surface guidance governing all language (website, diagnostics,
+  reports, TikTok, sales, WhatsApp, delivery, future SaaS). The spoken form of the Intelligence
+  Brain (20): evidence-aware, confidence-calibrated, operator-grade, hype-free. No visuals.
+
+## Phase 7 — Expression (▶ Next)
 
 - **03 Brand Identity** ⏭️ **Recommended next** — the visual and brand system that *expresses* the
-  Website UX. Because 04 is defined as a user-state journey through progressive certainty, brand
-  can now design around psychology (the command center, the commerce ecosystem map, recognition
-  cards, the executive report, the state-by-state reveal) rather than decorating pages. Brief: the
-  `04-website-ux/` workstream.
+  narrative (21) and the website experience (04). Brand identity should give visual form to an
+  already-defined worldview, voice, and user-state journey — designing around psychology and voice
+  rather than inventing them or decorating pages. Briefs: `21-brand-narrative-system/` and
+  `04-website-ux/`.
 
 ---
 
 ## Why 03 Brand Identity is next
 
-The Pattern Engine (19) is the vocabulary, the Brain (20) is the mind, and the Website UX (04) is
-the experience — defined as a user-state journey through progressive certainty. What's missing
-before a real build is **how it looks**. Brand identity now has the strongest possible brief: not
-"make us a logo," but "give visual form to a commerce intelligence operating system that guides a
-decision-maker from curiosity to commitment." Designing brand *after* the experience (rather than
-before) means the visual system expresses the correct psychology instead of constraining it.
+The Pattern Engine (19) is the vocabulary of *what's true*, the Brain (20) is the mind, the Website
+UX (04) is the experience, and the Brand Narrative (21) is the voice. What's missing before a real
+build is **how it looks**. Brand identity now has the strongest possible brief: not "make us a
+logo," but "give visual form to a calm, evidence-driven commerce intelligence operating system —
+one with a defined worldview, voice, and user-state journey." Designing the visual system *after*
+the narrative and experience means it expresses the correct psychology and voice instead of
+constraining or contradicting them. Identity should express the narrative, not invent it.
 
 ---
 

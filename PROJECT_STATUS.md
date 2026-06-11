@@ -30,13 +30,38 @@ intelligence** engine. This document tracks the status of each strategic workstr
 | 18 | Industry / Marketplace / Channel / Occasion Playbooks | ✅ Complete |
 | **19** | **Commerce Intelligence Patterns** | ✅ Complete |
 | **20** | **Growmerce Intelligence Brain** | ✅ Complete |
+| **21** | **Brand Narrative System** | ✅ **Just completed** |
 
 > Workstream numbering reflects the strategic build order. Reserved slots are placeholders for
 > work not yet opened.
 
 ---
 
-## Latest milestone — 04 Website UX
+## Latest milestone — 21 Brand Narrative System
+
+**How Growmerce speaks** is defined (v1) — the narrative operating system governing language
+across every surface (website, diagnostics, reports, TikTok, sales, WhatsApp, delivery, future
+SaaS). Not how Growmerce looks; this is **not** brand identity (that's 03, next).
+
+**Delivered (22 documents):**
+- **Worldview foundation:** the Growmerce Worldview, the official belief list (34 convictions),
+  and the official rejection list (33 things) — a coherent point of view distinct from agencies,
+  consultants, and SaaS vendors.
+- **The voice:** six Narrative Pillars, the Brand Personality Framework (operator with a
+  scientist's honesty; and what it is *not*), the four-tier Vocabulary System (use / prefer /
+  avoid / never), the Trust-Language Framework (calibrated honesty as a differentiator), and
+  Evidence & Confidence Communication (wired to the Brain, 20).
+- **Applied narrative:** by user state (Curiosity → Return) and by surface (website, diagnostics,
+  reports, TikTok, sales, WhatsApp, service delivery).
+- **Guardrails:** the bright-line "never say" list (guarantees, fake certainty, hype, AI-magic,
+  manipulation, fabrication…).
+- Governance: Decisions, Open Questions, Backlog.
+
+**Core principle:** speak like a commercially-scarred, evidence-driven, intellectually-honest
+commerce operator — so the reader thinks "these people understand online sales deeply," never
+"these people are trying to sell me something."
+
+### Prior milestone — 04 Website UX
 
 The **Commerce Intelligence Experience** is defined (v1) — *how the website converts intelligence
 into user experience.* It is documented as the user-facing interface of the Intelligence Brain
@@ -92,18 +117,21 @@ Website Intelligence Usage brief.
 
 ## Strategic position
 
-Growmerce now has the intelligence **patterns** (19), the intelligence **brain** (20) that
-reasons over them, and the **website experience** (04) that turns that intelligence into a felt,
-returnable user journey. *How Growmerce thinks* and *how the world experiences that thinking* are
-both defined. What remains before a build is **how it looks** — the brand and visual system that
-expresses this experience.
+Growmerce now has the intelligence **patterns** (19), the intelligence **brain** (20) that reasons
+over them, the **website experience** (04) that turns that intelligence into a felt, returnable
+journey, and the **brand narrative** (21) that governs how it all *speaks*. *How Growmerce thinks*,
+*how the world experiences that thinking*, and *how Growmerce speaks* are all defined. What remains
+before a build is **how it looks** — the visual system that expresses the narrative and the
+experience.
 
 ---
 
 ## Recommended next workstream
 
-**03 — Brand Identity.** With the Website UX defined as a user-state journey through progressive
-certainty, the visual system can now be designed to *express that psychology* — the command
-center, the commerce ecosystem map, recognition cards, the executive report, and the
-state-by-state reveal. Brief: the `04-website-ux/` workstream (especially `User_State_Journey.md`,
-`Homepage_Experience.md`, `Trust_and_Proof_System.md`, and `Arabic_Content_UX.md`).
+**03 — Brand Identity.** Brand identity should *express* the narrative system (21) and the website
+experience (04), not invent them. With the worldview, voice, personality, and user-state journey
+defined, the visual system has the strongest possible brief: give visual form to a calm,
+evidence-driven commerce intelligence operating system — the command center, ecosystem map,
+recognition cards, executive report, and state-by-state reveal — designed around psychology and
+voice, not decoration. Briefs: `21-brand-narrative-system/` (especially `Brand_Personality_Framework.md`,
+`Narrative_Pillars.md`) and `04-website-ux/` (`User_State_Journey.md`, `Trust_and_Proof_System.md`).
