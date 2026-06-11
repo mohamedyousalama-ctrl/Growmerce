@@ -257,17 +257,37 @@ export interface DiagnosticFinding {
 
 /* ---------- Conversion / action ---------- */
 
+/** Diagnostic context attached to a captured lead (carried into the handoff). */
+export interface LeadContext {
+  businessType?: BusinessType;
+  channels: string[]; // channel labels
+  mainProblem?: string; // problem label
+  findingTitle?: string;
+  patternKey?: string;
+  confidenceBand?: ConfidenceBand;
+  confidenceScore?: number;
+  opportunityTitle?: string;
+  verificationSteps?: string[];
+  missingSummary?: string[];
+  provenance: Provenance; // 'demo' in V1
+}
+
 export interface Lead {
   name: string;
   businessName: string;
   whatsapp: string;
-  email?: string;
   country: string;
   businessType?: BusinessType;
   mainChannel?: ChannelType;
   contactPermission: boolean;
-  /** hidden diagnostic context carried forward */
+  // optional
+  email?: string;
+  role?: string;
+  websiteUrl?: string;
+  note?: string;
+  // internal
   internalContext?: string;
+  context?: LeadContext;
 }
 
 export interface HandoffSummary {
@@ -275,7 +295,11 @@ export interface HandoffSummary {
   patternKey: string;
   opportunityTitle: string;
   confidenceBand: ConfidenceBand;
+  confidenceScore?: number;
+  businessContext?: string;
   contextDigest: string;
+  verificationSteps?: string[];
+  missingSummary?: string[];
   whatGrowmerceCanExecute?: string[];
 }
 

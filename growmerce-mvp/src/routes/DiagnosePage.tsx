@@ -11,6 +11,7 @@ import { MissingDataModule } from '../components/MissingDataModule';
 import { RuledOutModule } from '../components/RuledOutModule';
 import { VerificationPanel } from '../components/VerificationPanel';
 import { OpportunityCard } from '../components/OpportunityCard';
+import { OpportunityBridge } from '../components/OpportunityBridge';
 import { DemoBanner } from '../components/ProvenanceTag';
 import { useSession } from '../state/session';
 
@@ -93,20 +94,33 @@ export function DiagnosePage() {
           </section>
         )}
 
-        {/* ---------- OPPORTUNITY ---------- */}
+        {/* ---------- OPPORTUNITY + bridge to action ---------- */}
         {state === 'opportunity' && session.opportunity && (
           <section>
             <p className="section-label">الفرصة ذات الأولوية</p>
-            <OpportunityCard opportunity={session.opportunity} />
-            <StepNav
-              onBack={() => goTo('result')}
-              onNext={() => {
+            <OpportunityCard
+              opportunity={session.opportunity}
+              basedOn={
+                session.finding
+                  ? {
+                      findingTitle: session.finding.title,
+                      confidenceBand: session.finding.confidence.band,
+                      confidenceScore: session.finding.confidence.score,
+                      evidenceCount: session.finding.evidence.length,
+                    }
+                  : undefined
+              }
+            />
+
+            <OpportunityBridge
+              verificationSteps={session.finding?.verificationSteps ?? []}
+              onContinue={() => {
                 goTo('lead');
                 navigate('/handoff');
               }}
-              nextLabel="تابع ←"
-              hint="بعد أن رأيت القيمة — تابع لتسلّمها"
             />
+
+            <StepNav onBack={() => goTo('result')} backLabel="→ رجوع للنتيجة" />
           </section>
         )}
       </div>
