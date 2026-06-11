@@ -15,6 +15,35 @@ Growmerce/
 ├── PROJECT_STATUS.md
 ├── ROADMAP.md
 │
+├── 04-website-ux/                            # The Commerce Intelligence Experience (how it's experienced)
+│   ├── README.md
+│   ├── Purpose.md
+│   ├── User_State_Journey.md                 # PRIMARY SPINE: 7 user states (pages are containers)
+│   ├── Intelligence_Retention_and_Return_Loops.md  # PRIMARY SPINE: recurring intelligence users
+│   ├── Website_UX_Strategy.md
+│   ├── Information_Architecture.md
+│   │
+│   ├── Homepage_Experience.md                # Major surfaces (each w/ User-State Transition block)
+│   ├── Commerce_Diagnostic_Experience.md
+│   ├── Structured_Input_Experience.md
+│   ├── Pattern_Recognition_Experience.md
+│   ├── Report_Preview_Experience.md
+│   ├── Tool_Ecosystem_Experience.md
+│   ├── Market_Page_Experience.md
+│   ├── Lead_Capture_Experience.md
+│   ├── WhatsApp_and_Consultation_CTA.md
+│   ├── Mobile_TikTok_Landing_Experience.md
+│   │
+│   ├── Trust_and_Proof_System.md             # Trust layer
+│   ├── Arabic_Content_UX.md
+│   ├── UX_Edge_Cases.md
+│   │
+│   ├── Website_to_Intelligence_Brain_Mapping.md  # Spine: every surface → Brain (20) + Patterns (19)
+│   │
+│   ├── Open_Questions.md                      # Governance
+│   ├── Decisions.md
+│   └── Backlog.md
+│
 ├── 19-commerce-intelligence-patterns/        # The Pattern Engine (vocabulary)
 │   ├── README.md
 │   ├── Purpose.md
@@ -109,6 +138,17 @@ folders to the tree above:
 ---
 
 ## Workstream file counts
+
+**04 — Website UX (23 documents)**
+- Foundation / primary spines: 6 files (README, Purpose, User_State_Journey,
+  Intelligence_Retention_and_Return_Loops, Website_UX_Strategy, Information_Architecture)
+- Major surfaces: 10 files (homepage, diagnostic, structured input, pattern recognition, report
+  preview, tools, market pages, lead capture, WhatsApp/consultation, mobile/TikTok) — each with a
+  User-State Transition block
+- Trust layer: 3 files (Trust & Proof, Arabic Content UX, UX Edge Cases)
+- Spine: 1 file (Website → Intelligence Brain Mapping)
+- Governance: 3 files (Open Questions, Decisions, Backlog)
+- Organising principle: **user states primary, pages secondary**
 
 **19 — Commerce Intelligence Patterns (27 documents)**
 - Foundation: 3 files (README, Purpose, Strategy)
