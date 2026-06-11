@@ -15,6 +15,10 @@ import { OpportunityBridge } from '../components/OpportunityBridge';
 import { DemoBanner } from '../components/ProvenanceTag';
 import { useSession } from '../state/session';
 import { track } from '../lib/analytics';
+import { arabicDigits } from '../lib/format';
+import type { ConfidenceBand } from '../types';
+
+const BAND_AR: Record<ConfidenceBand, string> = { low: 'منخفضة', medium: 'متوسّطة', high: 'عالية', very_high: 'عالية جدًا' };
 
 /** `/diagnose` — one progressive flow: input → reasoning → result → opportunity. */
 export function DiagnosePage() {
@@ -56,23 +60,48 @@ export function DiagnosePage() {
           </section>
         )}
 
-        {/* ---------- RESULT (executive intelligence brief; A→I) ---------- */}
+        {/* ---------- RESULT — Board Intelligence Dossier (Commerce Intelligence OS v4) ---------- */}
         {state === 'result' && session.finding && (
-          <section>
+          <section className="dossier" aria-label="موجز الذكاء التجاري">
+            {/* mono/meta header — honest, not fake board authority */}
+            <div className="dossier__top">
+              <span className="dossier__restricted">عرض تجريبي · توضيحي</span>
+              <span className="dossier__ref">REF GM-CI-DEMO · 1 / 1</span>
+            </div>
+
             <DemoBanner />
 
-            {/* A — Finding summary */}
-            <p className="section-label">ما الذي نراه</p>
-            <h1 className="finding__title">{session.finding.title}</h1>
-            {session.finding.systemNarrative && <p className="muted">{session.finding.systemNarrative}</p>}
+            <div className="dossier__brandline">
+              <span className="dossier__glyph" aria-hidden>◴</span>
+              <span className="dossier__brandname">جرومرس · ذكاء تجاري<br />موجز قرار — تجريبي</span>
+            </div>
+
+            {/* A — Finding headline (editorial) */}
+            <p className="dossier__kicker">ما الذي نراه</p>
+            <h1 className="dossier__headline">{session.finding.title}</h1>
+            <div className="dossier__subrow">
+              <span>أُعدّ لصاحب النشاط</span>
+              <span className="dot">·</span>
+              <span className="mono">الثقة: {BAND_AR[session.finding.confidence.band]} · {arabicDigits(session.finding.confidence.score)}٪</span>
+              <span className="dot">·</span>
+              <span>{arabicDigits(session.finding.evidence.length)} إشارة مؤيِّدة</span>
+            </div>
+
+            {/* Bottom Line Up Front — executive verdict */}
+            {session.finding.systemNarrative && (
+              <div className="bluf">
+                <span className="bluf__label">الخلاصة أوّلًا</span>
+                <p className="bluf__text">{session.finding.systemNarrative}</p>
+              </div>
+            )}
 
             {/* B — Reasoning trace */}
-            <section className="panel" aria-label="مسار الاستدلال">
-              <h3 className="panel__title">كيف وصلنا إلى ذلك</h3>
+            <section className="dossier__section" aria-label="مسار الاستدلال">
+              <span className="os-label">كيف وصلنا إلى ذلك</span>
               <ol className="trace">
                 {session.finding.reasoningTrace.map((step, i) => (
                   <li key={i}>
-                    <span className="trace__idx num">{i + 1}.</span>
+                    <span className="trace__idx num">{arabicDigits(i + 1)}.</span>
                     <span>{step}</span>
                   </li>
                 ))}
@@ -85,7 +114,7 @@ export function DiagnosePage() {
             {/* D — Evidence */}
             <EvidencePanel items={session.finding.evidence} />
 
-            {/* E — Confidence explanation */}
+            {/* E — Confidence instrument */}
             <ConfidenceModule explanation={session.finding.confidence} />
 
             {/* F — Missing data */}
@@ -96,6 +125,12 @@ export function DiagnosePage() {
 
             {/* H — Recommended verification */}
             <VerificationPanel steps={session.finding.verificationSteps ?? []} />
+
+            {/* methodology / honesty footer */}
+            <p className="dossier__foot">
+              المنهجية · {arabicDigits(session.finding.evidence.length)} إشارة مؤيِّدة، {arabicDigits(session.finding.ruledOut.length)} بديل مُستبعَد، نمط واحد ·
+              أعدّه ذكاء جرومرس — قراءة محفوظة تجريبية، تُؤكَّد على بياناتك الحقيقية. بلا وعودٍ مضمونة.
+            </p>
 
             {/* I — Continue to opportunity */}
             <StepNav onBack={() => goTo('input')} onNext={() => goTo('opportunity')} nextLabel="الفرصة ذات الأولوية ←" />

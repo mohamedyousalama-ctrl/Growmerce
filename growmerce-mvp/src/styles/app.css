@@ -19,7 +19,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-h1, h2, h3 { line-height: var(--lh-tight); margin: 0; font-family: var(--font-display); font-weight: var(--fw-semibold); }
+h1, h2, h3 { line-height: var(--lh-tight); margin: 0; font-family: var(--font-display); font-weight: var(--fw-bold); letter-spacing: -0.01em; }
 p { margin: 0; }
 a { color: inherit; }
 button { font-family: inherit; }
@@ -83,7 +83,7 @@ button { font-family: inherit; }
 .hero__sub { color: var(--color-ink-secondary); font-size: var(--fs-h3); max-width: 46ch; }
 .hero__channels { margin-top: var(--space-4); color: var(--color-ink-tertiary); font-size: var(--fs-small); }
 
-.section-label { font-size: var(--fs-label); letter-spacing: 0.04em; text-transform: none; color: var(--color-ink-tertiary); margin-bottom: var(--space-3); }
+.section-label { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: var(--tracking-os); text-transform: uppercase; color: var(--color-brand-strong); margin-bottom: var(--space-3); }
 
 .recognition-grid { display: grid; gap: var(--space-3); grid-template-columns: 1fr; }
 @media (min-width: 720px) { .recognition-grid { grid-template-columns: 1fr 1fr; } }
@@ -455,3 +455,272 @@ button { font-family: inherit; }
   .journey { gap: 6px; }
   .journey__step { font-size: 0.72rem; padding: 2px var(--space-2); }
 }
+
+/* =========================================================================
+   DESIGN FIDELITY PASS — board-11 (Direction A · Commerce Intelligence OS)
+   Indigo brand · warm paper · dark command surfaces · board dossier · mono OS labels.
+   Layered last so it refines the existing token-driven base without restructuring it.
+   ========================================================================= */
+
+body { letter-spacing: -0.003em; }
+
+/* ---- mono "OS" label (section rules, meta) ---- */
+.os-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-os);
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+}
+.os-label--brand { color: var(--color-brand-strong); }
+.mono { font-family: var(--font-mono); }
+.serif { font-family: var(--font-serif); }
+
+/* ---- topbar / brand wordmark ---- */
+.brand__mark { font-family: var(--font-display); color: var(--color-ink); }
+.brand__desc { font-family: var(--font-mono); letter-spacing: 0.04em; }
+.wa-action__dot { background: var(--color-growth); }
+
+/* ---- journey progress → mono OS steps ---- */
+.journey__step { font-family: var(--font-mono); letter-spacing: 0.04em; }
+.journey__step--active { background: var(--color-brand-tint); border-color: var(--color-brand); color: var(--color-brand-strong); }
+
+/* ---- buttons: indigo primary, dark, and the deliberate green WhatsApp exception ---- */
+.btn--primary { background: var(--color-action); color: var(--color-action-ink); border-color: var(--color-action); }
+.btn--primary:hover { background: var(--color-action-hover); border-color: var(--color-action-hover); }
+.btn--dark { background: var(--color-dark); color: var(--color-dark-ink); border-color: var(--color-dark); }
+.btn--dark:hover { background: #000; border-color: #000; }
+.btn--whatsapp { background: var(--color-growth); color: #fff; border-color: var(--color-growth); }
+.btn--whatsapp:hover { background: var(--color-growth-soft); border-color: var(--color-growth-soft); }
+
+/* =========================================================================
+   Homepage / Recognition — editorial headline + dark command preview
+   ========================================================================= */
+.home-hero { display: grid; gap: var(--space-6); align-items: center; padding: var(--space-7) 0 var(--space-6); }
+@media (min-width: 880px) { .home-hero { grid-template-columns: 1.05fr 0.95fr; gap: var(--space-7); } }
+
+.home-hero__eyebrow {
+  display: inline-block; font-family: var(--font-mono); font-size: var(--fs-label);
+  letter-spacing: var(--tracking-os); text-transform: uppercase; color: var(--color-brand-strong);
+  background: var(--color-brand-tint); border: 1px solid var(--color-brand-bright);
+  border-radius: var(--radius-pill); padding: 4px 12px;
+}
+.home-hero__title { font-family: var(--font-display); font-size: var(--fs-display); font-weight: var(--fw-bold); margin: var(--space-4) 0 var(--space-3); max-width: 16ch; line-height: 1.15; }
+.home-hero__latin { font-family: var(--font-serif); font-style: italic; color: var(--color-ink-secondary); font-size: var(--fs-h3); }
+.home-hero__body { color: var(--color-ink-secondary); margin-top: var(--space-4); max-width: 48ch; }
+.home-hero__cta { margin-top: var(--space-5); display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+/* dark command/intelligence preview panel (board-11 "Direction A — Command Surface") */
+.cmd-preview {
+  background: var(--color-dark);
+  color: var(--color-dark-ink);
+  border: 1px solid var(--color-dark-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-raised);
+  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.cmd-preview__label { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: var(--tracking-os); text-transform: uppercase; color: var(--color-dark-ink-secondary); }
+.cmd-preview__input {
+  display: flex; align-items: center; gap: var(--space-3); margin: var(--space-3) 0 var(--space-4);
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-md);
+  background: var(--color-dark-2); border: 1px solid var(--color-dark-border); color: var(--color-dark-ink);
+}
+.cmd-preview__caret { width: 2px; height: 1.1em; background: var(--color-brand-bright); animation: cmd-blink 1.1s steps(2) infinite; }
+@keyframes cmd-blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .cmd-preview__caret { animation: none; } }
+.cmd-preview__rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.cmd-preview__rows li { display: flex; align-items: center; gap: var(--space-3); color: var(--color-dark-ink-secondary); font-size: var(--fs-small); }
+.cmd-preview__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-brand-bright); flex-shrink: 0; }
+.cmd-preview__foot { margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--color-dark-border); display: flex; align-items: center; justify-content: space-between; font-family: var(--font-mono); font-size: var(--fs-label); color: var(--color-dark-ink-tertiary); letter-spacing: 0.04em; }
+.cmd-preview__active { display: inline-flex; align-items: center; gap: 6px; color: var(--color-growth-soft); }
+.cmd-preview__active::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--color-growth-soft); }
+
+/* recognition cards → secondary proof of problem recognition */
+.reco-card__statement { font-family: var(--font-display); }
+.reco-card__cta { font-family: var(--font-mono); letter-spacing: 0.04em; }
+
+/* =========================================================================
+   Result surface — Board Intelligence Dossier (Commerce Intelligence OS v4)
+   ========================================================================= */
+.dossier {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-dossier);
+  padding: clamp(var(--space-4), 4vw, var(--space-7));
+  margin: var(--space-4) auto var(--space-6);
+}
+.dossier__top {
+  display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between;
+  gap: var(--space-3); padding-bottom: var(--space-4); border-bottom: 1px solid var(--color-border);
+}
+.dossier__ref { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: var(--tracking-os); color: var(--color-ink-tertiary); text-transform: uppercase; text-align: end; }
+.dossier__restricted {
+  display: inline-block; font-family: var(--font-mono); font-size: var(--fs-label);
+  letter-spacing: var(--tracking-os); text-transform: uppercase; color: var(--color-brand-strong);
+  background: var(--color-brand-tint); border: 1px solid var(--color-brand-bright);
+  border-radius: var(--radius-pill); padding: 3px 12px;
+}
+.dossier__brandline { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-4); }
+.dossier__glyph { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--color-brand); display: grid; place-items: center; color: var(--color-brand); flex-shrink: 0; }
+.dossier__brandname { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: var(--tracking-os); text-transform: uppercase; line-height: 1.35; color: var(--color-ink-secondary); }
+.dossier__kicker { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: var(--tracking-os); text-transform: uppercase; color: var(--color-ink-tertiary); }
+
+.dossier__headline { font-family: var(--font-display); font-size: var(--fs-h1); font-weight: var(--fw-bold); line-height: 1.18; margin: var(--space-4) 0 var(--space-3); max-width: 28ch; }
+.dossier__subrow { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5); align-items: center; color: var(--color-ink-secondary); font-size: var(--fs-small); }
+.dossier__subrow .mono { color: var(--color-brand-strong); }
+.dossier__subrow .dot { color: var(--color-ink-tertiary); }
+
+/* Bottom Line Up Front / executive verdict */
+.bluf {
+  position: relative; margin: var(--space-5) 0; padding: var(--space-4) var(--space-5);
+  background: var(--color-brand-tint-2); border: 1px solid var(--color-brand-bright);
+  border-inline-start: 3px solid var(--color-brand); border-radius: var(--radius-md);
+}
+.bluf__label { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: var(--tracking-os); text-transform: uppercase; color: var(--color-brand-strong); }
+.bluf__text { font-family: var(--font-serif); font-size: var(--fs-h3); line-height: var(--lh-snug); color: var(--color-ink); margin-top: var(--space-2); }
+
+/* dossier two-column body on desktop */
+.dossier__grid { display: grid; gap: var(--space-5); grid-template-columns: 1fr; margin-top: var(--space-4); }
+@media (min-width: 820px) { .dossier__grid { grid-template-columns: 1fr 1fr; gap: var(--space-6); } }
+.dossier__section { margin: var(--space-4) 0; }
+.dossier__section > .os-label { display: block; padding-bottom: var(--space-2); margin-bottom: var(--space-3); border-bottom: 1px solid var(--color-border); }
+
+/* dossier methodology / honesty footer */
+.dossier__foot {
+  margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--color-border);
+  font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: 0.05em;
+  text-transform: uppercase; color: var(--color-ink-tertiary); line-height: 1.7;
+}
+.dossier__stamp {
+  display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-4);
+  padding: var(--space-2) var(--space-4); border: 1.5px dashed var(--color-growth);
+  border-radius: var(--radius-sm); color: var(--color-growth);
+  font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: var(--tracking-os); text-transform: uppercase;
+  transform: rotate(-1.2deg);
+}
+
+/* evidence rows as metric lines inside the dossier */
+.evidence-item { background: var(--color-surface-sunken); }
+.evidence-item__claim { font-weight: var(--fw-semibold); }
+.evidence-item__meta { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: 0.02em; }
+
+/* =========================================================================
+   Confidence instrument — ring + calibration bar + 3 groups (calibration, not status)
+   ========================================================================= */
+.conf-instrument { display: grid; gap: var(--space-4); }
+.conf-top { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
+.conf-ring {
+  --pct: 0; width: 104px; height: 104px; border-radius: 50%; flex-shrink: 0;
+  background:
+    radial-gradient(closest-side, var(--color-surface) 71%, transparent 72% 100%),
+    conic-gradient(var(--confidence-very-high) calc(var(--pct) * 1%), var(--confidence-track) 0);
+  display: grid; place-items: center; position: relative;
+}
+.conf-ring__pct { font-family: var(--font-mono); font-size: 1.5rem; font-weight: var(--fw-semibold); color: var(--color-ink); }
+.conf-ring__cap { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: var(--tracking-os); text-transform: uppercase; color: var(--color-ink-tertiary); }
+.conf-headline { display: flex; flex-direction: column; gap: var(--space-1); }
+.conf-band-pill {
+  align-self: flex-start; font-family: var(--font-mono); font-size: var(--fs-label);
+  letter-spacing: var(--tracking-os); text-transform: uppercase; color: var(--color-brand-strong);
+  background: var(--color-brand-tint); border: 1px solid var(--color-brand-bright);
+  border-radius: var(--radius-pill); padding: 2px 10px;
+}
+
+/* calibration bar with dotted "potential" extension */
+.conf-calbar { display: grid; gap: var(--space-2); }
+.conf-calbar__track { position: relative; height: 10px; border-radius: var(--radius-pill); background: var(--confidence-track); overflow: hidden; }
+.conf-calbar__fill { position: absolute; inset-block: 0; inset-inline-start: 0; border-radius: var(--radius-pill); background: linear-gradient(90deg, var(--confidence-high), var(--confidence-very-high)); }
+.conf-calbar__potential { position: absolute; inset-block: 0; border-inline-end: 2px dashed var(--confidence-potential); background: repeating-linear-gradient(90deg, transparent 0 4px, rgba(90,85,217,0.10) 4px 8px); }
+.conf-calbar__row { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: 0.04em; color: var(--color-ink-tertiary); }
+.conf-calbar__row .now { color: var(--color-brand-strong); }
+
+.conf-groups { display: grid; gap: var(--space-4); grid-template-columns: 1fr; }
+@media (min-width: 700px) { .conf-groups { grid-template-columns: 1fr 1fr 1fr; } }
+.conf-group__label { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: var(--tracking-os); text-transform: uppercase; color: var(--color-ink-tertiary); margin-bottom: var(--space-2); }
+.conf-group__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.conf-group__list li { font-size: var(--fs-small); color: var(--color-ink-secondary); padding-inline-start: var(--space-4); position: relative; }
+.conf-group--raised li::before { content: "↑"; position: absolute; inset-inline-start: 0; color: var(--color-growth); font-family: var(--font-mono); }
+.conf-group--reduced li::before { content: "↓"; position: absolute; inset-inline-start: 0; color: var(--color-profit); font-family: var(--font-mono); }
+.conf-group--improve li::before { content: "+"; position: absolute; inset-inline-start: 0; color: var(--color-brand); font-family: var(--font-mono); }
+.conf-potential { font-family: var(--font-display); font-size: var(--fs-h2); font-weight: var(--fw-bold); color: var(--color-brand-strong); }
+.conf-cap { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: 0.03em; color: var(--color-ink-tertiary); border-top: 1px dashed var(--color-border-strong); padding-top: var(--space-3); }
+
+/* =========================================================================
+   Opportunity + Growth Operations handoff gravity
+   ========================================================================= */
+.opportunity { border-color: var(--color-border-strong); background: var(--color-surface); }
+.opportunity__priority { font-family: var(--font-mono); letter-spacing: var(--tracking-os); text-transform: uppercase; color: var(--color-brand-strong); }
+.opportunity__title { font-family: var(--font-display); }
+.opp-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-3) 0; }
+.opp-tag {
+  font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: 0.06em; text-transform: uppercase;
+  border-radius: var(--radius-sm); padding: 3px 9px; border: 1px solid var(--color-border-strong); color: var(--color-ink-secondary);
+}
+.opp-tag--priority { background: var(--color-dark); color: var(--color-dark-ink); border-color: var(--color-dark); }
+.opp-tag--conf { background: var(--color-brand-tint); color: var(--color-brand-strong); border-color: var(--color-brand-bright); }
+.opp-tag--impact { color: var(--color-growth); border-color: var(--color-positive-border); background: var(--color-growth-tint); }
+.opportunity__basedon-list { font-family: var(--font-mono); font-size: var(--fs-small); letter-spacing: 0.01em; }
+
+/* dark Growth Operations insight panel */
+.insight-panel {
+  background: var(--color-dark); color: var(--color-dark-ink);
+  border: 1px solid var(--color-dark-border); border-radius: var(--radius-lg);
+  padding: var(--space-5); margin: var(--space-4) 0;
+  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 22px 22px;
+}
+.insight-panel__label { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: var(--tracking-os); text-transform: uppercase; color: var(--color-dark-ink-secondary); }
+.insight-panel__title { font-family: var(--font-display); color: #fff; margin: var(--space-2) 0; font-size: var(--fs-h3); }
+.insight-panel .growthops__list li { color: var(--color-dark-ink-secondary); }
+.insight-panel .growthops__list li::before { color: var(--color-brand-bright); }
+
+.handoff__summary { background: var(--color-surface); border-color: var(--color-border-strong); }
+.os-tagline { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: 0.08em; color: var(--color-ink-tertiary); }
+.footer__tagline { font-family: var(--font-mono); letter-spacing: 0.06em; color: var(--color-ink-tertiary); font-size: var(--fs-label); }
+
+/* =========================================================================
+   Arabic-Indic numerals helper (used in Arabic contexts where practical)
+   ========================================================================= */
+.num-ar { font-family: var(--font-numeric); font-variant-numeric: tabular-nums; }
+
+/* =========================================================================
+   Mobile fidelity — keep one-focus-per-screen; dossier collapses to single column
+   ========================================================================= */
+@media (max-width: 820px) {
+  .dossier { padding: var(--space-4); border-radius: var(--radius-lg); }
+  .dossier__grid { gap: var(--space-4); }
+}
+@media (max-width: 620px) {
+  .home-hero { padding: var(--space-5) 0 var(--space-4); gap: var(--space-5); }
+  .cmd-preview { padding: var(--space-4); }
+  .conf-top { gap: var(--space-4); }
+  .conf-ring { width: 88px; height: 88px; }
+  .dossier__headline { font-size: var(--fs-h2); }
+  .bluf { padding: var(--space-3) var(--space-4); }
+}
+
+/* provenance tags read in mono (OS texture); demo stays dashed + warm */
+.prov { font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: 0.02em; }
+.collapsible__count { font-family: var(--font-mono); }
+.trace__idx { color: var(--color-brand-strong); }
+
+/* =========================================================================
+   Arabic-first correctness: never apply Latin OS letter-spacing to Arabic cursive
+   (it breaks letter joining). Reset tracking on Arabic-bearing label classes; keep
+   the mono font stack (Arabic glyphs resolve to IBM Plex Sans Arabic).
+   ========================================================================= */
+.section-label, .os-label, .journey__step, .home-hero__eyebrow, .cmd-preview__label,
+.cmd-preview__foot, .dossier__restricted, .dossier__brandname, .dossier__kicker,
+.bluf__label, .dossier__foot, .dossier__stamp, .conf-ring__cap, .conf-band-pill,
+.conf-group__label, .conf-cap, .opportunity__priority, .opp-tag, .insight-panel__label,
+.collapsible__count, .brand__desc, .dossier__subrow .mono {
+  letter-spacing: normal;
+}
+/* explicitly Latin-only OS strings keep the tracked OS look */
+.footer__tagline, .os-tagline { letter-spacing: 0.08em; }
+.dossier__ref { letter-spacing: 0.06em; }
+
+/* methodology footer reads as a calm Arabic micro-note, not a stretched mono line */
+.dossier__foot { text-transform: none; }

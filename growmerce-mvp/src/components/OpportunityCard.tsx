@@ -1,3 +1,4 @@
+import { arabicDigits } from '../lib/format';
 import type { ConfidenceBand, OpportunityRecommendation, Priority, Effort } from '../types';
 
 const PRIORITY_AR: Record<Priority, string> = { now: 'الآن', next: 'التالي', plan: 'خطّط لها' };
@@ -21,8 +22,21 @@ export function OpportunityCard({
 }) {
   return (
     <article className="opportunity">
-      <span className="opportunity__priority">الأولوية: {PRIORITY_AR[opportunity.priority]}</span>
+      <span className="opportunity__priority">الفرصة ذات الأولوية</span>
       <h2 className="opportunity__title">{opportunity.title}</h2>
+
+      {/* valued / ranked-fix tags (single opportunity — not a list) */}
+      <div className="opp-tags">
+        <span className="opp-tag opp-tag--priority">الأولوية: {PRIORITY_AR[opportunity.priority]}</span>
+        <span className="opp-tag opp-tag--conf">ثقة {arabicDigits(opportunity.confidence.score)}٪</span>
+        {opportunity.impact.range && (
+          <span className="opp-tag opp-tag--impact">
+            {opportunity.impact.range}{opportunity.impact.isEstimate ? ' · تقدير' : ''}
+          </span>
+        )}
+        <span className="opp-tag">جهد {EFFORT_AR[opportunity.effort]}</span>
+      </div>
+
       <p className="muted">{opportunity.whyItMatters}</p>
 
       <div className="opportunity__meta">
@@ -34,7 +48,7 @@ export function OpportunityCard({
         </span>
         <span><b>الجهد</b>{EFFORT_AR[opportunity.effort]}</span>
         <span><b>الأولوية</b>{PRIORITY_AR[opportunity.priority]}</span>
-        <span><b>الثقة</b>{BAND_AR[opportunity.confidence.band]} · <span className="num">{opportunity.confidence.score}٪</span></span>
+        <span><b>الثقة</b>{BAND_AR[opportunity.confidence.band]} · <span className="num-ar">{arabicDigits(opportunity.confidence.score)}٪</span></span>
       </div>
 
       <div className="opportunity__first">
@@ -48,9 +62,9 @@ export function OpportunityCard({
             <li>التشخيص: «{basedOn.findingTitle}»</li>
             <li>
               الثقة في التشخيص: {BAND_AR[basedOn.confidenceBand]}
-              {typeof basedOn.confidenceScore === 'number' ? <> · <span className="num">{basedOn.confidenceScore}٪</span></> : null}
+              {typeof basedOn.confidenceScore === 'number' ? <> · <span className="num-ar">{arabicDigits(basedOn.confidenceScore)}٪</span></> : null}
             </li>
-            <li>الأدلّة: <span className="num">{basedOn.evidenceCount}</span> — راجعها أعلاه</li>
+            <li>الأدلّة: <span className="num-ar">{arabicDigits(basedOn.evidenceCount)}</span> — راجعها أعلاه</li>
           </ul>
         </div>
       ) : (

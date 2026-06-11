@@ -1,85 +1,118 @@
 /*
-  Growmerce — Design Tokens (Sprint 1)
+  Growmerce — Design Tokens (Design Fidelity Pass, board-11).
   Direction A — Commerce Intelligence OS.
-  Sources of truth: 03-brand-identity, 00-Claude-Design-Master-Brief.md.
+  Source of truth: `growmerce visual Exploration board-11.zip`
+  (Commerce Intelligence OS v2/v3/v4, Growmerce Homepage + Mobile, Arabic Style Guide).
 
   Principles encoded here:
-  - Calm, light, premium, evidence-forward. Mostly neutral; colour carries meaning, not decoration.
-  - Arabic-first / RTL is the default (see base.css).
-  - CONFIDENCE is a CALIBRATION scale (Low → Very High), NOT a success/failure (red/amber/green) status.
-    It is rendered as graduated solidity of a single calm "intelligence" hue.
-  - EVIDENCE / PROVENANCE has its own honest visual language; demo/mock is explicitly marked.
-  These are first-pass tokens; final values are a later sprint + native review.
+  - Warm paper surfaces + a single INDIGO brand accent + near-black ink. Premium, editorial.
+  - Dark "intelligence/command" surfaces for the OS feel; warm-paper "board dossier" for output.
+  - Arabic-first / RTL is the default. Editorial Arabic display + IBM Plex Mono for OS labels/data.
+  - CONFIDENCE is a CALIBRATION scale (Low → Very High) rendered as graduated solidity of the
+    indigo hue — NEVER red/amber/green status.
+  - EVIDENCE / PROVENANCE keeps its own honest visual language; demo/mock stays explicitly marked.
+  - GREEN is reserved for WhatsApp / operational-success accents only.
 */
 
 :root {
-  /* ---- Base surfaces (calm, light, premium) ---- */
-  --color-base: #f7f5f1;          /* warm paper background */
-  --color-surface: #ffffff;        /* cards / panels */
-  --color-surface-sunken: #f1eee8; /* quiet recessed areas */
-  --color-border: #e6e1d8;         /* hairline separation (space over borders) */
-  --color-border-strong: #d8d2c6;
+  /* ---- Base surfaces (warm paper / cream) ---- */
+  --color-base: #f6f4ef;           /* warm paper page background */
+  --color-surface: #fcfbf7;        /* cream cards / dossier surface */
+  --color-surface-sunken: #efece4; /* quiet recessed areas */
+  --color-border: #e4e2db;         /* hairline separation */
+  --color-border-strong: #d8d4c8;
 
-  /* ---- Ink (text) ---- */
-  --color-ink: #1b2024;            /* primary text, warm near-black */
-  --color-ink-secondary: #565d64;  /* secondary */
-  --color-ink-tertiary: #8b9098;   /* tertiary / hints */
-  --color-ink-on-brand: #f4faf9;
+  /* ---- Dark intelligence / command surfaces (Direction A "OS") ---- */
+  --color-dark: #16171a;           /* near-black command surface */
+  --color-dark-2: #1f2024;         /* raised dark row */
+  --color-dark-3: #2a2c34;
+  --color-dark-border: #33353d;
+  --color-dark-ink: #ecebe6;       /* text on dark */
+  --color-dark-ink-secondary: #9a9ca4;
+  --color-dark-ink-tertiary: #6f717a;
 
-  /* ---- Brand / intelligence hue (deep, serious teal — not SaaS blue, not neon) ---- */
-  --color-brand: #0f4d4f;
-  --color-brand-strong: #0a3a3c;
-  --color-brand-soft: #12605f;
-  --color-brand-tint: #e7f0ee;     /* very light brand wash */
+  /* ---- Ink (text on paper) ---- */
+  --color-ink: #16171a;            /* primary text, near-black */
+  --color-ink-secondary: #55544e;  /* warm secondary */
+  --color-ink-tertiary: #8c8a82;   /* warm tertiary / hints */
+  --color-ink-on-brand: #ffffff;
 
-  /* ---- Action (primary CTA). Calm, decisive — not loud. ---- */
-  --color-action: #0f4d4f;
+  /* ---- Brand / intelligence hue (INDIGO — the Commerce Intelligence OS signature) ---- */
+  --color-brand: #5a55d9;
+  --color-brand-strong: #4641b8;
+  --color-brand-soft: #6f6ae0;
+  --color-brand-bright: #9d99f0;
+  --color-brand-tint: #eeedfb;     /* light indigo wash (pills / fills) */
+  --color-brand-tint-2: #f1f0fa;
+
+  /* ---- Action (primary CTA). Indigo, decisive. ---- */
+  --color-action: #5a55d9;
   --color-action-ink: #ffffff;
-  --color-action-hover: #0a3a3c;
+  --color-action-hover: #4641b8;
 
-  /* ---- Semantic commerce roles (used sparingly; meaning, not decoration) ---- */
-  --color-growth: #1f5f4b;         /* revenue / sales-growth signal (distinct from profit) */
-  --color-profit: #6b4f1d;         /* profit / margin signal (deliberately separate from growth) */
-  --color-risk: #7a4a3a;           /* risk / caution — serious, NOT alarmist red */
-  --color-neutral-data: #6a7078;   /* quiet data / structural */
+  /* ---- Operational success / WhatsApp (the ONLY green, used deliberately) ---- */
+  --color-growth: #1f7a52;
+  --color-growth-soft: #2a8f63;
+  --color-growth-tint: #eaf4ee;
 
-  /* ---- CONFIDENCE (calibration scale — graduated solidity of the intelligence hue) ----
-     Read as "how sure", never as good/bad. Low is faint & honest; Very High is solid. */
-  --confidence-track: #e9e5dd;          /* empty calibration track */
-  --confidence-low: #b9c6c4;            /* faint */
-  --confidence-medium: #6f9a97;
-  --confidence-high: #2f7572;
-  --confidence-very-high: #0f4d4f;      /* solid intelligence hue */
-  --confidence-ink: #1b2024;
+  /* ---- Semantic commerce roles (restrained; meaning, not decoration) ---- */
+  --color-profit: #9a8e78;         /* profit / margin signal (warm gold) */
+  --color-risk: #a4302a;           /* deep, serious caution — used sparingly */
+  --color-neutral-data: #85878f;   /* quiet data / structural */
 
-  /* ---- EVIDENCE / PROVENANCE language ----
-     Honest treatment by where a fact came from. Demo/mock is explicitly, visibly marked. */
-  --prov-user-bg: #e7f0ee;     --prov-user-ink: #0f4d4f;     /* user-provided (strongest in V1) */
-  --prov-inferred-bg: #f1eee8; --prov-inferred-ink: #565d64; /* inferred (outlined/quiet) */
-  --prov-benchmark-bg: #eef0e9; --prov-benchmark-ink: #44502f;/* benchmark-based */
+  /* ---- CONFIDENCE (calibration scale — graduated solidity of the indigo hue) ----
+     Read as "how sure", never as good/bad. Low is faint & honest; Very High is solid indigo. */
+  --confidence-track: #e4e2db;          /* empty calibration track */
+  --confidence-low: #cfcdf2;            /* faint indigo */
+  --confidence-medium: #9d99f0;
+  --confidence-high: #6f6ae0;
+  --confidence-very-high: #5a55d9;      /* solid intelligence hue */
+  --confidence-ink: #16171a;
+  --confidence-potential: #b6b4ac;      /* dotted "potential" extension */
+
+  /* ---- EVIDENCE / PROVENANCE language (honest by source; demo explicitly marked) ---- */
+  --prov-user-bg: #eeedfb;     --prov-user-ink: #4641b8;     /* user-provided (strongest in V1) */
+  --prov-inferred-bg: #efece4; --prov-inferred-ink: #55544e; /* inferred (outlined/quiet) */
+  --prov-benchmark-bg: #f1efe7;--prov-benchmark-ink: #6b6555;/* benchmark-based (warm gold) */
   --prov-demo-bg: #f3ece0;     --prov-demo-ink: #7a5a2a;     /* demo / mocked — flagged honestly */
   --prov-demo-border: #d9c39a;
 
-  /* ---- Typography (Arabic-first stack; final faces are a later sprint) ---- */
-  --font-sans: "Segoe UI", "Noto Sans Arabic", "Tajawal", "Geeza Pro", Tahoma, system-ui, sans-serif;
-  --font-display: "Noto Kufi Arabic", "Segoe UI", "Tajawal", system-ui, sans-serif;
-  --font-numeric: "SF Mono", "Segoe UI", ui-monospace, monospace; /* tabular metrics */
+  /* ---- Status notes (success/warn/error — NOT confidence) ---- */
+  --color-positive-bg: #eaf4ee; --color-positive-ink: #1f7a52; --color-positive-border: #bfe3cf;
+  --color-warn-bg: #fbf3e6;     --color-warn-ink: #8a5a12;    --color-warn-border: #ecd6ab;
+  --color-error-bg: #fbecec;    --color-error-ink: #a4302a;   --color-error-border: #ecbdbd;
 
-  --fs-display: clamp(2rem, 5.5vw, 3.25rem);
-  --fs-h1: clamp(1.6rem, 4.2vw, 2.25rem);
-  --fs-h2: clamp(1.25rem, 3vw, 1.5rem);
+  /* ---- Typography (approved board-11 system) ----
+     Arabic-first body; Latin sans = Hanken Grotesk; Arabic display = Readex Pro;
+     serif editorial = Newsreader/Amiri; mono OS labels/data = IBM Plex Mono. */
+  --font-sans: "IBM Plex Sans Arabic", "Hanken Grotesk", system-ui, sans-serif;
+  --font-latin: "Hanken Grotesk", system-ui, sans-serif;
+  --font-display: "Readex Pro", "IBM Plex Sans Arabic", system-ui, sans-serif; /* Arabic headlines */
+  --font-serif: "Newsreader", "Amiri", Georgia, serif;                          /* editorial / Latin headline */
+  --font-arabic-serif: "Amiri", "Newsreader", Georgia, serif;
+  /* mono stacks include the Arabic UI face so Arabic glyphs never fall to a system mono
+     (IBM Plex Mono has no Arabic): Latin/digits → Plex Mono, Arabic → IBM Plex Sans Arabic. */
+  --font-mono: "IBM Plex Mono", "IBM Plex Sans Arabic", ui-monospace, "SF Mono", monospace; /* OS labels, REF codes, data */
+  --font-numeric: "IBM Plex Mono", "IBM Plex Sans Arabic", ui-monospace, monospace;          /* tabular + Arabic-Indic metrics */
+
+  --fs-display: clamp(2.1rem, 5.5vw, 3.4rem);
+  --fs-h1: clamp(1.7rem, 4.2vw, 2.4rem);
+  --fs-h2: clamp(1.3rem, 3vw, 1.6rem);
   --fs-h3: 1.125rem;
   --fs-body: 1rem;
   --fs-small: 0.875rem;
-  --fs-label: 0.78rem;
+  --fs-label: 0.74rem;            /* mono section labels */
 
-  --lh-tight: 1.25;
-  --lh-body: 1.7;       /* generous, calm reading (esp. Arabic) */
+  --lh-tight: 1.22;
+  --lh-snug: 1.4;
+  --lh-body: 1.75;                /* generous, calm reading (esp. Arabic) */
 
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-semibold: 600;
   --fw-bold: 700;
+
+  --tracking-os: 0.14em;          /* mono OS-label letter-spacing */
 
   /* ---- Spacing (4px base; generous) ---- */
   --space-1: 0.25rem;
@@ -96,16 +129,18 @@
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
+  --radius-xl: 22px;
   --radius-pill: 999px;
 
-  /* ---- Surface treatment (calm; restrained shadows) ---- */
-  --shadow-quiet: 0 1px 2px rgba(27, 32, 36, 0.04);
-  --shadow-card: 0 2px 10px rgba(27, 32, 36, 0.05);
-  --shadow-raised: 0 8px 28px rgba(27, 32, 36, 0.08);
+  /* ---- Surface treatment (calm; soft floating shadows like the dossier) ---- */
+  --shadow-quiet: 0 1px 2px rgba(22, 23, 26, 0.04);
+  --shadow-card: 0 2px 12px rgba(22, 23, 26, 0.06);
+  --shadow-raised: 0 18px 50px rgba(22, 23, 26, 0.12);
+  --shadow-dossier: 0 30px 80px rgba(22, 23, 26, 0.18);
 
-  /* ---- Layout ---- */
-  --maxw-content: 920px;
-  --maxw-narrow: 640px;
+  /* ---- Layout (wider desktop canvas for the dossier) ---- */
+  --maxw-content: 1080px;
+  --maxw-narrow: 680px;
 
   /* ---- Motion (subtle, purposeful) ---- */
   --motion-fast: 140ms ease;

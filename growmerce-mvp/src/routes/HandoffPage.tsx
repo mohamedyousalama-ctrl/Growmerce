@@ -163,18 +163,19 @@ export function HandoffPage() {
               </p>
             )}
 
-            {/* Growth Operations framing (scenario-aware) */}
-            <section className="panel growthops" aria-label="ما الذي يمكن أن نساعد في تشغيله">
-              <h3 className="panel__title">ما الذي يمكن أن نساعد في تشغيله؟</h3>
-              <p className="hint">أمثلة تنفيذ مرتبطة بحالتك — وليست نتائج مضمونة.</p>
-              <ul className="growthops__list">
+            {/* Growth Operations framing (scenario-aware) — dark intelligence panel */}
+            <section className="insight-panel growthops" aria-label="ما الذي يمكن أن نساعد في تشغيله">
+              <span className="insight-panel__label">عمليات نمو المبيعات</span>
+              <h3 className="insight-panel__title">ما الذي يمكن أن نساعد في تشغيله؟</h3>
+              <p className="os-tagline">Find the leak → Prove it → Operate the fix</p>
+              <ul className="growthops__list" style={{ marginTop: 'var(--space-3)' }}>
                 {growthOps.map((g, i) => <li key={i}>{g}</li>)}
               </ul>
             </section>
 
             <div className="handoff__ctas">
               <a
-                className="btn btn--primary btn--lg"
+                className="btn btn--whatsapp btn--lg"
                 href={buildWhatsAppLink(waMessage)}
                 target="_blank"
                 rel="noreferrer"
@@ -182,7 +183,7 @@ export function HandoffPage() {
               >
                 أرسل السياق عبر واتساب ←
               </a>
-              <button type="button" className="btn btn--lg" disabled aria-disabled="true">
+              <button type="button" className="btn btn--dark btn--lg" disabled aria-disabled="true">
                 ناقش الفرصة مع فريق جرومرس <span className="soon-tag">قريبًا</span>
               </button>
             </div>

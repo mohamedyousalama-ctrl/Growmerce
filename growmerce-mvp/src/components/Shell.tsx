@@ -29,6 +29,7 @@ export function Shell({ children }: { children: ReactNode }) {
 
       <footer className="footer">
         <p>جرومرس — تشغيل نمو المبيعات أونلاين، مدفوعًا بالذكاء التجاري</p>
+        <p className="footer__tagline">Find the leak → Prove it → Operate the fix</p>
         <p className="footer__demo">
           نسخة تجريبية (MVP): الذكاء هنا محاكى لإثبات التجربة، والروابط والبيانات للعرض فقط — وليست تكاملات أو بيانات حقيقية.
         </p>
