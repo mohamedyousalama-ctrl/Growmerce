@@ -15,6 +15,30 @@ Growmerce/
 ├── PROJECT_STATUS.md
 ├── ROADMAP.md
 │
+├── 03-brand-identity/                        # How Growmerce LOOKS — the strategic identity brief
+│   ├── README.md
+│   ├── Purpose.md
+│   ├── Brand_Identity_Strategy.md            # Foundation
+│   ├── Brand_Positioning_Summary.md          #   the design north star
+│   ├── Brand_Personality_to_Visual_Principles.md  # voice (21) → visual principles
+│   ├── Visual_Direction_Principles.md        # Visual direction — Commerce Intelligence OS
+│   ├── Logo_Direction_Brief.md
+│   ├── Arabic_Name_and_Naming_System.md      #   جرومرس
+│   ├── Typography_Direction.md
+│   ├── Color_Direction.md
+│   ├── Layout_and_Spatial_Principles.md
+│   ├── Iconography_and_Illustration_Principles.md
+│   ├── Motion_and_Interaction_Principles.md
+│   ├── Intelligence_OS_Visual_Metaphor.md    # Intelligence visual systems
+│   ├── Platform_Ecosystem_Visualization.md   #   (never a logo wall)
+│   ├── Report_and_Diagnostic_Visual_Language.md
+│   ├── Trust_and_Confidence_Visual_Language.md  # (core differentiator)
+│   ├── Mobile_First_Brand_Experience.md
+│   ├── Claude_Design_Brief.md                # THE HANDOFF to Claude Design
+│   ├── Open_Questions.md                      # Governance
+│   ├── Decisions.md
+│   └── Backlog.md
+│
 ├── 04-website-ux/                            # The Commerce Intelligence Experience (how it's experienced)
 │   ├── README.md
 │   ├── Purpose.md
@@ -162,6 +186,15 @@ folders to the tree above:
 ---
 
 ## Workstream file counts
+
+**03 — Brand Identity (22 documents)**
+- Foundation: 5 files (README, Purpose, Strategy, Positioning Summary, Personality→Visual)
+- Visual direction: 8 files (Direction, Logo, Arabic Naming, Typography, Colour, Layout,
+  Iconography, Motion)
+- Intelligence visual systems: 5 files (Intelligence-OS metaphor, Platform ecosystem, Report/
+  Diagnostic language, Trust/Confidence language, Mobile-first)
+- Handoff + governance: 4 files (Claude Design Brief, Open Questions, Decisions, Backlog)
+- Defines **how Growmerce looks** (a strategic brief for Claude Design — not the design itself)
 
 **04 — Website UX (23 documents)**
 - Foundation / primary spines: 6 files (README, Purpose, User_State_Journey,
