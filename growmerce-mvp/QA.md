@@ -134,3 +134,60 @@ Known risks / not yet covered
 
 Status: **Ready for a controlled demo/pilot** once the real-device manual pass is signed off.
 **Not** ready for real production traffic or durable lead capture.
+
+## Launch readiness checklist (V1)
+
+Run against the **deployed** build (not just local). Configure `VITE_GROWMERCE_WHATSAPP_NUMBER`
+and `VITE_GROWMERCE_LEAD_ENDPOINT` first; then walk the full journey.
+
+- [ ] **Lead submission reaches the real sink:** with `VITE_GROWMERCE_LEAD_ENDPOINT` set, submitting
+      the lead form shows the **success** note and the payload appears in the sink (Formspree/Sheet/
+      function inbox).
+- [ ] **Lead payload includes diagnostic context:** the received record contains `lead` + `context`
+      (finding, pattern, confidence, opportunity, verification, missing data) and `demoDiagnostic: true`.
+- [ ] **Fallback is safe & clear:** with the endpoint **unset**, submitting still advances to the
+      handoff, shows the localStorage-only note, and does not error.
+- [ ] **Submission states:** submitting shows "جارٍ الإرسال…"; success/partial-failure/fallback each
+      render a distinct, honest note.
+- [ ] **WhatsApp opens the correct number:** the handoff CTA opens **the configured** number (not the
+      demo picker) with the Arabic context message intact.
+- [ ] **Immediate demo diagnostic:** after entering business info the diagnostic report appears
+      immediately (no waiting on real intelligence) and stays clearly flagged as demo.
+- [ ] **Demo labels visible:** demo banner on the result, provenance tags, footer demo note, "تقدير"
+      on impact — all present.
+- [ ] **Privacy / consent visible:** the lead form consent checkbox + fineprint state that the user
+      shares business/contact info, that Growmerce may contact them about this diagnosis, that the
+      diagnosis is demo/illustrative, no guaranteed results, and no real marketplace data is fetched.
+- [ ] **Mobile journey works:** full journey on a real phone (iPhone Safari + Android Chrome) — input,
+      report, lead form, WhatsApp deep link.
+- [ ] **Routing after deployment:** `/`, `/diagnose`, `/handoff` all load on direct visit / refresh
+      (SPA history fallback configured); no 404.
+- [ ] **No secrets in the bundle:** only the public WhatsApp number and the public lead-endpoint URL
+      are present; nothing sensitive inlined.
+
+### 2026-06-11 — Launch Readiness Sprint V1 (automated checks in CI/headless env)
+
+Run by Claude in the remote build environment (Node 22, headless — **no real phones, no live sink**).
+
+Verified ✅
+
+- [x] `npm run build` passes (tsc -b + vite build; 72 modules incl. `src/lib/leadSink.ts`).
+- [x] `npm run preview` serves; `/`, `/diagnose`, `/handoff` all return **200**.
+- [x] Lead sink wiring: `submitLead()` always writes localStorage first, POSTs JSON (lead + context
+      + `demoDiagnostic: true`) only when `VITE_GROWMERCE_LEAD_ENDPOINT` is an HTTPS URL, and never
+      throws — returns `{ ok, storedLocally, sentRemote, configured, error }` for the UI.
+- [x] Fallback path (endpoint unset): journey completes, localStorage-only note shown, no error.
+- [x] Consent copy updated: shares business/contact info, contact-about-this-diagnosis, demo/
+      illustrative, no guaranteed results, no real marketplace data fetched.
+- [x] WhatsApp remains env-based deep link (no API); real number used when configured.
+
+Known risks / not yet covered
+
+- **Live sink + real WhatsApp number + real devices were not exercised here** — must be verified on
+  the deployed build before opening to the public (see the checklist above).
+- Lead delivery depends on the endpoint's CORS allowing the deployed origin — verify post-deploy.
+- Intelligence is still **mocked** (demo); no marketplace data, no WhatsApp API, no CRM, no dashboard.
+
+Status: **Ready to deploy for a controlled launch** once the deployed-build checklist above is
+signed off (live sink delivery, real WhatsApp number, real-device journey). Scope unchanged — no new
+product features.

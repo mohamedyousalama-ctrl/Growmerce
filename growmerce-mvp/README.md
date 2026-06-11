@@ -33,38 +33,75 @@ npm run check    # type-check only
 ### Configuration
 
 - **WhatsApp number** — copy `.env.example` to `.env.local` and set
-  `VITE_GROWMERCE_WHATSAPP_NUMBER` (digits + country code). If unset, the app runs in **demo mode**:
-  the WhatsApp link opens the contact picker and a demo note is shown. Deep link only — no API.
+  `VITE_GROWMERCE_WHATSAPP_NUMBER`. Format: **country code + number, digits only** (no `+`, spaces,
+  dashes, or leading `00`) — e.g. `9665XXXXXXXX` (SA), `9715XXXXXXXX` (UAE), `201XXXXXXXXX` (EG).
+  If unset, the app runs in **demo mode**: the WhatsApp link opens the contact picker and a demo
+  note is shown. Deep link only — no API.
+- **Lead sink** — set `VITE_GROWMERCE_LEAD_ENDPOINT` to an HTTPS endpoint that accepts a JSON POST
+  (a form service, serverless function, Apps Script web app, or Supabase REST URL). When set, each
+  submitted lead — **with its diagnostic context** — is POSTed there, and a localStorage copy is
+  kept as a fallback. If unset, lead capture falls back to **localStorage-only** (clearly flagged in
+  the UI). Not a CRM; no marketplace data is fetched.
 - **Funnel events** — a lightweight internal logger (`src/lib/analytics.ts`) logs journey events to
   the console (dev) and a capped `localStorage` log (`growmerce_mvp_events`). No external analytics.
-- **Leads** — captured leads are stored thinly in `localStorage` (`growmerce_mvp_leads`) for the
-  handoff only — **not** a CRM.
 
-### Deployment (controlled demo / pilot)
+### Deployment (controlled launch / pilot)
 
-This slice is a **static single-page app** — there is no server, database, or backend.
+This slice is a **static single-page app** — there is no server, database, or backend bundled.
+Build it and serve the `dist/` folder from any static host (Netlify, Vercel, Cloudflare Pages,
+S3 + CloudFront, Nginx, …).
 
 ```bash
 npm install
 npm run build      # → outputs the static site to growmerce-mvp/dist/
 ```
 
-Serve the `dist/` folder from any static host (Netlify, Vercel, Cloudflare Pages, S3 +
-CloudFront, Nginx, …).
-
 - **Build command:** `npm run build` · **Publish / output directory:** `dist`
-- **SPA history fallback (required):** the app uses client-side routing, so deep links such as
-  `/diagnose` and `/handoff` must rewrite to `/index.html` (otherwise a refresh on those URLs 404s).
+
+**Environment variables** (set at **build time** — Vite inlines `VITE_*` vars into the bundle):
+
+| Variable | Required | Purpose | Format / example |
+| --- | --- | --- | --- |
+| `VITE_GROWMERCE_WHATSAPP_NUMBER` | Recommended | Real WhatsApp number for the handoff deep link | Country code + number, digits only: `9665XXXXXXXX` |
+| `VITE_GROWMERCE_LEAD_ENDPOINT` | Optional | HTTPS endpoint that receives submitted leads (JSON POST) | `https://formspree.io/f/xxxxxxx` |
+
+If a variable is unset, the app degrades gracefully: no WhatsApp number → demo contact-picker mode;
+no lead endpoint → localStorage-only lead capture. Both states are clearly flagged in the UI. No
+secrets belong in these vars — the WhatsApp number is public and the lead endpoint is a public URL.
+
+**SPA history fallback (required):** the app uses client-side routing, so deep links such as
+`/diagnose` and `/handoff` must rewrite to `/index.html` (otherwise a refresh on those URLs 404s).
   - Netlify: a `_redirects` file with `/*  /index.html  200`.
   - Vercel: a rewrite of `/(.*)` → `/index.html`.
   - Nginx: `try_files $uri /index.html;`.
-- **Environment variable:** set `VITE_GROWMERCE_WHATSAPP_NUMBER` (digits + country code) at
-  **build time** so the WhatsApp handoff targets your number. If unset, the build runs in demo
-  mode (the link opens WhatsApp's contact picker and a demo note is shown). No secrets are needed —
-  it is a public deep-link number. WhatsApp is a **deep link only — there is no WhatsApp API**.
-- **Demo-only data:** there is **no real lead sink** — captured leads live only in the visitor's
-  browser `localStorage` (and so do funnel events). Clearing site data erases them. This is a demo,
-  **not** a CRM. Do not treat collected leads as durable storage.
+
+**Lead sink configuration:** point `VITE_GROWMERCE_LEAD_ENDPOINT` at any endpoint that accepts a
+JSON `POST` and allows CORS from your deployed origin. The app sends:
+
+```jsonc
+{
+  "source": "mvp_vertical_slice_v1",
+  "submittedAt": "<ISO timestamp>",
+  "pageUrl": "<page URL>",
+  "demoDiagnostic": true,          // the diagnosis is demo/illustrative in V1
+  "lead":    { /* name, businessName, whatsapp, country, businessType, mainChannel, ... */ },
+  "context": { /* finding, pattern, confidence, opportunity, verification, missing data */ }
+}
+```
+
+Quick options: **Formspree / Web3Forms / Basin** (paste the form URL), a **serverless function**
+on your host, or a **Google Apps Script web app** writing to a Sheet (deploy as “Anyone”, return
+JSON, and allow CORS). No CRM, no marketplace data — just a durable place for the lead + context.
+
+**Verify the deployed app:**
+1. Open `/` — the recognition entry renders RTL.
+2. Run the journey: enter business info → an **immediate demo diagnostic report** appears →
+   Opportunity → `/handoff`.
+3. Hard-refresh `/diagnose` and `/handoff` directly — they load (SPA fallback works), no 404.
+4. Submit the lead form → a **success** note appears (or a clear fallback note if no endpoint is
+   set); confirm the lead + context landed in your sink (e.g. the Formspree/Sheet inbox).
+5. Tap the WhatsApp CTA → it opens **your** configured number with the Arabic context message.
+6. Confirm the demo/consent labels are visible throughout.
 
 ### QA
 

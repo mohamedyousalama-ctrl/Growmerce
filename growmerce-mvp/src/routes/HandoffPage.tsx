@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shell } from '../components/Shell';
 import { JourneyProgress } from '../components/JourneyProgress';
@@ -7,7 +7,7 @@ import { HandoffSummary } from '../components/HandoffSummary';
 import { EmptyState } from '../components/EmptyState';
 import { StepNav } from '../components/StepNav';
 import { useSession } from '../state/session';
-import { saveLead } from '../lib/leadStore';
+import { submitLead, LEAD_SINK_CONFIGURED, type LeadSubmitResult } from '../lib/leadSink';
 import { buildWhatsAppLink, buildDiagnosticMessage, WHATSAPP_CONFIGURED } from '../lib/whatsapp';
 import { track } from '../lib/analytics';
 import { getGrowthOpsExamples } from '../mock/growthOps';
@@ -18,6 +18,7 @@ import type { HandoffSummary as HandoffSummaryType, Lead, LeadContext } from '..
 export function HandoffPage() {
   const navigate = useNavigate();
   const { session, goTo, setLead, setHandoff } = useSession();
+  const [submitResult, setSubmitResult] = useState<LeadSubmitResult | null>(null);
   const state = session.state;
   const finding = session.finding;
   const si = session.structuredInput;
@@ -61,7 +62,7 @@ export function HandoffPage() {
     );
   }
 
-  const onLeadSubmit = (lead: Lead) => {
+  const onLeadSubmit = async (lead: Lead) => {
     const context: LeadContext = {
       businessType: si.businessType,
       channels: channelsLabels,
@@ -81,8 +82,13 @@ export function HandoffPage() {
       context,
     };
     setLead(withContext);
-    saveLead(withContext); // thin localStorage persistence (demo — not a CRM)
-    track('lead_submitted', { pattern: finding.patternKey });
+
+    // Submit to the real sink if configured (always persists to localStorage as a fallback).
+    const result = await submitLead(withContext);
+    setSubmitResult(result);
+    // Total failure (not even local storage) → surface the error on the form, stay put.
+    if (!result.ok) throw new Error('lead_submit_failed');
+    track('lead_submitted', { pattern: finding.patternKey, sentRemote: result.sentRemote });
 
     const summary: HandoffSummaryType = {
       findingTitle: finding.title,
@@ -140,6 +146,23 @@ export function HandoffPage() {
 
             <HandoffSummary summary={session.handoff} />
 
+            {/* Lead submission status (success / fallback / partial failure) */}
+            {submitResult?.sentRemote && (
+              <p className="status-note status-note--ok" role="status">
+                تم استلام بياناتك بنجاح — سيتواصل معك فريق جرومرس بخصوص هذا التشخيص.
+              </p>
+            )}
+            {submitResult && submitResult.configured && !submitResult.sentRemote && (
+              <p className="status-note status-note--warn" role="status">
+                حُفظت بياناتك محليًا، لكن تعذّر إرسالها للخادم الآن. أسرع طريقة للمتابعة: راسلنا عبر واتساب أدناه.
+              </p>
+            )}
+            {submitResult && !submitResult.configured && (
+              <p className="hint demo-note" role="status">
+                وضع تجريبي: لم يُضبط مستقبِل بيانات خارجي بعد — حُفظت بياناتك محليًا في هذا المتصفّح فقط. تابع عبر واتساب أدناه.
+              </p>
+            )}
+
             {/* Growth Operations framing (scenario-aware) */}
             <section className="panel growthops" aria-label="ما الذي يمكن أن نساعد في تشغيله">
               <h3 className="panel__title">ما الذي يمكن أن نساعد في تشغيله؟</h3>
@@ -173,7 +196,11 @@ export function HandoffPage() {
             <p className="hint">
               عمليات نمو المبيعات: نراجع النتائج على أرقامك الحقيقية، ثم نشغّل أعلى الإصلاحات أثرًا ونقيس النتيجة — بدون وعودٍ مضمونة.
             </p>
-            <p className="hint demo-note">بياناتك محفوظة محليًا في هذه التجربة فقط — بلا نظام إدارة علاقات (CRM)، وواتساب رابط مباشر لا تكامل.</p>
+            <p className="hint demo-note">
+              {LEAD_SINK_CONFIGURED
+                ? 'بياناتك تُرسَل إلى مستقبِل جرومرس للمتابعة (مع نسخة محلية احتياطية) — بلا نظام إدارة علاقات (CRM) بعد، وواتساب رابط مباشر لا تكامل.'
+                : 'بياناتك محفوظة محليًا في هذه التجربة فقط — بلا نظام إدارة علاقات (CRM)، وواتساب رابط مباشر لا تكامل.'}
+            </p>
 
             <StepNav onBack={() => goTo('lead')} backLabel="→ رجوع" />
           </section>

@@ -11,8 +11,10 @@ export function LeadForm({
   onSubmit,
 }: {
   initial?: Partial<Lead>;
-  onSubmit?: (lead: Lead) => void;
+  onSubmit?: (lead: Lead) => void | Promise<void>;
 }) {
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState<Lead>({
     name: '',
     businessName: '',
@@ -38,10 +40,17 @@ export function LeadForm({
     !!form.mainChannel &&
     form.contactPermission;
 
-  const submit = (e: FormEvent) => {
+  const submit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!valid) return;
-    onSubmit?.(form);
+    if (!valid || submitting) return;
+    setSubmitting(true);
+    setError(null);
+    try {
+      await onSubmit?.(form);
+    } catch {
+      setError('تعذّر إرسال بياناتك الآن. حُفظت محليًا — حاول مرّة أخرى أو تابع عبر واتساب.');
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -105,14 +114,26 @@ export function LeadForm({
 
       <label className="permission field--full">
         <input type="checkbox" checked={form.contactPermission} onChange={(e) => set({ contactPermission: e.target.checked })} />
-        <span>أوافق على أن تتواصل جرومرس معي بخصوص نتائج التشخيص. لا رسائل مزعجة.</span>
+        <span>
+          أوافق على مشاركة بيانات نشاطي ووسيلة تواصلي مع جرومرس، وعلى أن تتواصل معي بخصوص هذا التشخيص.
+          لا رسائل مزعجة.
+        </span>
       </label>
+      <p className="hint consent-note field--full">
+        هذا التشخيص <strong>تجريبي وتوضيحي</strong> ولا يجلب بيانات أسواق حقيقية بعد، ودون نتائج مضمونة.
+        نستخدم بياناتك للتواصل معك حول هذا التشخيص فقط، ولا نشاركها مع طرف ثالث لأغراض تسويقية.
+      </p>
 
       <div className="field--full">
-        <button type="submit" className="btn btn--primary btn--lg" disabled={!valid}>
-          أرسل وتابع إلى التسليم ←
+        <button type="submit" className="btn btn--primary btn--lg" disabled={!valid || submitting}>
+          {submitting ? 'جارٍ الإرسال…' : 'أرسل وتابع إلى التسليم ←'}
         </button>
-        {!valid && <p className="hint" style={{ marginTop: 'var(--space-2)' }}>الحقول المعلّمة بـ * مطلوبة، مع الموافقة على التواصل.</p>}
+        {!valid && !submitting && (
+          <p className="hint" style={{ marginTop: 'var(--space-2)' }}>الحقول المعلّمة بـ * مطلوبة، مع الموافقة على المشاركة والتواصل.</p>
+        )}
+        {error && (
+          <p className="status-note status-note--error" role="alert" style={{ marginTop: 'var(--space-2)' }}>{error}</p>
+        )}
       </div>
     </form>
   );
