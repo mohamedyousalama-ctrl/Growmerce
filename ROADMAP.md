@@ -89,14 +89,25 @@ redesigned downstream.
   of gaps/unknowns, and the executive case for the knowledge moat. The deepest answer to "why
   Growmerce" — built like a knowledge institution, not a tool.
 
-## Phase 10 — Build (▶ Next)
+## Phase 10 — Software-ready architecture (✅ Object Architecture complete)
 
-The intelligence foundation (19, 20, 22, 23) and the expression foundation (04, 21, 03) are documented.
-The remaining steps are **build**, not further strategic documentation:
-- **Claude Design — visual exploration** ⏭️ **(expression track)** — from `03-brand-identity/Claude_Design_Brief.md`.
-- **Supply-chain hardening** (intelligence track) — from `22-intelligence-supply-chain/Backlog.md`.
-- **Knowledge engineering** (intelligence track) — from `23-commerce-knowledge-system/Backlog.md`
-  (knowledge encoding/retrieval format, domain build-out, outcome-to-knowledge capture).
+- **24 Intelligence Object Architecture** ✅ — **how the intelligence becomes software.** The
+  engineerable object model converting Patterns (19), Brain (20), Supply Chain (22), and Knowledge
+  System (23) into schemas: the shared base object + provenance DAG; the Signal/Evidence/Knowledge/
+  Pattern/Recommendation/Opportunity/Threat objects (each across ten facets); the commerce entity
+  model, relationship/edge catalogue, confidence value object, and versioning model; the grounded
+  retrieval architecture (the anti-hallucination layer); the knowledge-graph foundation; and the proof
+  that the four engines are buildable from 19/20/22/23/24 alone. Built like Palantir/Bloomberg/Amazon
+  data architecture, not an AI wrapper.
+
+## Phase 11 — Build (▶ Next)
+
+The arc from doctrine (19, 20, 22, 23) to software-ready architecture (24) and expression (04, 21, 03)
+is complete. The remaining steps are **build**:
+- **Engine build** ⏭️ **(intelligence track)** — implement the Knowledge, Pattern, Reasoning, and
+  Recommendation Engines over the object model (`24-intelligence-object-architecture/`, esp. `13` and
+  `15`). The knowledge-card encoding format is the consequential first decision.
+- **Claude Design — visual exploration** (expression track) — from `03-brand-identity/Claude_Design_Brief.md`.
 
 ---
 

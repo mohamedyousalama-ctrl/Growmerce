@@ -32,14 +32,43 @@ intelligence** engine. This document tracks the status of each strategic workstr
 | **20** | **Growmerce Intelligence Brain** | ✅ Complete |
 | **21** | **Brand Narrative System** | ✅ Complete |
 | **22** | **Commerce Intelligence Supply Chain** | ✅ Complete |
-| **23** | **Commerce Knowledge System** | ✅ **Just completed** |
+| **23** | **Commerce Knowledge System** | ✅ Complete |
+| **24** | **Intelligence Object Architecture** | ✅ **Just completed** |
 
 > Workstream numbering reflects the strategic build order. Reserved slots are placeholders for
 > work not yet opened.
 
 ---
 
-## Latest milestone — 23 Commerce Knowledge System
+## Latest milestone — 24 Intelligence Object Architecture
+
+**How the intelligence becomes software** is defined (v1) — the engineerable object model that turns
+the Patterns (19), Brain (20), Supply Chain (22), and Knowledge System (23) into buildable schemas.
+Modelled on Palantir ontology / Amazon internal systems / Bloomberg data architecture / knowledge
+graphs — not startup SaaS or AI wrappers.
+
+**Delivered (19 documents):**
+- **The architecture (01):** the shared `BaseObject`, the provenance DAG, the two-layer model
+  (commerce entities + intelligence objects), and the five invariants (provenance, typed edges,
+  mandatory confidence, append-only versioning, grounded retrieval).
+- **The objects (02–08):** Signal, Evidence, Knowledge (card/node/entity), Pattern, Recommendation,
+  Opportunity, Threat — each fully specified across the ten facets (purpose, schema, attributes,
+  relationships, lifecycle, confidence, versioning, storage, retrieval, Brain interactions).
+- **The model (09–12):** the Commerce Entity Model (the ontology as schemas), the Relationship Model
+  (the full edge catalogue), the Confidence value object, and the Versioning model.
+- **The critical layer (13):** grounded retrieval — how the Brain retrieves without hallucinating
+  (reason over referenced objects, never model weights; the AI is bounded to extract/draft/propose).
+- **The foundation & proof (14–15):** the knowledge graph the architecture forms, and why it scales —
+  in data, businesses, knowledge, and uniquely in trust — mapping each of the four engines to its
+  objects.
+- Governance: Decisions, Open Questions, Backlog.
+
+**Core principle:** everything is a typed object with provenance and computed confidence, related by
+typed edges, versioned append-only, and retrieved by reference — software-ready intelligence, not an
+AI wrapper. A future engineer can build the Knowledge, Pattern, Reasoning, and Recommendation Engines
+from 19, 20, 22, 23, and 24 alone.
+
+### Prior milestone — 23 Commerce Knowledge System
 
 **What Growmerce knows** is defined (v1) — the structured, compounding body of commercial
 understanding that makes its recommendations better than anyone else's. The answer to *"what expertise
@@ -196,26 +225,27 @@ Website Intelligence Usage brief.
 
 ## Strategic position
 
-The strategic foundation is in place across two axes. **Intelligence:** what's true (patterns, 19),
-how it thinks (the Brain, 20), how it produces trusted output (the Supply Chain, 22), and now **what it
-actually knows** (the Commerce Knowledge System, 23) — the institutional understanding beneath
-everything. **Expression:** how it's experienced (Website UX, 04), how it speaks (Brand Narrative, 21),
-and how it should look (the Brand Identity brief, 03). Growmerce can now answer the three deepest
-questions in order: *how does it think?* (20), *how does it know it's right?* (22), and *what does it
-understand about commerce that makes it worth listening to?* (23). The intelligence foundation is
-complete; what remains is **building** — visual creation (Claude Design) and the engineering of the
-supply-chain and knowledge machinery.
+The foundation is in place across two axes, and now spans from doctrine to software. **Intelligence:**
+what's true (patterns, 19), how it thinks (the Brain, 20), how it produces trusted output (the Supply
+Chain, 22), what it actually knows (the Knowledge System, 23), and now **how all of that becomes
+buildable software objects** (the Intelligence Object Architecture, 24). **Expression:** how it's
+experienced (Website UX, 04), how it speaks (Brand Narrative, 21), and how it should look (the Brand
+Identity brief, 03). The strategy-to-architecture arc is complete: the four intelligence engines
+(Knowledge, Pattern, Reasoning, Recommendation) are now specified well enough to build. What remains is
+**building** — visual creation (Claude Design) and engineering the engines over the object model (24).
 
 ---
 
 ## Recommended next step
 
-The intelligence and expression foundations are documented; the next steps are **build steps**, not
-further strategic documentation:
+The intelligence and expression foundations are documented through to software-ready architecture; the
+next steps are **build steps**, not further strategic documentation:
+- **Engine build** (intelligence track) — implement the Knowledge, Pattern, Reasoning, and
+  Recommendation Engines over the object model, per `24-intelligence-object-architecture/` (esp.
+  `15_Why_This_Architecture_Scales.md` for the engine→object mapping and `13_Retrieval_Architecture.md`
+  for the grounded-retrieval layer). The knowledge-card encoding format (24/23 backlog) is the
+  consequential first decision.
 - **Claude Design — visual exploration** (expression track) — from `03-brand-identity/Claude_Design_Brief.md`.
-- **Supply-chain hardening** (intelligence track) — from `22-intelligence-supply-chain/Backlog.md`
-  (taxonomy schema, tier rules, verification/scoring calibration, outcome capture).
-- **Knowledge engineering** (intelligence track) — from `23-commerce-knowledge-system/Backlog.md`
-  (the knowledge encoding/retrieval format, domain build-out, outcome-to-knowledge capture). The
-  encoding decision is consequential: it determines whether the knowledge stays auditable and
-  human-readable rather than buried in model weights.
+
+Supply-chain and knowledge hardening (`22`/`23` backlogs) are now subsumed into the engine build over
+the unified object architecture (24).
