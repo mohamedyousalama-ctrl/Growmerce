@@ -156,6 +156,12 @@ export interface PatternMatch {
   name: string;
   description: string;
   causes?: string[];
+  /** the pattern family this belongs to (trust without revealing full doctrine) */
+  family?: string;
+  /** why this pattern fits the user's context */
+  whyFits?: string;
+  /** what evidence would weaken this pattern match */
+  whatWeakens?: string;
 }
 
 export interface EvidenceItem {
@@ -242,6 +248,8 @@ export interface DiagnosticFinding {
   missingData: MissingDataItem[];
   ruledOut: RuledOutHypothesis[];
   recommendedVerification?: string;
+  /** concrete steps to validate the finding on real data */
+  verificationSteps?: string[];
   opportunity: OpportunityRecommendation;
   /** 'demo' in V1 */
   provenance: Provenance;

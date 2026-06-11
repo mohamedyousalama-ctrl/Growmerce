@@ -10,17 +10,17 @@ const BAND_AR: Record<ConfidenceBand, string> = {
 const BAND_LEVEL: Record<ConfidenceBand, number> = { low: 1, medium: 2, high: 3, very_high: 4 };
 
 /**
- * Confidence as CALIBRATION, not status (20).
- * The meter fills by band (faint → solid intelligence hue); it is never red/amber/green.
- * Always paired with what raised/reduced it and what would improve it.
+ * Diagnostic confidence as CALIBRATION, not status (20).
+ * The meter fills by band (faint → solid intelligence hue); never red/amber/green.
+ * Deliberately distinct (label + meter) from input coverage ("وضوح السياق").
  */
 export function ConfidenceModule({ explanation }: { explanation: ConfidenceExplanation }) {
   const level = BAND_LEVEL[explanation.band];
   return (
-    <section className="panel confidence" aria-label="مستوى الثقة">
+    <section className="panel confidence" aria-label="مستوى الثقة في التشخيص">
       <div className="confidence__head">
         <div>
-          <h3 className="panel__title">مستوى الثقة</h3>
+          <h3 className="panel__title">مستوى الثقة في التشخيص</h3>
           <span className="confidence__band">{BAND_AR[explanation.band]}</span>
           <span className="confidence__score num"> · {explanation.score}٪</span>
         </div>
@@ -31,17 +31,17 @@ export function ConfidenceModule({ explanation }: { explanation: ConfidenceExpla
           <span key={seg} className={`confidence__seg confidence__seg--${seg} ${seg <= level ? 'is-on' : ''}`} />
         ))}
       </div>
-      <p className="hint">الثقة معايَرة — تخبرك كم نحن متأكّدون، لا أنها "جيدة" أو "سيئة".</p>
+      <p className="hint">ثقة معايَرة — تخبرك كم نحن متأكّدون من التشخيص. تختلف عن «وضوح السياق» الذي يقيس اكتمال معلوماتك.</p>
 
       <div className="confidence__factors">
         <div>
-          <strong className="hint">ما رفع الثقة</strong>
+          <strong className="hint">ما الذي رفع الثقة؟</strong>
           <ul className="factor-list">
             {explanation.raisedBy.map((f, i) => <li key={i}>{f}</li>)}
           </ul>
         </div>
         <div>
-          <strong className="hint">ما خفّض الثقة</strong>
+          <strong className="hint">ما الذي خفّض الثقة؟</strong>
           <ul className="factor-list">
             {explanation.reducedBy.map((f, i) => <li key={i}>{f}</li>)}
           </ul>
@@ -49,7 +49,7 @@ export function ConfidenceModule({ explanation }: { explanation: ConfidenceExpla
       </div>
 
       <div>
-        <strong className="hint">ما الذي يرفع الثقة أكثر</strong>
+        <strong className="hint">ما الذي يرفع الثقة أكثر؟</strong>
         <ul className="factor-list">
           {explanation.wouldImprove.map((f, i) => <li key={i}>{f}</li>)}
         </ul>
@@ -57,7 +57,7 @@ export function ConfidenceModule({ explanation }: { explanation: ConfidenceExpla
 
       {explanation.cap && (
         <p className="factor-cap">
-          السقف: {BAND_AR[explanation.cap]}{explanation.capReason ? ` — ${explanation.capReason}` : ''}
+          حدّ الثقة الحالي: {BAND_AR[explanation.cap]}{explanation.capReason ? ` — ${explanation.capReason}` : ''}
         </p>
       )}
     </section>

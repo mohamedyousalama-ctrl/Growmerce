@@ -4,10 +4,12 @@ import { Shell } from '../components/Shell';
 import { JourneyProgress } from '../components/JourneyProgress';
 import { StepNav } from '../components/StepNav';
 import { StructuredInputFlow } from '../components/StructuredInputFlow';
+import { PatternMatchPanel } from '../components/PatternMatchPanel';
 import { EvidencePanel } from '../components/EvidencePanel';
 import { ConfidenceModule } from '../components/ConfidenceModule';
 import { MissingDataModule } from '../components/MissingDataModule';
 import { RuledOutModule } from '../components/RuledOutModule';
+import { VerificationPanel } from '../components/VerificationPanel';
 import { OpportunityCard } from '../components/OpportunityCard';
 import { DemoBanner } from '../components/ProvenanceTag';
 import { useSession } from '../state/session';
@@ -45,14 +47,17 @@ export function DiagnosePage() {
           </section>
         )}
 
-        {/* ---------- RESULT (shells — final content in Sprint 3) ---------- */}
+        {/* ---------- RESULT (executive intelligence brief; A→I) ---------- */}
         {state === 'result' && session.finding && (
           <section>
             <DemoBanner />
+
+            {/* A — Finding summary */}
             <p className="section-label">ما الذي نراه</p>
             <h1 className="finding__title">{session.finding.title}</h1>
             {session.finding.systemNarrative && <p className="muted">{session.finding.systemNarrative}</p>}
 
+            {/* B — Reasoning trace */}
             <section className="panel" aria-label="مسار الاستدلال">
               <h3 className="panel__title">كيف وصلنا إلى ذلك</h3>
               <ol className="trace">
@@ -63,20 +68,27 @@ export function DiagnosePage() {
                   </li>
                 ))}
               </ol>
-              <p className="hint" style={{ marginTop: 'var(--space-2)' }}>
-                النمط المطابق: {session.finding.patternMatch.name}
-              </p>
             </section>
 
+            {/* C — Pattern match */}
+            <PatternMatchPanel match={session.finding.patternMatch} />
+
+            {/* D — Evidence */}
             <EvidencePanel items={session.finding.evidence} />
+
+            {/* E — Confidence explanation */}
             <ConfidenceModule explanation={session.finding.confidence} />
+
+            {/* F — Missing data */}
             <MissingDataModule items={session.finding.missingData} />
+
+            {/* G — Ruled-out hypotheses */}
             <RuledOutModule items={session.finding.ruledOut} />
 
-            {session.finding.recommendedVerification && (
-              <p className="hint">خطوة التحقّق المقترحة: {session.finding.recommendedVerification}</p>
-            )}
+            {/* H — Recommended verification */}
+            <VerificationPanel steps={session.finding.verificationSteps ?? []} />
 
+            {/* I — Continue to opportunity */}
             <StepNav onBack={() => goTo('input')} onNext={() => goTo('opportunity')} nextLabel="الفرصة ذات الأولوية ←" />
           </section>
         )}
