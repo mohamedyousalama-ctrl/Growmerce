@@ -151,6 +151,26 @@ Growmerce/
 │   ├── Decisions.md
 │   └── Backlog.md
 │
+├── 25-system-architecture/                   # HOW GROWMERCE WORKS AS SOFTWARE (services → deployment)
+│   ├── README.md
+│   ├── 01_System_Architecture_Overview.md    # the layered architecture, end to end
+│   ├── 02_Service_Architecture.md            # the services
+│   ├── 03_Data_Architecture.md               # the polyglot data stores
+│   ├── 04_Event_Architecture.md              # events: producers/consumers/payloads
+│   ├── 05_Intelligence_Runtime.md            # end-to-end request runtime
+│   ├── 06_Retrieval_And_Reasoning_Runtime.md # grounded retrieval / anti-hallucination
+│   ├── 07_Memory_Architecture.md             # how Growmerce remembers + learns
+│   ├── 08_Multi_Tenant_Architecture.md       # private data, shared knowledge, network
+│   ├── 09_Security_And_Trust_Architecture.md # auditability, lineage, integrity
+│   ├── 10_AI_Role_Definition.md              # strict allow/forbid for the AI
+│   ├── 11_Deployment_Architecture.md         # cloud, scale, observability
+│   ├── 12_MVP_Architecture.md                # smallest doctrine-preserving system (build v1)
+│   ├── 13_Architecture_Decisions.md          # ADRs + rejected alternatives
+│   ├── 14_Architecture_Risks.md              # failure modes + mitigations
+│   ├── 15_Why_This_Architecture_Wins.md      # the architectural moat
+│   ├── Open_Questions.md                      # Governance
+│   └── Backlog.md
+│
 ├── 24-intelligence-object-architecture/      # SOFTWARE-READY ARCHITECTURE (objects → engines)
 │   ├── README.md
 │   ├── 01_Intelligence_Object_Architecture.md     # base object, provenance DAG, invariants
@@ -283,6 +303,13 @@ design north star) + a final-test self-check.
   sales, WhatsApp, service delivery)
 - Governance: 4 files (Messaging Guardrails, Open Questions, Decisions, Backlog)
 - Defines **how Growmerce speaks**, not how it looks (that is 03)
+
+**25 — Growmerce System Architecture (18 documents)**
+- System: 4 files (overview, services, data, events)
+- Runtimes: 2 files (intelligence runtime, retrieval & reasoning / anti-hallucination)
+- Hard problems: 5 files (memory, multi-tenant, security & trust, AI role, deployment)
+- Build & governance: 4 files (MVP, ADRs, risks, why-it-wins) + README + Open Questions + Backlog
+- Converts the intelligence doctrine (19/20/22/23/24) into a buildable software system
 
 **24 — Intelligence Object Architecture (19 documents)**
 - Architecture: 1 file (base object, provenance DAG, invariants)
