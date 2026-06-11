@@ -236,16 +236,30 @@ Identity brief, 03). The strategy-to-architecture arc is complete: the four inte
 
 ---
 
+## Design handoff — `00-Claude-Design-Master-Brief.md`
+
+A single, designer-facing **source of truth** now sits at the repository root:
+`00-Claude-Design-Master-Brief.md`. It synthesises all eight workstreams (03, 04, 19, 20, 21, 22, 23,
+24) into one document so Claude Design can fully understand Growmerce — what it is, why it can be
+trusted, how it thinks and learns, and how it must look, feel, and behave — **without reading the
+repository.** 18 sections plus a final-test self-check. This is the permanent handoff for the visual
+exploration step.
+
+---
+
 ## Recommended next step
 
-The intelligence and expression foundations are documented through to software-ready architecture; the
-next steps are **build steps**, not further strategic documentation:
+The intelligence and expression foundations are documented through to software-ready architecture, and
+the design source of truth is consolidated. The next steps are **build steps**, not further strategic
+documentation:
 - **Engine build** (intelligence track) — implement the Knowledge, Pattern, Reasoning, and
   Recommendation Engines over the object model, per `24-intelligence-object-architecture/` (esp.
   `15_Why_This_Architecture_Scales.md` for the engine→object mapping and `13_Retrieval_Architecture.md`
   for the grounded-retrieval layer). The knowledge-card encoding format (24/23 backlog) is the
   consequential first decision.
-- **Claude Design — visual exploration** (expression track) — from `03-brand-identity/Claude_Design_Brief.md`.
+- **Claude Design — visual exploration** (expression track) — from `00-Claude-Design-Master-Brief.md`
+  (the consolidated source of truth), with `03-brand-identity/Claude_Design_Brief.md` as the detailed
+  identity brief beneath it.
 
 Supply-chain and knowledge hardening (`22`/`23` backlogs) are now subsumed into the engine build over
 the unified object architecture (24).
