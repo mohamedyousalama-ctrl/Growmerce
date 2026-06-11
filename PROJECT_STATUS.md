@@ -33,14 +33,44 @@ intelligence** engine. This document tracks the status of each strategic workstr
 | **21** | **Brand Narrative System** | ✅ Complete |
 | **22** | **Commerce Intelligence Supply Chain** | ✅ Complete |
 | **23** | **Commerce Knowledge System** | ✅ Complete |
-| **24** | **Intelligence Object Architecture** | ✅ **Just completed** |
+| **24** | **Intelligence Object Architecture** | ✅ Complete |
+| **25** | **Growmerce System Architecture** | ✅ **Just completed** |
 
 > Workstream numbering reflects the strategic build order. Reserved slots are placeholders for
 > work not yet opened.
 
 ---
 
-## Latest milestone — 24 Intelligence Object Architecture
+## Latest milestone — 25 Growmerce System Architecture
+
+**How Growmerce works as a software system** is defined (v1) — the buildable systems architecture that
+converts the intelligence doctrine (19, 20, 22, 23, 24) into services, data stores, events, runtimes,
+and a deployment. Designed like a principal architect (Palantir / Bloomberg / Databricks / Stripe), not
+a startup.
+
+**Delivered (18 documents):**
+- **The system (01–04):** the layered architecture (User → Inputs → Intelligence → Knowledge → Pattern →
+  Recommendation → Reports → Actions); the services (Signal, Evidence, Knowledge, Pattern,
+  Recommendation, Reasoning Runtime, Retrieval, AI Gateway, Confidence, Memory, Audit…); the polyglot
+  data stores (relational, graph, vector, time-series, object, event log, version); and the event
+  architecture (producers/consumers/payloads, forward + feedback flows).
+- **The runtimes (05–06):** the end-to-end intelligence runtime (question → grounded retrieve → reason →
+  GUARD → recommendation → delivery → learning), and the grounded retrieval / anti-hallucination runtime
+  (expanding 24 §13) — the engineering core of trust.
+- **The hard problems (07–11):** memory/learning, multi-tenancy (private data, shared knowledge,
+  consented aggregates), security & trust (auditability/lineage/integrity/traceability), the strict AI
+  role definition (allow/forbid, enforced), and deployment/observability/scale.
+- **Build & governance (12–15):** the MVP architecture (smallest system that preserves doctrine), the
+  ADRs (with rejected alternatives), the risk register, and why the architecture wins (compounds in
+  accuracy, trust, and knowledge where competitors plateau).
+- Governance: Open Questions, Backlog.
+
+**Core principle:** simplify the engineering, never the doctrine. Every object carries provenance and
+computed confidence; reasoning is grounded retrieval (no hallucination); the AI is strictly bounded;
+everything is versioned and auditable; outcomes feed back so the system compounds. A senior engineer can
+build v1 from `12_MVP_Architecture.md`.
+
+### Prior milestone — 24 Intelligence Object Architecture
 
 **How the intelligence becomes software** is defined (v1) — the engineerable object model that turns
 the Patterns (19), Brain (20), Supply Chain (22), and Knowledge System (23) into buildable schemas.
@@ -228,11 +258,13 @@ Website Intelligence Usage brief.
 The foundation is in place across two axes, and now spans from doctrine to software. **Intelligence:**
 what's true (patterns, 19), how it thinks (the Brain, 20), how it produces trusted output (the Supply
 Chain, 22), what it actually knows (the Knowledge System, 23), and now **how all of that becomes
-buildable software objects** (the Intelligence Object Architecture, 24). **Expression:** how it's
-experienced (Website UX, 04), how it speaks (Brand Narrative, 21), and how it should look (the Brand
-Identity brief, 03). The strategy-to-architecture arc is complete: the four intelligence engines
-(Knowledge, Pattern, Reasoning, Recommendation) are now specified well enough to build. What remains is
-**building** — visual creation (Claude Design) and engineering the engines over the object model (24).
+buildable software objects** (the Intelligence Object Architecture, 24), and **how it all runs as a
+software system** (the System Architecture, 25 — services, stores, events, runtimes, deployment, MVP).
+**Expression:** how it's experienced (Website UX, 04), how it speaks (Brand Narrative, 21), and how it
+should look (the Brand Identity brief, 03; consolidated for design in `00-Claude-Design-Master-Brief.md`).
+The full arc — doctrine → objects → buildable system → expression — is complete. What remains is
+**building**: engineering the system per 25 (starting from `12_MVP_Architecture.md`), and visual
+creation (Claude Design).
 
 ---
 
@@ -252,11 +284,10 @@ exploration step.
 The intelligence and expression foundations are documented through to software-ready architecture, and
 the design source of truth is consolidated. The next steps are **build steps**, not further strategic
 documentation:
-- **Engine build** (intelligence track) — implement the Knowledge, Pattern, Reasoning, and
-  Recommendation Engines over the object model, per `24-intelligence-object-architecture/` (esp.
-  `15_Why_This_Architecture_Scales.md` for the engine→object mapping and `13_Retrieval_Architecture.md`
-  for the grounded-retrieval layer). The knowledge-card encoding format (24/23 backlog) is the
-  consequential first decision.
+- **System / engine build** (intelligence track) — implement the platform per
+  `25-system-architecture/`, starting from `12_MVP_Architecture.md` (the smallest doctrine-preserving
+  system: a modular monolith on Postgres with the full trust core). The build order is in 25's MVP doc
+  and Backlog; the knowledge-card encoding format remains the consequential first decision.
 - **Claude Design — visual exploration** (expression track) — from `00-Claude-Design-Master-Brief.md`
   (the consolidated source of truth), with `03-brand-identity/Claude_Design_Brief.md` as the detailed
   identity brief beneath it.

@@ -100,16 +100,23 @@ redesigned downstream.
   that the four engines are buildable from 19/20/22/23/24 alone. Built like Palantir/Bloomberg/Amazon
   data architecture, not an AI wrapper.
 
-## Phase 11 — Build (▶ Next)
+## Phase 11 — Buildable systems architecture (✅ System Architecture complete)
 
-The arc from doctrine (19, 20, 22, 23) to software-ready architecture (24) and expression (04, 21, 03)
-is complete. The remaining steps are **build**:
-- **Engine build** ⏭️ **(intelligence track)** — implement the Knowledge, Pattern, Reasoning, and
-  Recommendation Engines over the object model (`24-intelligence-object-architecture/`, esp. `13` and
-  `15`). The knowledge-card encoding format is the consequential first decision.
-- **Claude Design — visual exploration** (expression track) — from `00-Claude-Design-Master-Brief.md`
-  (the consolidated designer source of truth synthesising all eight workstreams), with
-  `03-brand-identity/Claude_Design_Brief.md` as the detailed identity brief beneath it.
+- **25 Growmerce System Architecture** ✅ — **how Growmerce works as a software system.** Converts the
+  doctrine (19, 20, 22, 23, 24) into services, data stores, events, runtimes, and a deployment: the
+  layered architecture; the service and polyglot-data and event architectures; the intelligence and
+  grounded-retrieval runtimes; memory, multi-tenancy, security/trust, the strict AI role; deployment/
+  observability; the MVP; the ADRs; the risk register; and why the architecture compounds into a moat.
+  Built like Palantir/Bloomberg/Databricks/Stripe — not a startup.
+
+## Phase 12 — Build (▶ Next)
+
+The full arc — doctrine → objects (24) → buildable system (25) → expression (04/21/03, consolidated in
+`00-Claude-Design-Master-Brief.md`) — is complete. The remaining steps are **build**:
+- **System build** ⏭️ **(intelligence track)** — implement the platform per `25-system-architecture/`,
+  starting from `12_MVP_Architecture.md` (a modular monolith on Postgres with the full trust core).
+- **Claude Design — visual exploration** (expression track) — from `00-Claude-Design-Master-Brief.md`,
+  with `03-brand-identity/Claude_Design_Brief.md` beneath it.
 
 ---
 
