@@ -12,6 +12,7 @@ workstreams) is tracked separately in `PROJECT_STATUS.md` and `ROADMAP.md`.
 
 ```
 Growmerce/
+├── 00-Claude-Design-Master-Brief.md          # THE SOURCE OF TRUTH for Claude Design (synthesis of all workstreams)
 ├── PROJECT_STATUS.md
 ├── ROADMAP.md
 │
@@ -240,6 +241,15 @@ folders to the tree above:
 
 > Status of every workstream is authoritative in `PROJECT_STATUS.md`. This tree is the
 > physical-structure view; keep the two in sync as folders are committed.
+
+---
+
+## Synthesis artifacts (not workstreams)
+
+**`00-Claude-Design-Master-Brief.md`** (repository root) — the single, designer-facing source of truth.
+Synthesises all eight workstreams (03, 04, 19, 20, 21, 22, 23, 24) into one document so Claude Design
+can understand Growmerce fully without reading the repository. 18 sections (Growmerce in one sentence →
+design north star) + a final-test self-check.
 
 ---
 

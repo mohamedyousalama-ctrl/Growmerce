@@ -107,7 +107,9 @@ is complete. The remaining steps are **build**:
 - **Engine build** ⏭️ **(intelligence track)** — implement the Knowledge, Pattern, Reasoning, and
   Recommendation Engines over the object model (`24-intelligence-object-architecture/`, esp. `13` and
   `15`). The knowledge-card encoding format is the consequential first decision.
-- **Claude Design — visual exploration** (expression track) — from `03-brand-identity/Claude_Design_Brief.md`.
+- **Claude Design — visual exploration** (expression track) — from `00-Claude-Design-Master-Brief.md`
+  (the consolidated designer source of truth synthesising all eight workstreams), with
+  `03-brand-identity/Claude_Design_Brief.md` as the detailed identity brief beneath it.
 
 ---
 
