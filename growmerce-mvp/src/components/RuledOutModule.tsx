@@ -1,10 +1,10 @@
+import { Collapsible } from './Collapsible';
 import type { RuledOutHypothesis } from '../types';
 
-/** Reasoning discipline: explanations considered and ruled out (20 GUARD / 19 counter-evidence). */
+/** Reasoning discipline: explanations considered and ruled out (20 GUARD / 19). Collapsible. */
 export function RuledOutModule({ items }: { items: RuledOutHypothesis[] }) {
   return (
-    <section className="panel" aria-label="تفسيرات مستبعَدة">
-      <h3 className="panel__title">تفسيرات فحصناها ولم نعتبرها السبب الأقوى</h3>
+    <Collapsible title="تفسيرات فحصناها ولم نعتبرها السبب الأقوى" count={items.length}>
       {items.length === 0 ? (
         <p className="hint">هيكل تجريبي — ستظهر الفرضيات المستبعَدة هنا.</p>
       ) : (
@@ -18,6 +18,6 @@ export function RuledOutModule({ items }: { items: RuledOutHypothesis[] }) {
           ))}
         </div>
       )}
-    </section>
+    </Collapsible>
   );
 }

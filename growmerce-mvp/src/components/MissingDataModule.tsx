@@ -1,10 +1,10 @@
+import { Collapsible } from './Collapsible';
 import type { MissingDataItem } from '../types';
 
-/** Honesty: what's missing, why it matters, and what to provide next (13/22). Visible, not hidden. */
+/** Honesty: what's missing, why it matters, what to provide next (13/22). Visible (header), collapsible body. */
 export function MissingDataModule({ items }: { items: MissingDataItem[] }) {
   return (
-    <section className="panel" aria-label="ما لا نعرفه بعد">
-      <h3 className="panel__title">ما لا نعرفه بعد <span className="hint">— بصراحة</span></h3>
+    <Collapsible title="ما لا نعرفه بعد" hint="بصراحة" count={items.length}>
       {items.length === 0 ? (
         <p className="hint">هيكل تجريبي — ستظهر البيانات الناقصة هنا.</p>
       ) : (
@@ -19,6 +19,6 @@ export function MissingDataModule({ items }: { items: MissingDataItem[] }) {
           ))}
         </div>
       )}
-    </section>
+    </Collapsible>
   );
 }

@@ -8,7 +8,8 @@ import { EmptyState } from '../components/EmptyState';
 import { StepNav } from '../components/StepNav';
 import { useSession } from '../state/session';
 import { saveLead } from '../lib/leadStore';
-import { buildWhatsAppLink, buildDiagnosticMessage } from '../lib/whatsapp';
+import { buildWhatsAppLink, buildDiagnosticMessage, WHATSAPP_CONFIGURED } from '../lib/whatsapp';
+import { track } from '../lib/analytics';
 import { getGrowthOpsExamples } from '../mock/growthOps';
 import { problemLabel, businessTypeOption, MARKETS } from '../mock/catalog';
 import type { HandoffSummary as HandoffSummaryType, Lead, LeadContext } from '../types';
@@ -80,7 +81,8 @@ export function HandoffPage() {
       context,
     };
     setLead(withContext);
-    saveLead(withContext); // thin localStorage persistence
+    saveLead(withContext); // thin localStorage persistence (demo — not a CRM)
+    track('lead_submitted', { pattern: finding.patternKey });
 
     const summary: HandoffSummaryType = {
       findingTitle: finding.title,
@@ -148,17 +150,30 @@ export function HandoffPage() {
             </section>
 
             <div className="handoff__ctas">
-              <a className="btn btn--primary btn--lg" href={buildWhatsAppLink(waMessage)} target="_blank" rel="noreferrer">
-                ناقش الفرصة عبر واتساب ←
+              <a
+                className="btn btn--primary btn--lg"
+                href={buildWhatsAppLink(waMessage)}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => track('whatsapp_clicked', { from: 'handoff' })}
+              >
+                أرسل السياق عبر واتساب ←
               </a>
-              <button type="button" className="btn btn--lg" onClick={() => { /* Sprint 5: scheduling */ }}>
-                ناقش الفرصة مع فريق جرومرس
+              <button type="button" className="btn btn--lg" disabled aria-disabled="true">
+                ناقش الفرصة مع فريق جرومرس <span className="soon-tag">قريبًا</span>
               </button>
             </div>
+
+            {!WHATSAPP_CONFIGURED && (
+              <p className="hint demo-note">
+                وضع تجريبي: لم يُضبط رقم واتساب بعد — سيفتح الرابط واتساب لاختيار المستلم. (رابط مباشر، بلا تكامل API)
+              </p>
+            )}
 
             <p className="hint">
               عمليات نمو المبيعات: نراجع النتائج على أرقامك الحقيقية، ثم نشغّل أعلى الإصلاحات أثرًا ونقيس النتيجة — بدون وعودٍ مضمونة.
             </p>
+            <p className="hint demo-note">بياناتك محفوظة محليًا في هذه التجربة فقط — بلا نظام إدارة علاقات (CRM)، وواتساب رابط مباشر لا تكامل.</p>
 
             <StepNav onBack={() => goTo('lead')} backLabel="→ رجوع" />
           </section>

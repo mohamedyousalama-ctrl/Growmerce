@@ -385,3 +385,60 @@ button { font-family: inherit; }
   .handoff__ctas { flex-direction: column; align-items: stretch; }
   .handoff__ctas .btn { width: 100%; }
 }
+
+/* =========================================================================
+   Sprint 5 — production polish (a11y, collapsibles, mobile, honesty, footer)
+   ========================================================================= */
+
+/* accessible focus — visible, calm, consistent */
+:where(button, a, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* touch targets */
+.btn { min-height: 44px; }
+
+/* progressive disclosure (Collapsible) — header always visible, body collapses */
+.collapsible { padding: 0; overflow: hidden; }
+.collapsible__head {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+  background: transparent; border: none; cursor: pointer;
+  padding: var(--space-4); text-align: start; font: inherit; color: inherit;
+}
+.collapsible__head:hover { background: var(--color-surface-sunken); }
+.collapsible__title { display: flex; align-items: center; gap: var(--space-2); margin: 0; flex-wrap: wrap; }
+.collapsible__count { font-size: var(--fs-small); color: var(--color-ink-secondary); background: var(--color-surface-sunken); border: 1px solid var(--color-border); border-radius: var(--radius-pill); padding: 0 8px; }
+.collapsible__chev { color: var(--color-ink-tertiary); flex-shrink: 0; }
+.collapsible__body { padding: 0 var(--space-4) var(--space-4); }
+
+/* honest demo/dev notes */
+.demo-note {
+  background: var(--prov-demo-bg);
+  border: 1px dashed var(--prov-demo-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  color: var(--prov-demo-ink);
+  margin-top: var(--space-3);
+}
+
+/* footer */
+.footer { display: flex; flex-direction: column; gap: var(--space-2); }
+.footer__demo { color: var(--color-ink-tertiary); font-size: var(--fs-label); }
+
+/* mobile rhythm: calmer density, comfortable taps, one idea per block */
+@media (max-width: 620px) {
+  .container { padding-block: var(--space-4); }
+  .panel, .card { padding: var(--space-3); }
+  .subsection { margin: var(--space-3) 0; }
+  .collapsible__head { padding: var(--space-3); }
+  .collapsible__body { padding: 0 var(--space-3) var(--space-3); }
+  .opportunity { padding: var(--space-4); }
+  .step-nav { gap: var(--space-2); }
+  .step-nav .btn { min-height: 46px; }
+  .hero { padding: var(--space-6) 0 var(--space-5); }
+  .journey { gap: 6px; }
+  .journey__step { font-size: 0.72rem; padding: 2px var(--space-2); }
+}

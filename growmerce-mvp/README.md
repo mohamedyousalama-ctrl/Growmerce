@@ -30,6 +30,21 @@ npm run preview  # preview the production build
 npm run check    # type-check only
 ```
 
+### Configuration
+
+- **WhatsApp number** — copy `.env.example` to `.env.local` and set
+  `VITE_GROWMERCE_WHATSAPP_NUMBER` (digits + country code). If unset, the app runs in **demo mode**:
+  the WhatsApp link opens the contact picker and a demo note is shown. Deep link only — no API.
+- **Funnel events** — a lightweight internal logger (`src/lib/analytics.ts`) logs journey events to
+  the console (dev) and a capped `localStorage` log (`growmerce_mvp_events`). No external analytics.
+- **Leads** — captured leads are stored thinly in `localStorage` (`growmerce_mvp_leads`) for the
+  handoff only — **not** a CRM.
+
+### QA
+
+Manual QA checklist: [`QA.md`](./QA.md) (scenarios, journey, lead/handoff, edge cases, honesty,
+mobile/RTL, a11y, build/runtime).
+
 ## The journey (click through)
 
 1. `/` — **Recognition** entry (hero + recognition cards + CTA)

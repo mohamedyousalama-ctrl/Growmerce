@@ -14,6 +14,7 @@ import { OpportunityCard } from '../components/OpportunityCard';
 import { OpportunityBridge } from '../components/OpportunityBridge';
 import { DemoBanner } from '../components/ProvenanceTag';
 import { useSession } from '../state/session';
+import { track } from '../lib/analytics';
 
 /** `/diagnose` — one progressive flow: input → reasoning → result → opportunity. */
 export function DiagnosePage() {
@@ -28,6 +29,13 @@ export function DiagnosePage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // funnel events on entering result / opportunity
+  useEffect(() => {
+    if (state === 'result') track('diagnostic_result_viewed', { pattern: session.finding?.patternKey });
+    if (state === 'opportunity') track('opportunity_viewed', { pattern: session.finding?.patternKey });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
 
   return (
     <Shell>

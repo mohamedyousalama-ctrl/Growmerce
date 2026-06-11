@@ -1,16 +1,26 @@
 /*
-  WhatsApp handoff helper (Sprint 4).
-  Deep link only — NO WhatsApp API. Placeholder number until a real one is set.
-  Builds a concise, pre-filled Arabic message with just enough diagnostic context.
+  WhatsApp handoff helper (Sprint 4–5).
+  Deep link only — NO WhatsApp API, NO secrets. Number configured via env
+  (VITE_GROWMERCE_WHATSAPP_NUMBER). If unset, the app stays usable in a clearly-flagged demo
+  mode (the link opens WhatsApp's contact picker rather than a bogus recipient).
 */
 import type { ConfidenceBand } from '../types';
 
-// Placeholder — replace with the real Growmerce WhatsApp number before launch.
-export const GROWMERCE_WHATSAPP = '0000000000';
+const ENV_NUMBER = (import.meta.env.VITE_GROWMERCE_WHATSAPP_NUMBER ?? '').toString().trim();
+const ENV_DIGITS = ENV_NUMBER.replace(/[^\d]/g, '');
+
+/** True when a usable WhatsApp number is configured via env. */
+export const WHATSAPP_CONFIGURED = ENV_DIGITS.length >= 8;
+
+/** The configured number (digits) or empty string in demo mode. */
+export const GROWMERCE_WHATSAPP = WHATSAPP_CONFIGURED ? ENV_DIGITS : '';
 
 export function buildWhatsAppLink(message: string, phone: string = GROWMERCE_WHATSAPP): string {
   const digits = phone.replace(/[^\d]/g, '');
-  return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+  // No configured number → open WhatsApp's picker safely (no invalid recipient).
+  return digits
+    ? `https://wa.me/${digits}?text=${encodeURIComponent(message)}`
+    : `https://wa.me/?text=${encodeURIComponent(message)}`;
 }
 
 export const DEFAULT_WA_MESSAGE =

@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSession } from '../state/session';
+import { track } from '../lib/analytics';
 import { computeCoverage, meetsMinimum } from '../lib/coverage';
 import {
   BUSINESS_TYPES,
@@ -49,8 +50,20 @@ export function StructuredInputFlow({ onBackHome }: { onBackHome: () => void }) 
   const canDiagnose = meetsMinimum(si);
   const btOption = businessTypeOption(si.businessType);
 
+  // fire "minimum input completed" once, when the minimum is first satisfied
+  const minFired = useRef(false);
+  useEffect(() => {
+    if (canDiagnose && !minFired.current) {
+      minFired.current = true;
+      track('minimum_input_completed');
+    }
+  }, [canDiagnose]);
+
   /* ---------- business type ---------- */
-  const setBusinessType = (key: BusinessType) => setInput({ businessType: key });
+  const setBusinessType = (key: BusinessType) => {
+    track('business_type_selected', { type: key });
+    setInput({ businessType: key });
+  };
 
   /* ---------- channels ---------- */
   const isChannelOn = (key: string) => si.channels.some((c) => c.id === key);

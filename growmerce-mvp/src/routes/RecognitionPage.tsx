@@ -3,6 +3,7 @@ import { Shell } from '../components/Shell';
 import { RecognitionCard } from '../components/RecognitionCard';
 import { RECOGNITION_CARDS } from '../mock/recognition';
 import { useSession } from '../state/session';
+import { track } from '../lib/analytics';
 import type { PatternRecognition } from '../types';
 
 /** `/` — Recognition entry. Thin, calm, recognition-led. NOT a brochure homepage. */
@@ -11,6 +12,8 @@ export function RecognitionPage() {
   const { goTo, setInput } = useSession();
 
   const start = (pattern?: PatternRecognition) => {
+    if (pattern) track('recognition_card_clicked', { key: pattern.key });
+    track('diagnostic_started', { from: pattern ? 'recognition_card' : 'hero' });
     // Seed the input step from the recognition card (continuity into "teaching" the system).
     const patch: Parameters<typeof setInput>[0] = {};
     if (pattern?.problemKey) patch.mainProblem = pattern.problemKey;

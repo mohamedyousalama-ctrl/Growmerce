@@ -1,4 +1,6 @@
 import { ProvenanceTag } from './ProvenanceTag';
+import { Collapsible } from './Collapsible';
+import { track } from '../lib/analytics';
 import type { EvidenceItem } from '../types';
 
 const STRENGTH_AR: Record<EvidenceItem['strength'], string> = {
@@ -7,12 +9,16 @@ const STRENGTH_AR: Record<EvidenceItem['strength'], string> = {
   strong: 'قوية',
 };
 
-/** Shows what the conclusion is based on — proof with source + strength + provenance (22). */
+/** What the conclusion is based on — proof with source + strength + provenance (22). Collapsible. */
 export function EvidencePanel({ items }: { items: EvidenceItem[] }) {
   const hasIllustrative = items.some((e) => e.provenance !== 'user');
   return (
-    <section className="panel" aria-label="الأدلّة">
-      <h3 className="panel__title">الأدلّة <span className="hint">— على ماذا استندنا</span></h3>
+    <Collapsible
+      title="الأدلّة"
+      hint="على ماذا استندنا"
+      count={items.length}
+      onOpen={() => track('evidence_opened')}
+    >
       {items.length === 0 ? (
         <p className="hint">هيكل تجريبي — ستظهر الأدلّة هنا.</p>
       ) : (
@@ -38,6 +44,6 @@ export function EvidencePanel({ items }: { items: EvidenceItem[] }) {
           )}
         </>
       )}
-    </section>
+    </Collapsible>
   );
 }
