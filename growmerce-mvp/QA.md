@@ -74,3 +74,63 @@ mobile width (~375px). Demo intelligence is mocked and must stay clearly flagged
 
 - [ ] `npm run build` passes (tsc -b + vite build).
 - [ ] `npm run preview` serves; `/`, `/diagnose`, `/handoff` return 200.
+
+## Real-device manual pass (do before any demo/pilot)
+
+The automated/preview checks above run in a headless environment — **no real phones were tested
+there.** Before showing the slice to anyone, walk the full journey on actual devices and tick these:
+
+- [ ] **iPhone — Safari:** full journey `/` → diagnose → opportunity → `/handoff`; layout RTL,
+      no clipped text, no horizontal scroll.
+- [ ] **Android — Chrome:** same full journey; layout and fonts render, Arabic shapes correctly.
+- [ ] **WhatsApp deep link on a real phone:** tapping the handoff CTA opens the WhatsApp app
+      (configured number, or the contact picker in demo mode) with the Arabic message intact.
+- [ ] **Keyboard / form on mobile:** focusing inputs raises the soft keyboard without breaking
+      layout; the lead form is usable; the Arabic keyboard works in text fields.
+- [ ] **Scroll rhythm:** scrolling the long result surface is smooth; sticky/topbar elements
+      don't overlap content; momentum scrolling feels native.
+- [ ] **Touch targets:** buttons, chips, collapsible headers, and the WhatsApp CTA are easy to
+      tap (no mis-taps, ~44px min); accept/edit/reject on suggestions is comfortable.
+- [ ] **Collapsibles:** evidence / missing-data / ruled-out / verification expand and collapse on
+      touch; headers + counts stay visible when collapsed.
+- [ ] **Lead form submission:** required-field validation triggers on mobile; a valid submit
+      advances to the handoff summary; the lead is written to `localStorage`.
+- [ ] **Arabic text wrapping:** long Arabic strings (finding titles, narrative, opportunity) wrap
+      cleanly at narrow widths — no overflow, no broken bidi, numerals read correctly inline.
+
+> Tested on real devices: _not yet_ — record device/OS/browser, date, and tester here when done.
+
+## Sign-off
+
+### 2026-06-11 — Demo Readiness Fix Pass (automated checks in CI/headless env)
+
+Run by Claude in the remote build environment (Node 22, headless — **no real phones**).
+
+Verified ✅
+
+- [x] `npm run build` passes (tsc -b + vite build; 71 modules, clean).
+- [x] `npm run preview` serves; `/`, `/diagnose`, `/handoff` all return **200**.
+- [x] Scenario engine deterministic branches correct:
+      restaurant → `delivery_menu_merchandising` (medium/58),
+      marketplace → `review_density_gap` (medium/60),
+      ecommerce → `checkout_trust_gap` (medium/56),
+      generic → `undetermined_leak` (low/38). Each: ≥2 ruled-out, ≥1 evidence with honest
+      per-item provenance, ≥3 verification steps, opportunity impact marked as estimate.
+- [x] Direct `/handoff` (no diagnosis) → gentle empty state, no crash.
+- [x] WhatsApp config (`src/lib/whatsapp.ts`, `.env.example`): env-based, no secrets, deep link
+      only (no API); unset number → safe demo mode (contact picker + demo note).
+- [x] Honesty copy audit (visible strings): demo banner on result, site-wide footer demo note,
+      provenance tags (incl. "بيانات تجريبية"), impact shown as "تقدير", localStorage/no-CRM and
+      no-WhatsApp-API notes present. No phrase implies guaranteed results, real AI, live
+      marketplace data, a CRM, or real integrations. No copy changes required.
+
+Known risks / not yet covered
+
+- Real-device manual pass above is **outstanding** — must be completed before the demo.
+- Intelligence is **mocked** (deterministic demo), not real reasoning/AI/benchmarks.
+- Leads + funnel events persist only in the visitor's `localStorage` — no durable lead sink/CRM.
+- Cross-cutting a11y, fine RTL polish, and visual review were exercised in build/preview only,
+  not on assistive tech or physical devices.
+
+Status: **Ready for a controlled demo/pilot** once the real-device manual pass is signed off.
+**Not** ready for real production traffic or durable lead capture.

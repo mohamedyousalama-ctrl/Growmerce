@@ -40,10 +40,36 @@ npm run check    # type-check only
 - **Leads** — captured leads are stored thinly in `localStorage` (`growmerce_mvp_leads`) for the
   handoff only — **not** a CRM.
 
+### Deployment (controlled demo / pilot)
+
+This slice is a **static single-page app** — there is no server, database, or backend.
+
+```bash
+npm install
+npm run build      # → outputs the static site to growmerce-mvp/dist/
+```
+
+Serve the `dist/` folder from any static host (Netlify, Vercel, Cloudflare Pages, S3 +
+CloudFront, Nginx, …).
+
+- **Build command:** `npm run build` · **Publish / output directory:** `dist`
+- **SPA history fallback (required):** the app uses client-side routing, so deep links such as
+  `/diagnose` and `/handoff` must rewrite to `/index.html` (otherwise a refresh on those URLs 404s).
+  - Netlify: a `_redirects` file with `/*  /index.html  200`.
+  - Vercel: a rewrite of `/(.*)` → `/index.html`.
+  - Nginx: `try_files $uri /index.html;`.
+- **Environment variable:** set `VITE_GROWMERCE_WHATSAPP_NUMBER` (digits + country code) at
+  **build time** so the WhatsApp handoff targets your number. If unset, the build runs in demo
+  mode (the link opens WhatsApp's contact picker and a demo note is shown). No secrets are needed —
+  it is a public deep-link number. WhatsApp is a **deep link only — there is no WhatsApp API**.
+- **Demo-only data:** there is **no real lead sink** — captured leads live only in the visitor's
+  browser `localStorage` (and so do funnel events). Clearing site data erases them. This is a demo,
+  **not** a CRM. Do not treat collected leads as durable storage.
+
 ### QA
 
 Manual QA checklist: [`QA.md`](./QA.md) (scenarios, journey, lead/handoff, edge cases, honesty,
-mobile/RTL, a11y, build/runtime).
+mobile/RTL, a11y, build/runtime), plus a real-device manual pass and a dated sign-off.
 
 ## The journey (click through)
 
