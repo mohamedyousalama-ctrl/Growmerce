@@ -14,7 +14,7 @@ intelligence** engine. This document tracks the status of each strategic workstr
 | 01 | Company Strategy | ✅ Complete |
 | 02 | Commerce Intelligence Architecture | ✅ Complete |
 | 03 | (reserved) | — |
-| 04 | Website UX | ⏭️ **Recommended next** |
+| 04 | Website UX | ⏭️ **Recommended next** (now built on the Brain) |
 | 05 | (reserved) | — |
 | 06 | Commerce Diagnostic | ✅ Complete |
 | 07 | AI Agent Architecture | ✅ Complete |
@@ -28,44 +28,55 @@ intelligence** engine. This document tracks the status of each strategic workstr
 | 16 | Growmerce Intelligence System | ✅ Complete |
 | 17 | Commerce Knowledge Assets | ✅ Complete |
 | 18 | Industry / Marketplace / Channel / Occasion Playbooks | ✅ Complete |
-| **19** | **Commerce Intelligence Patterns** | ✅ **Just completed** |
+| **19** | **Commerce Intelligence Patterns** | ✅ Complete |
+| **20** | **Growmerce Intelligence Brain** | ✅ **Just completed** |
 
 > Workstream numbering reflects the strategic build order. Reserved slots are placeholders for
 > work not yet opened.
 
 ---
 
-## Latest milestone — 19 Commerce Intelligence Patterns
+## Latest milestone — 20 Growmerce Intelligence Brain
 
-The **Growmerce Pattern Engine** is live (v1). Patterns — named, recurring, evidence-based
-commercial realities — are now the core reusable asset that powers diagnostics, AI agents,
-reports, recommendations, the website, content, lead magnets, sales, delivery, and future
-SaaS.
+The **central intelligence operating system** is defined (v1) — *how Growmerce thinks.* The
+Brain reasons over the Pattern Engine (19) to turn signals into evidence-backed, confidence-
+scored, explainable, practical, actionable conclusions, like a highly experienced commerce
+operator rather than generic AI.
 
-**Delivered:**
-- 11 pattern libraries (~32 deep, operator-grade patterns) following one canonical template.
-- A three-model trust stack: Evidence Framework, Confidence Model, Scoring Model.
-- Five mapping documents wiring patterns to the diagnostic (06), reports, AI agents (07),
-  tools/integrations (13), and Growth Operations delivery.
-- The Intelligence Compounding Model (the moat) and the Website Intelligence Usage brief
-  (the "that's exactly my business" recognition engine, handed to Website UX / 04).
+**Delivered (18 documents):**
+- The cognition pipeline: SENSE → GROUND → RECOGNISE → INTERACT → ASSESS → VALUE → DECIDE →
+  GUARD → ACT → LEARN, with human override at every gate.
+- The master `Growmerce_Intelligence_OS.md` + ten operator heuristics (the "house style").
+- Reasoning subsystems: Signal & Evidence Hierarchy, Pattern Interaction Model, Opportunity
+  Ranking, Risk & Threat, Revenue/Profit Leakage Intelligence, Recommendation Generation.
+- Trust layer: four-band Confidence & Trust Model (with exact movement conditions) and the
+  False-Positive & Bias Control immune system (six GUARD gates + bias catalogue).
+- Improvement layer: Intelligence Learning Loop and Human Override & Expert Review.
 - Governance: Decisions, Open Questions, Backlog.
 
-**Core principle:** write patterns, not categories. Depth over breadth.
+**Core principle:** every conclusion is evidence-backed, confidence-scored, explainable,
+practical, and actionable — or it is not surfaced.
+
+### Prior milestone — 19 Commerce Intelligence Patterns
+The Pattern Engine (the Brain's vocabulary): 11 pattern libraries (~32 patterns), the
+Evidence/Confidence/Scoring trust stack, five system mappings, the Compounding Model, and the
+Website Intelligence Usage brief.
 
 ---
 
 ## Strategic position
 
 Growmerce now has architecture, diagnostics, AI agents, sales, delivery, knowledge assets,
-playbooks, **and** the intelligence patterns that make all of them sharp and compounding. The
-next leverage point is the **website** — the surface where the world first meets the patterns
-and says *"that is exactly what is happening in my business."*
+playbooks, the intelligence **patterns** (19), **and** the intelligence **brain** (20) that
+reasons over them. The foundation for *how Growmerce thinks* is complete. The next leverage
+point is the **website** — the surface where the world first meets that intelligence and says
+*"that is exactly what is happening in my business."*
 
 ---
 
 ## Recommended next workstream
 
-**04 — Website UX.** Build the pattern-powered recognition experience: the self-diagnosis
-flagship tool and per-pattern recognition pages. Brief is ready in
-`19-commerce-intelligence-patterns/Website_Intelligence_Usage.md`.
+**04 — Website UX**, now built directly on the Brain (20) and the Pattern Engine (19). Build the
+self-diagnosis flagship tool (the Brain in fast-judgement mode) and per-pattern recognition
+pages. Briefs: `20-growmerce-intelligence-brain/Growmerce_Intelligence_OS.md` (fast-judgement
+mode, §6) and `19-commerce-intelligence-patterns/Website_Intelligence_Usage.md`.

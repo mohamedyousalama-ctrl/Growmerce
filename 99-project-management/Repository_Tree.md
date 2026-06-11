@@ -15,7 +15,7 @@ Growmerce/
 ├── PROJECT_STATUS.md
 ├── ROADMAP.md
 │
-├── 19-commerce-intelligence-patterns/        # The Pattern Engine (this workstream)
+├── 19-commerce-intelligence-patterns/        # The Pattern Engine (vocabulary)
 │   ├── README.md
 │   ├── Purpose.md
 │   ├── Commerce_Intelligence_Patterns_Strategy.md
@@ -44,6 +44,30 @@ Growmerce/
 │   │
 │   ├── Intelligence_Compounding_Model.md     # Compounding + surfaces
 │   ├── Website_Intelligence_Usage.md
+│   │
+│   ├── Open_Questions.md                      # Governance
+│   ├── Decisions.md
+│   └── Backlog.md
+│
+├── 20-growmerce-intelligence-brain/          # The Intelligence Brain (how Growmerce thinks)
+│   ├── README.md
+│   ├── Purpose.md
+│   ├── Growmerce_Intelligence_OS.md          # Master doc: cognition pipeline + operator mindset
+│   ├── Intelligence_Decision_Framework.md    # How each conclusion is reached
+│   │
+│   ├── Signal_and_Evidence_Hierarchy.md      # Reasoning subsystems
+│   ├── Pattern_Interaction_Model.md
+│   ├── Opportunity_Ranking_Framework.md
+│   ├── Risk_and_Threat_Framework.md
+│   ├── Revenue_Leakage_Intelligence.md
+│   ├── Profit_Leakage_Intelligence.md
+│   ├── Recommendation_Generation_Framework.md
+│   │
+│   ├── Confidence_and_Trust_Model.md         # Trust layer
+│   ├── False_Positive_and_Bias_Control.md
+│   │
+│   ├── Intelligence_Learning_Loop.md         # Improvement layer
+│   ├── Human_Override_and_Expert_Review.md
 │   │
 │   ├── Open_Questions.md                      # Governance
 │   ├── Decisions.md
@@ -84,8 +108,9 @@ folders to the tree above:
 
 ---
 
-## Workstream 19 file count
+## Workstream file counts
 
+**19 — Commerce Intelligence Patterns (27 documents)**
 - Foundation: 3 files (README, Purpose, Strategy)
 - Pattern libraries: 11 files (~32 patterns)
 - Trust-stack models: 3 files
@@ -93,4 +118,12 @@ folders to the tree above:
 - Compounding + surfaces: 2 files
 - Governance: 3 files
 
-**Total: 27 documents** in `19-commerce-intelligence-patterns/`.
+**20 — Growmerce Intelligence Brain (18 documents)**
+- Foundation: 4 files (README, Purpose, Intelligence OS, Decision Framework)
+- Reasoning subsystems: 7 files (Signal/Evidence, Pattern Interaction, Opportunity Ranking,
+  Risk/Threat, Revenue Leakage, Profit Leakage, Recommendation Generation)
+- Trust layer: 2 files (Confidence & Trust, False-Positive & Bias Control)
+- Improvement layer: 2 files (Learning Loop, Human Override & Expert Review)
+- Governance: 3 files (Open Questions, Decisions, Backlog)
+
+Plus project-level: `PROJECT_STATUS.md`, `ROADMAP.md`, `99-project-management/Repository_Tree.md`.

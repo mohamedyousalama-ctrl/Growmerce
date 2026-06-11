@@ -30,28 +30,38 @@ redesigned downstream.
 - **17 Commerce Knowledge Assets**
 - **18 Industry / Marketplace / Channel / Occasion Playbooks**
 
-## Phase 4 — The intelligence core (✅ Just completed)
+## Phase 4 — The intelligence core (✅ Complete)
 
 - **19 Commerce Intelligence Patterns** — the Pattern Engine. The reusable, compounding
-  intelligence layer that powers every other surface. Patterns describe recurring commercial
-  realities and are more reusable than industries, channels, or platforms.
+  vocabulary layer. Patterns describe recurring commercial realities and are more reusable than
+  industries, channels, or platforms.
+- **20 Growmerce Intelligence Brain** — the central intelligence operating system: *how
+  Growmerce thinks.* The gated cognition pipeline (SENSE→LEARN) that reasons over the patterns
+  to produce evidence-backed, confidence-scored, explainable, practical, actionable conclusions
+  — like a commerce operator, not generic AI. Defines signals, evidence hierarchy, pattern
+  interactions, opportunity ranking, threat detection, recommendation generation, the four-band
+  confidence model, false-positive/bias control, the learning loop, and human oversight.
 
 ## Phase 5 — Surfaces (▶ Next)
 
-- **04 Website UX** ⏭️ **Recommended next** — render the patterns into the recognition
-  experience: self-diagnosis flagship tool + per-pattern recognition pages. The website is
-  the first evidence-depth tier of the one pattern funnel that runs through to delivery.
-  Brief: `19-commerce-intelligence-patterns/Website_Intelligence_Usage.md`.
+- **04 Website UX** ⏭️ **Recommended next** — render the intelligence into the recognition
+  experience: the self-diagnosis flagship tool (the Brain in *fast-judgement* mode) and
+  per-pattern recognition pages. The website is the first evidence-depth tier of the one
+  cognition funnel that runs through to delivery. Briefs:
+  `20-growmerce-intelligence-brain/Growmerce_Intelligence_OS.md` (§6, cognition modes) and
+  `19-commerce-intelligence-patterns/Website_Intelligence_Usage.md`.
 
 ---
 
 ## Why 04 Website UX is next
 
-The Pattern Engine is the asset; the website is how the market meets it. With patterns in
-place, the website can finally do its one job — make a visitor say *"that is exactly what is
-happening in my business"* — and convert that recognition into a lead and an engagement. Every
-other surface (TikTok, lead magnets, sales, diagnostics) also draws on patterns, but the
-website is the highest-leverage next build because it is the front door to the entire funnel.
+The Pattern Engine (19) is the vocabulary and the Brain (20) is the mind; the website is how the
+market meets them. With *how Growmerce thinks* now defined, the website can finally do its one
+job — make a visitor say *"that is exactly what is happening in my business"* — and convert that
+recognition into a lead and an engagement. The self-diagnosis tool is literally the Brain
+running in fast-judgement mode. Every other surface (TikTok, lead magnets, sales, diagnostics)
+also draws on the Brain, but the website is the highest-leverage next build because it is the
+front door to the entire cognition funnel.
 
 ---
 
