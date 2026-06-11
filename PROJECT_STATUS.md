@@ -31,14 +31,40 @@ intelligence** engine. This document tracks the status of each strategic workstr
 | **19** | **Commerce Intelligence Patterns** | ✅ Complete |
 | **20** | **Growmerce Intelligence Brain** | ✅ Complete |
 | **21** | **Brand Narrative System** | ✅ Complete |
-| **22** | **Commerce Intelligence Supply Chain** | ✅ **Just completed** |
+| **22** | **Commerce Intelligence Supply Chain** | ✅ Complete |
+| **23** | **Commerce Knowledge System** | ✅ **Just completed** |
 
 > Workstream numbering reflects the strategic build order. Reserved slots are placeholders for
 > work not yet opened.
 
 ---
 
-## Latest milestone — 22 Commerce Intelligence Supply Chain
+## Latest milestone — 23 Commerce Knowledge System
+
+**What Growmerce knows** is defined (v1) — the structured, compounding body of commercial
+understanding that makes its recommendations better than anyone else's. The answer to *"what expertise
+lets Growmerce recommend better?"* is now explicit: **a Commerce Knowledge System**, not AI. Built as a
+knowledge institution (McKinsey / Bloomberg / Palantir ontology / Amazon doctrine), not a feature.
+
+**Delivered (19 documents):**
+- **Foundation (01–03, 14):** the System overview (and how it connects to patterns, brain, supply
+  chain, diagnostics, reports, recommendations, execution); the sixteen knowledge **domains**; the
+  fourteen **knowledge objects** (facts → principles → models → playbooks → patterns → lessons); and
+  the **commerce ontology** (the entities/relationships everything refers to).
+- **Domain knowledge (04–08):** real transferable doctrine for marketplaces, pricing & promotion,
+  customer behaviour, occasion & demand, and competitor & market.
+- **Connections (09–10):** knowledge → pattern mapping (the precise distinction between knowledge,
+  pattern, signal, evidence, recommendation) and knowledge → brain mapping (where knowledge enters
+  reasoning).
+- **Trust & growth (11–13):** the compounding model, the quality framework (validation/versioning),
+  and gaps & unknowns (preventing false certainty).
+- **The case (15):** why Growmerce knows more over time and why competitors structurally can't.
+- Governance: Decisions, Open Questions, Backlog.
+
+**Core principle:** recommendations are downstream of understanding; superior, compounding,
+institutional commercial understanding is the moat — and it is the asset competitors can't copy.
+
+### Prior milestone — 22 Commerce Intelligence Supply Chain
 
 **How Growmerce produces output accuracy** is defined (v1) — the machinery that converts raw market
 signals into trusted commerce intelligence. The defensible answer to *"why should I trust Growmerce's
@@ -171,20 +197,25 @@ Website Intelligence Usage brief.
 ## Strategic position
 
 The strategic foundation is in place across two axes. **Intelligence:** what's true (patterns, 19),
-how it thinks (the Brain, 20), and now **how it produces trusted, accurate output** (the Intelligence
-Supply Chain, 22) — the production discipline beneath the Brain. **Expression:** how it's experienced
-(Website UX, 04), how it speaks (Brand Narrative, 21), and how it should look (the Brand Identity
-brief, 03). Growmerce can now answer not only "how does it think?" but the harder question **"how does
-it know it's right?"** Two tracks remain: **visual creation** (Claude Design) and **supply-chain
-hardening** (engineering the machinery in 22).
+how it thinks (the Brain, 20), how it produces trusted output (the Supply Chain, 22), and now **what it
+actually knows** (the Commerce Knowledge System, 23) — the institutional understanding beneath
+everything. **Expression:** how it's experienced (Website UX, 04), how it speaks (Brand Narrative, 21),
+and how it should look (the Brand Identity brief, 03). Growmerce can now answer the three deepest
+questions in order: *how does it think?* (20), *how does it know it's right?* (22), and *what does it
+understand about commerce that makes it worth listening to?* (23). The intelligence foundation is
+complete; what remains is **building** — visual creation (Claude Design) and the engineering of the
+supply-chain and knowledge machinery.
 
 ---
 
 ## Recommended next step
 
-**Claude Design — visual exploration** remains the primary next step on the expression track: the
-identity brief (`03-brand-identity/Claude_Design_Brief.md`) is the handoff. In parallel, on the
-intelligence track, **supply-chain hardening** (`22-intelligence-supply-chain/Backlog.md`) is the
-engineering path — taxonomy schema, tier rules, verification/scoring calibration, and outcome capture
-— that turns the defined supply chain into running machinery. Neither is another strategic
-documentation workstream; both are build steps.
+The intelligence and expression foundations are documented; the next steps are **build steps**, not
+further strategic documentation:
+- **Claude Design — visual exploration** (expression track) — from `03-brand-identity/Claude_Design_Brief.md`.
+- **Supply-chain hardening** (intelligence track) — from `22-intelligence-supply-chain/Backlog.md`
+  (taxonomy schema, tier rules, verification/scoring calibration, outcome capture).
+- **Knowledge engineering** (intelligence track) — from `23-commerce-knowledge-system/Backlog.md`
+  (the knowledge encoding/retrieval format, domain build-out, outcome-to-knowledge capture). The
+  encoding decision is consequential: it determines whether the knowledge stays auditable and
+  human-readable rather than buried in model weights.

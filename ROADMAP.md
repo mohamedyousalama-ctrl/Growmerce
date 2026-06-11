@@ -79,14 +79,24 @@ redesigned downstream.
   catalogue, Quality Control checkpoints, and the supply-chain competitive advantage. The defensible
   answer to "why trust Growmerce?" — built like an intelligence firm, not a SaaS startup.
 
-## Phase 9 — Creation & hardening (▶ Next)
+## Phase 9 — Institutional knowledge (✅ Knowledge System complete)
 
-- **Claude Design — visual exploration** ⏭️ **Recommended next (expression track)** — using
-  `03-brand-identity/Claude_Design_Brief.md`, explore logo, type, colour, and the intelligence visual
-  systems against the brief's five criteria.
-- **Supply-chain hardening** (intelligence track) — using `22-intelligence-supply-chain/Backlog.md`,
-  engineer the machinery (taxonomy schema, tier rules, verification/scoring calibration, outcome
-  capture). Both are build steps, not further strategic documentation.
+- **23 Commerce Knowledge System** ✅ — **what Growmerce knows.** The institutional, compounding body
+  of commercial understanding beneath the patterns, brain, and supply chain: the sixteen knowledge
+  domains, the fourteen knowledge-object types, the commerce ontology, real domain doctrine
+  (marketplace, pricing/promotion, customer behaviour, occasion/demand, competitor/market), the
+  knowledge→pattern and knowledge→brain mappings, the compounding and quality frameworks, the handling
+  of gaps/unknowns, and the executive case for the knowledge moat. The deepest answer to "why
+  Growmerce" — built like a knowledge institution, not a tool.
+
+## Phase 10 — Build (▶ Next)
+
+The intelligence foundation (19, 20, 22, 23) and the expression foundation (04, 21, 03) are documented.
+The remaining steps are **build**, not further strategic documentation:
+- **Claude Design — visual exploration** ⏭️ **(expression track)** — from `03-brand-identity/Claude_Design_Brief.md`.
+- **Supply-chain hardening** (intelligence track) — from `22-intelligence-supply-chain/Backlog.md`.
+- **Knowledge engineering** (intelligence track) — from `23-commerce-knowledge-system/Backlog.md`
+  (knowledge encoding/retrieval format, domain build-out, outcome-to-knowledge capture).
 
 ---
 
