@@ -11,6 +11,7 @@ export const RECOGNITION_CARDS: PatternRecognition[] = [
     statement: 'قائمتك على تطبيق التوصيل تخفي الأصناف التي يُفترض أن تبيع.',
     vertical: 'restaurant',
     whyLine: 'ترتيب القائمة وصورها يقرّران المبيعات أكثر من الطبق نفسه.',
+    problemKey: 'low_aov',
     provenance: 'demo',
   },
   {
@@ -18,6 +19,7 @@ export const RECOGNITION_CARDS: PatternRecognition[] = [
     statement: 'خصمك يرفع عدد الطلبات، لكنه يلتهم هامش الربح.',
     vertical: 'all',
     whyLine: 'الإيرادات قد ترتفع بينما الربح يتآكل بهدوء.',
+    problemKey: 'busy_no_profit',
     provenance: 'demo',
   },
   {
@@ -25,6 +27,7 @@ export const RECOGNITION_CARDS: PatternRecognition[] = [
     statement: 'الزيارات تصل إلى صفحتك، لكن الثقة لا تكفي لإتمام الشراء.',
     vertical: 'ecommerce_store',
     whyLine: 'العميل يصل بنيّة الشراء ثم يتردّد عند لحظة القرار.',
+    problemKey: 'weak_conversion',
     provenance: 'demo',
   },
   {
@@ -32,6 +35,7 @@ export const RECOGNITION_CARDS: PatternRecognition[] = [
     statement: 'تقييماتك تبدو جيدة للإنسان، لكنها ضعيفة أمام خوارزمية المتجر.',
     vertical: 'marketplace_seller',
     whyLine: 'حداثة التقييمات تحرّك الترتيب أكثر من عددها الإجمالي.',
+    problemKey: 'weak_visibility',
     provenance: 'demo',
   },
 ];

@@ -11,7 +11,11 @@ export function RecognitionPage() {
   const { goTo, setInput } = useSession();
 
   const start = (pattern?: PatternRecognition) => {
-    if (pattern?.key) setInput({ mainProblem: pattern.key });
+    // Seed the input step from the recognition card (continuity into "teaching" the system).
+    const patch: Parameters<typeof setInput>[0] = {};
+    if (pattern?.problemKey) patch.mainProblem = pattern.problemKey;
+    if (pattern && pattern.vertical !== 'all') patch.businessType = pattern.vertical;
+    if (Object.keys(patch).length) setInput(patch);
     goTo('input');
     navigate('/diagnose');
   };

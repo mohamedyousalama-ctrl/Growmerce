@@ -76,16 +76,42 @@ export interface Location {
   geo?: string;
 }
 
+/** Market context the operator sells into. */
+export type MarketKey = 'SA' | 'UAE' | 'EG' | 'GCC';
+
+export interface MarketContext {
+  region?: MarketKey;
+  country?: string;
+  city?: string;
+  district?: string;
+}
+
+/**
+ * Optional context links the operator can provide. Captured for a FUTURE sprint —
+ * NOT analyzed in V1 (no integrations / no file processing).
+ */
+export interface ContextLinks {
+  websiteUrl?: string;
+  storeUrl?: string;
+  menuUrl?: string;
+}
+
 /* ---------- Input layer (04 / 22 / 24) ---------- */
 
 /** Raw, reusable capture from the structured-input experience. */
 export interface StructuredInput {
   businessType?: BusinessType;
   channels: Channel[];
+  /** id of the channel marked primary (references a Channel.id in `channels`) */
+  primaryChannelId?: string;
   products: ProductOrMenuItem[];
   competitors: Competitor[];
   location?: Location;
-  /** the felt problem the operator selected */
+  /** country / city / district / region context */
+  market?: MarketContext;
+  /** optional URLs captured for a future sprint — not analyzed in V1 */
+  links?: ContextLinks;
+  /** the felt problem the operator selected (a problem key) */
   mainProblem?: string;
   freeText?: string;
   provenance: Provenance;
@@ -118,6 +144,8 @@ export interface PatternRecognition {
   statement: string;
   vertical: BusinessType | 'all';
   whyLine?: string;
+  /** the main-problem key this recognition maps to (seeds the input step) */
+  problemKey?: string;
   provenance: Provenance;
 }
 
