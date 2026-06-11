@@ -1,0 +1,117 @@
+/*
+  Growmerce — Design Tokens (Sprint 1)
+  Direction A — Commerce Intelligence OS.
+  Sources of truth: 03-brand-identity, 00-Claude-Design-Master-Brief.md.
+
+  Principles encoded here:
+  - Calm, light, premium, evidence-forward. Mostly neutral; colour carries meaning, not decoration.
+  - Arabic-first / RTL is the default (see base.css).
+  - CONFIDENCE is a CALIBRATION scale (Low → Very High), NOT a success/failure (red/amber/green) status.
+    It is rendered as graduated solidity of a single calm "intelligence" hue.
+  - EVIDENCE / PROVENANCE has its own honest visual language; demo/mock is explicitly marked.
+  These are first-pass tokens; final values are a later sprint + native review.
+*/
+
+:root {
+  /* ---- Base surfaces (calm, light, premium) ---- */
+  --color-base: #f7f5f1;          /* warm paper background */
+  --color-surface: #ffffff;        /* cards / panels */
+  --color-surface-sunken: #f1eee8; /* quiet recessed areas */
+  --color-border: #e6e1d8;         /* hairline separation (space over borders) */
+  --color-border-strong: #d8d2c6;
+
+  /* ---- Ink (text) ---- */
+  --color-ink: #1b2024;            /* primary text, warm near-black */
+  --color-ink-secondary: #565d64;  /* secondary */
+  --color-ink-tertiary: #8b9098;   /* tertiary / hints */
+  --color-ink-on-brand: #f4faf9;
+
+  /* ---- Brand / intelligence hue (deep, serious teal — not SaaS blue, not neon) ---- */
+  --color-brand: #0f4d4f;
+  --color-brand-strong: #0a3a3c;
+  --color-brand-soft: #12605f;
+  --color-brand-tint: #e7f0ee;     /* very light brand wash */
+
+  /* ---- Action (primary CTA). Calm, decisive — not loud. ---- */
+  --color-action: #0f4d4f;
+  --color-action-ink: #ffffff;
+  --color-action-hover: #0a3a3c;
+
+  /* ---- Semantic commerce roles (used sparingly; meaning, not decoration) ---- */
+  --color-growth: #1f5f4b;         /* revenue / sales-growth signal (distinct from profit) */
+  --color-profit: #6b4f1d;         /* profit / margin signal (deliberately separate from growth) */
+  --color-risk: #7a4a3a;           /* risk / caution — serious, NOT alarmist red */
+  --color-neutral-data: #6a7078;   /* quiet data / structural */
+
+  /* ---- CONFIDENCE (calibration scale — graduated solidity of the intelligence hue) ----
+     Read as "how sure", never as good/bad. Low is faint & honest; Very High is solid. */
+  --confidence-track: #e9e5dd;          /* empty calibration track */
+  --confidence-low: #b9c6c4;            /* faint */
+  --confidence-medium: #6f9a97;
+  --confidence-high: #2f7572;
+  --confidence-very-high: #0f4d4f;      /* solid intelligence hue */
+  --confidence-ink: #1b2024;
+
+  /* ---- EVIDENCE / PROVENANCE language ----
+     Honest treatment by where a fact came from. Demo/mock is explicitly, visibly marked. */
+  --prov-user-bg: #e7f0ee;     --prov-user-ink: #0f4d4f;     /* user-provided (strongest in V1) */
+  --prov-inferred-bg: #f1eee8; --prov-inferred-ink: #565d64; /* inferred (outlined/quiet) */
+  --prov-benchmark-bg: #eef0e9; --prov-benchmark-ink: #44502f;/* benchmark-based */
+  --prov-demo-bg: #f3ece0;     --prov-demo-ink: #7a5a2a;     /* demo / mocked — flagged honestly */
+  --prov-demo-border: #d9c39a;
+
+  /* ---- Typography (Arabic-first stack; final faces are a later sprint) ---- */
+  --font-sans: "Segoe UI", "Noto Sans Arabic", "Tajawal", "Geeza Pro", Tahoma, system-ui, sans-serif;
+  --font-display: "Noto Kufi Arabic", "Segoe UI", "Tajawal", system-ui, sans-serif;
+  --font-numeric: "SF Mono", "Segoe UI", ui-monospace, monospace; /* tabular metrics */
+
+  --fs-display: clamp(2rem, 5.5vw, 3.25rem);
+  --fs-h1: clamp(1.6rem, 4.2vw, 2.25rem);
+  --fs-h2: clamp(1.25rem, 3vw, 1.5rem);
+  --fs-h3: 1.125rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-label: 0.78rem;
+
+  --lh-tight: 1.25;
+  --lh-body: 1.7;       /* generous, calm reading (esp. Arabic) */
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ---- Spacing (4px base; generous) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* ---- Radius (premium, softly rounded) ---- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* ---- Surface treatment (calm; restrained shadows) ---- */
+  --shadow-quiet: 0 1px 2px rgba(27, 32, 36, 0.04);
+  --shadow-card: 0 2px 10px rgba(27, 32, 36, 0.05);
+  --shadow-raised: 0 8px 28px rgba(27, 32, 36, 0.08);
+
+  /* ---- Layout ---- */
+  --maxw-content: 920px;
+  --maxw-narrow: 640px;
+
+  /* ---- Motion (subtle, purposeful) ---- */
+  --motion-fast: 140ms ease;
+  --motion-base: 220ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-fast: 0ms; --motion-base: 0ms; }
+}
