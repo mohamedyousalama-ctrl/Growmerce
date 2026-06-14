@@ -15,8 +15,52 @@ import { CoverageMeter } from './CoverageMeter';
 import { InputChip } from './InputChip';
 import { AddChipInput } from './AddChipInput';
 import { CompetitorSuggestions } from './CompetitorSuggestions';
+import { Collapsible } from './Collapsible';
 import { StepNav } from './StepNav';
-import type { BusinessType, Channel, Competitor, MarketKey, ProductOrMenuItem } from '../types';
+import { platformsByVertical } from '../knowledge';
+import type { BusinessType, Channel, Competitor, MarketKey, PlatformVertical, ProductOrMenuItem } from '../types';
+
+/** Stage 4 — platform vertical chooser (maps onto an existing BusinessType, additively). */
+const VERTICAL_OPTIONS: Array<{ key: PlatformVertical; label: string; businessType: BusinessType }> = [
+  { key: 'food_delivery', label: 'مطاعم وتطبيقات توصيل', businessType: 'restaurant' },
+  { key: 'ecommerce', label: 'متاجر Amazon / Noon / Jumia', businessType: 'marketplace_seller' },
+  { key: 'qcommerce', label: 'علامات FMCG و Q-Commerce', businessType: 'retail' },
+  { key: 'mixed', label: 'أكثر من نوع', businessType: 'marketplace_seller' },
+];
+
+/** Optional, vertical-specific audit metrics (progressive disclosure — never required). */
+const ADV_FIELDS: Record<Exclude<PlatformVertical, 'mixed'>, Array<{ key: string; label: string }>> = {
+  food_delivery: [
+    { key: 'monthlyGmv', label: 'GMV التوصيل الشهري' },
+    { key: 'commissionRate', label: 'نسبة العمولة ٪' },
+    { key: 'failRate', label: 'fail rate ٪' },
+    { key: 'acceptanceRate', label: 'نسبة قبول الطلبات ٪' },
+    { key: 'prepTime', label: 'وقت التحضير (دقيقة)' },
+    { key: 'rating', label: 'التقييم' },
+    { key: 'menuPhotoCoverage', label: 'تغطية صور القائمة ٪' },
+    { key: 'keetaStatus', label: 'حالة Keeta (لم نبدأ / قيد التجهيز / منضم)' },
+  ],
+  ecommerce: [
+    { key: 'monthlyGmv', label: 'GMV الشهري على الأسواق' },
+    { key: 'fulfillmentModel', label: 'نموذج التنفيذ (FBA/FBM/FBN/FBP/FBJ)' },
+    { key: 'buyBoxIssue', label: 'مشكلة Buy Box؟ (نعم/لا)' },
+    { key: 'accountHealthWarnings', label: 'تحذيرات صحة الحساب؟' },
+    { key: 'listingSuppression', label: 'تعليق قوائم؟' },
+    { key: 'acosTacos', label: 'ACOS / TACOS إن عُرف' },
+    { key: 'skuCount', label: 'عدد المنتجات (SKU)' },
+    { key: 'inventoryDays', label: 'أيام تغطية المخزون' },
+  ],
+  qcommerce: [
+    { key: 'relationshipModel', label: 'نموذج العلاقة (1P / 3P / شريك تجزئة)' },
+    { key: 'fillRate', label: 'fill rate ٪' },
+    { key: 'availabilityScore', label: 'درجة التوفّر' },
+    { key: 'oosRate', label: 'OOS rate ٪' },
+    { key: 'stockCoverageDays', label: 'أيام تغطية المخزون' },
+    { key: 'darkStoreNodes', label: 'عدد عُقد المتاجر المظلمة' },
+    { key: 'deadStockSkus', label: 'عدد SKU الراكدة' },
+    { key: 'poSla', label: 'التزام تنفيذ PO ٪' },
+  ],
+};
 
 /** A small "suggested" chip with add + dismiss (accept/reject for single entities). */
 function SuggestedChip({ label, onAdd, onDismiss }: { label: string; onAdd: () => void; onDismiss: () => void }) {
@@ -114,6 +158,24 @@ export function StructuredInputFlow({ onBackHome }: { onBackHome: () => void }) 
   const setLinks = (patch: Partial<NonNullable<typeof si.links>>) =>
     setInput({ links: { ...si.links, ...patch } });
 
+  /* ---------- Stage 4: platform vertical + platform-specific metrics ---------- */
+  const setVertical = (opt: (typeof VERTICAL_OPTIONS)[number]) => {
+    track('business_type_selected', { type: opt.businessType, vertical: opt.key });
+    setInput({ platformVertical: opt.key, businessType: opt.businessType });
+  };
+  const setMetric = (k: string, v: string) =>
+    setInput({ platformMetrics: { ...(si.platformMetrics ?? {}), [k]: v } });
+  const selectedPlatforms = (si.platformMetrics?.platforms ?? '')
+    .split(',').map((s) => s.trim()).filter(Boolean);
+  const togglePlatform = (name: string) => {
+    const set = new Set(selectedPlatforms);
+    set.has(name) ? set.delete(name) : set.add(name);
+    setMetric('platforms', Array.from(set).join(', '));
+  };
+  const advVertical = si.platformVertical && si.platformVertical !== 'mixed' ? si.platformVertical : null;
+  const advFields = advVertical ? ADV_FIELDS[advVertical] : [];
+  const advFilledCount = advFields.filter((f) => (si.platformMetrics?.[f.key] ?? '').trim() !== '').length;
+
   /* ---------- derived suggestion lists ---------- */
   const suggestedItems = suggestions.items.filter(
     (n) => !si.products.some((p) => p.name === n) && !dismissedItems.has(n),
@@ -131,6 +193,50 @@ export function StructuredInputFlow({ onBackHome }: { onBackHome: () => void }) 
       </header>
 
       <CoverageMeter coverage={coverage} />
+
+      {/* ---------- Stage 4: platform vertical chooser ---------- */}
+      <div className="panel subsection">
+        <h3 className="panel__title">أي نوع من المنصات تريد تدقيقه؟</h3>
+        <div className="chips">
+          {VERTICAL_OPTIONS.map((o) => (
+            <InputChip key={o.key} label={o.label} selected={si.platformVertical === o.key} onToggle={() => setVertical(o)} />
+          ))}
+        </div>
+
+        {advVertical && (
+          <div className="primary-select">
+            <span className="hint">منصّاتك في هذا النوع:</span>
+            <div className="chips">
+              {platformsByVertical(advVertical).map((p) => (
+                <InputChip key={p.id} label={p.name} selected={selectedPlatforms.includes(p.name)} onToggle={() => togglePlatform(p.name)} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* ---------- Stage 4: optional platform-specific metrics (progressive disclosure) ---------- */}
+      {advVertical && (
+        <div className="panel subsection">
+          <Collapsible title="مقاييس المنصات المتقدّمة" hint="اختياري — يرفع دقّة التدقيق" count={advFilledCount}>
+            <p className="hint" style={{ marginBottom: 'var(--space-3)' }}>
+              كل رقم تضيفه يرفع الثقة ويقلّل البيانات الناقصة. اتركه فارغًا إن لم يتوفّر — سيظهر كبيانات ناقصة في التقرير.
+            </p>
+            <div className="market-grid">
+              {advFields.map((f) => (
+                <div className="field" key={f.key}>
+                  <label htmlFor={`adv-${f.key}`}>{f.label}</label>
+                  <input
+                    id={`adv-${f.key}`}
+                    value={si.platformMetrics?.[f.key] ?? ''}
+                    onChange={(e) => setMetric(f.key, e.target.value)}
+                  />
+                </div>
+              ))}
+            </div>
+          </Collapsible>
+        </div>
+      )}
 
       {/* ---------- Business type ---------- */}
       <div className="panel subsection">

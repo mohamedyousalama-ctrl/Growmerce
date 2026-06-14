@@ -114,8 +114,15 @@ export interface StructuredInput {
   /** the felt problem the operator selected (a problem key) */
   mainProblem?: string;
   freeText?: string;
+  /** chosen platform vertical for the audit (Stage 4 verticalization) */
+  platformVertical?: PlatformVertical;
+  /** flexible, optional platform-specific audit metrics (backward compatible) */
+  platformMetrics?: Record<string, string>;
   provenance: Provenance;
 }
+
+/** Platform vertical the operator wants audited (maps loosely onto BusinessType). */
+export type PlatformVertical = 'ecommerce' | 'food_delivery' | 'qcommerce' | 'mixed';
 
 /** The saved, reusable business picture. */
 export interface CommerceProfile {
