@@ -100,6 +100,18 @@ returns `{ ok, contact_id, business_id, report_request_id, status }`.
 **Security:** the client uses only the public anon key. The **service-role key is never a `VITE_`
 var or in the bundle** — it lives only in Supabase function secrets. No reviewer auth or agents yet.
 
+#### Data source intake (Phase 2 Sprint 3 — capture only)
+
+When persisting, the submission also carries a normalized `dataSources` array (built from the
+existing structured input: website/store/menu URLs, competitor names, free-text notes; Google
+Sheet URLs are detected and tagged `sheet_reference`). The Edge Function stores these into
+`data_sources` (+ a `raw_observations` row each, provenance `user_provided`). **This is capture
+only:** nothing is fetched, scraped, OCR'd, parsed, or analyzed — rows stay `status='submitted'`,
+and the report is still the deterministic demo finding. **File uploads are not enabled yet:** the
+`uploaded_files` table and a private `report-uploads` storage bucket exist for a later sprint
+(metadata only; bucket is private, no public access, no object policies — service-role only). Real
+evidence generation arrives in a later sprint (Evidence Builder).
+
 ### Deployment (controlled launch / pilot)
 
 This slice is a **static single-page app** — there is no server, database, or backend bundled.

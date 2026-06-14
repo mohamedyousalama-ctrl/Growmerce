@@ -54,6 +54,19 @@ const normPhone = (v: unknown): string => trim(v).replace(/[^\d]/g, "");
 const normEmail = (v: unknown): string => trim(v).toLowerCase();
 const clip = (v: unknown, n = 2000): string => trim(v).slice(0, n);
 
+// Allowed enums (mirror the CHECK constraints) — unknown values are coerced to safe defaults.
+const KINDS = new Set([
+  "website", "store", "menu", "marketplace_listing", "competitor",
+  "google_sheet", "upload", "manual_metrics", "other",
+]);
+const OWNERS = new Set(["own", "competitor", "market", "user_uploaded", "unknown"]);
+const OBS_TYPES = new Set(["url_submitted", "file_uploaded", "manual_metric", "sheet_reference", "user_note"]);
+const MAX_SOURCES = 50; // capture-only guard
+
+const kindOf = (v: unknown): string => (KINDS.has(trim(v)) ? trim(v) : "other");
+const ownerOf = (v: unknown): string => (OWNERS.has(trim(v)) ? trim(v) : "unknown");
+const obsOf = (v: unknown): string => (OBS_TYPES.has(trim(v)) ? trim(v) : "user_note");
+
 Deno.serve(async (req: Request) => {
   const origin = req.headers.get("origin");
   const cors = corsHeaders(origin);
@@ -171,9 +184,72 @@ Deno.serve(async (req: Request) => {
       .select("id, status")
       .single();
     if (rErr) throw rErr;
+    const reportRequestId = rr.id;
+
+    // 5) data sources + raw observations (CAPTURE ONLY — no fetch/extract/parse).
+    // Best-effort: a source failure never fails the core submission.
+    let sourcesStored = 0;
+    const incoming: any[] = Array.isArray(body?.dataSources) ? body.dataSources.slice(0, MAX_SOURCES) : [];
+
+    // optional manual metrics object → its own source
+    if (body?.manualMetrics && typeof body.manualMetrics === "object") {
+      incoming.push({
+        kind: "manual_metrics",
+        ownerClass: "own",
+        label: "مقاييس يدوية",
+        observationType: "manual_metric",
+        payload: body.manualMetrics,
+      });
+    }
+
+    for (const s of incoming) {
+      try {
+        const url = clip(s?.url, 1000) || null;
+        const label = clip(s?.label, 300) || null;
+        const sourcePayload = (s?.payload && typeof s.payload === "object") ? s.payload : {};
+
+        const { data: ds, error: dsErr } = await supabase
+          .from("data_sources")
+          .insert({
+            report_request_id: reportRequestId,
+            business_id: businessId,
+            contact_id: contactId,
+            kind: kindOf(s?.kind),
+            label,
+            url,
+            owner_class: ownerOf(s?.ownerClass),
+            status: "submitted",
+            freshness_class: "unknown",
+            metadata: sourcePayload,
+          })
+          .select("id")
+          .single();
+        if (dsErr) throw dsErr;
+
+        await supabase.from("raw_observations").insert({
+          report_request_id: reportRequestId,
+          data_source_id: ds.id,
+          observation_type: obsOf(s?.observationType),
+          payload: { url, label, ...sourcePayload },
+          extraction_method: "user_provided",
+          freshness_class: "unknown",
+          limitations: "Submitted by user; not extracted, fetched, or verified.",
+        });
+        sourcesStored += 1;
+      } catch {
+        // skip this source; keep going
+      }
+    }
 
     return json(
-      { ok: true, contact_id: contactId, business_id: businessId, report_request_id: rr.id, status: rr.status },
+      {
+        ok: true,
+        contact_id: contactId,
+        business_id: businessId,
+        report_request_id: reportRequestId,
+        status: rr.status,
+        sources_stored: sourcesStored,
+      },
       200,
       cors,
     );

@@ -16,7 +16,7 @@
 */
 import { saveLead } from './leadStore';
 import { SUPABASE_CONFIGURED, submitReportRequest } from './api';
-import type { Lead } from '../types';
+import type { Lead, StructuredInput } from '../types';
 
 const ENDPOINT = (import.meta.env.VITE_GROWMERCE_LEAD_ENDPOINT ?? '').toString().trim();
 
@@ -50,9 +50,54 @@ export interface LeadSubmitResult {
 
 export interface SubmitExtras {
   /** Full structured input from the session (for report_requests.structured_input). */
-  structuredInput?: unknown;
+  structuredInput?: StructuredInput;
   /** Snapshot of the demo finding the user saw (for report_requests.current_demo_finding). */
   currentDemoFinding?: unknown;
+}
+
+/** A user-submitted source captured for the future Evidence Builder (capture only — no analysis). */
+export interface SubmittedSource {
+  kind: string;             // website | store | menu | competitor | google_sheet | manual_metrics | other
+  ownerClass: string;       // own | competitor | market | user_uploaded | unknown
+  label?: string;
+  url?: string;
+  observationType: string;  // url_submitted | sheet_reference | user_note | manual_metric
+  payload?: Record<string, unknown>;
+}
+
+const isSheetUrl = (u: string): boolean => /docs\.google\.com\/spreadsheets/i.test(u);
+
+/** Derive normalized data sources from the structured input (URLs, competitors, notes). */
+export function buildDataSources(si?: StructuredInput): SubmittedSource[] {
+  if (!si) return [];
+  const out: SubmittedSource[] = [];
+  const links = si.links ?? {};
+
+  const web = links.websiteUrl?.trim();
+  if (web) {
+    out.push({
+      kind: isSheetUrl(web) ? 'google_sheet' : 'website',
+      ownerClass: 'own',
+      label: 'الموقع',
+      url: web,
+      observationType: isSheetUrl(web) ? 'sheet_reference' : 'url_submitted',
+    });
+  }
+  const store = links.storeUrl?.trim();
+  if (store) out.push({ kind: 'store', ownerClass: 'own', label: 'المتجر', url: store, observationType: 'url_submitted' });
+  const menu = links.menuUrl?.trim();
+  if (menu) out.push({ kind: 'menu', ownerClass: 'own', label: 'القائمة', url: menu, observationType: 'url_submitted' });
+
+  for (const c of si.competitors ?? []) {
+    const name = c.name?.trim();
+    if (!name) continue;
+    out.push({ kind: 'competitor', ownerClass: 'competitor', label: name, observationType: 'user_note', payload: { name, source: c.source } });
+  }
+
+  const note = si.freeText?.trim();
+  if (note) out.push({ kind: 'other', ownerClass: 'unknown', label: 'ملاحظة', observationType: 'user_note', payload: { note } });
+
+  return out;
 }
 
 export interface LeadPayload {
@@ -66,6 +111,8 @@ export interface LeadPayload {
   context?: Lead['context'];
   structuredInput?: unknown;
   currentDemoFinding?: unknown;
+  /** Normalized user-submitted sources (capture only — not analyzed yet). */
+  dataSources: SubmittedSource[];
 }
 
 function buildPayload(lead: Lead, extras?: SubmitExtras): LeadPayload {
@@ -83,6 +130,7 @@ function buildPayload(lead: Lead, extras?: SubmitExtras): LeadPayload {
     context: lead.context,
     structuredInput: extras?.structuredInput,
     currentDemoFinding: extras?.currentDemoFinding,
+    dataSources: buildDataSources(extras?.structuredInput),
   };
 }
 
