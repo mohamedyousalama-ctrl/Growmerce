@@ -45,6 +45,24 @@ npm run check    # type-check only
 - **Funnel events** — a lightweight internal logger (`src/lib/analytics.ts`) logs journey events to
   the console (dev) and a capped `localStorage` log (`growmerce_mvp_events`). No external analytics.
 
+### Real Intelligence System — backend foundation (schema only, not wired)
+
+The `supabase/` directory holds the **database schema foundation** for the upcoming Real
+Intelligence System (real, evidence-backed, human-reviewed reports). **This is schema only:**
+
+- It is **not wired into the UI**. The current MVP still produces the **deterministic/demo**
+  diagnostic via `getDiagnostic`, and works fully **without** Supabase configured.
+- `supabase/migrations/` defines core tables (`contacts`, `businesses`, `consent_records`,
+  `report_requests`, `agent_runs`) with **Row Level Security enabled and deny-by-default** (no
+  permissive policies yet — only the server-side `service_role` can read/write).
+- Env vars `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, and the flag `VITE_REAL_INTELLIGENCE`
+  (default `false`) are placeholders for later phases — see `.env.example`.
+- **No secrets are committed.** Never place the Supabase `service_role` key in a `VITE_` variable
+  or the client bundle; it belongs only in server-side Edge Function config.
+
+Applying migrations later (when a project exists): `supabase db push` (Supabase CLI) or run the
+SQL files in order via the SQL editor.
+
 ### Deployment (controlled launch / pilot)
 
 This slice is a **static single-page app** — there is no server, database, or backend bundled.
