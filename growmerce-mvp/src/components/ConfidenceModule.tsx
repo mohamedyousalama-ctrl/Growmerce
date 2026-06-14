@@ -18,7 +18,7 @@ export function ConfidenceModule({ explanation }: { explanation: ConfidenceExpla
   const pct = Math.max(0, Math.min(100, explanation.score));
   return (
     <section className="panel conf-instrument" aria-label="مستوى الثقة في التشخيص">
-      <p className="os-label os-label--brand">مستوى الثقة في التشخيص · معايرة</p>
+      <p className="os-label os-label--brand">درجة الثقة في التشخيص · معايرة</p>
 
       <div className="conf-top">
         <div

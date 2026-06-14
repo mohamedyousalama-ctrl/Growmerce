@@ -4,7 +4,7 @@ import type { RuledOutHypothesis } from '../types';
 /** Reasoning discipline: explanations considered and ruled out (20 GUARD / 19). Collapsible. */
 export function RuledOutModule({ items }: { items: RuledOutHypothesis[] }) {
   return (
-    <Collapsible title="تفسيرات فحصناها ولم نعتبرها السبب الأقوى" count={items.length}>
+    <Collapsible title="فرضيات لم تثبت بعد" count={items.length}>
       {items.length === 0 ? (
         <p className="hint">هيكل تجريبي — ستظهر الفرضيات المستبعَدة هنا.</p>
       ) : (

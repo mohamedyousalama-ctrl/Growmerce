@@ -14,7 +14,7 @@ export function EvidencePanel({ items }: { items: EvidenceItem[] }) {
   const hasIllustrative = items.some((e) => e.provenance !== 'user');
   return (
     <Collapsible
-      title="الأدلّة"
+      title="أدلّة المنصة"
       hint="على ماذا استندنا"
       count={items.length}
       onOpen={() => track('evidence_opened')}

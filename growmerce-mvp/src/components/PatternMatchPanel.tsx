@@ -4,7 +4,7 @@ import type { PatternMatch } from '../types';
 export function PatternMatchPanel({ match }: { match: PatternMatch }) {
   return (
     <section className="panel pattern-match" aria-label="النمط المطابق">
-      <h3 className="panel__title">النمط المطابق</h3>
+      <h3 className="panel__title">النمط المطابق على المنصة</h3>
       <p className="pattern-match__name">{match.name}</p>
       {match.family && <p className="pattern-match__family">العائلة: {match.family}</p>}
       <p className="muted">{match.description}</p>

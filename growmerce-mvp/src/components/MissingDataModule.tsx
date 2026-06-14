@@ -4,7 +4,7 @@ import type { MissingDataItem } from '../types';
 /** Honesty: what's missing, why it matters, what to provide next (13/22). Visible (header), collapsible body. */
 export function MissingDataModule({ items }: { items: MissingDataItem[] }) {
   return (
-    <Collapsible title="ما لا نعرفه بعد" hint="بصراحة" count={items.length}>
+    <Collapsible title="البيانات المطلوبة قبل رفع الثقة" hint="بصراحة" count={items.length}>
       {items.length === 0 ? (
         <p className="hint">هيكل تجريبي — ستظهر البيانات الناقصة هنا.</p>
       ) : (

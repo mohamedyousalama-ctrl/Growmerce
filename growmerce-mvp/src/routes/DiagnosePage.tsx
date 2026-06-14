@@ -16,6 +16,7 @@ import { DemoBanner } from '../components/ProvenanceTag';
 import { useSession } from '../state/session';
 import { track } from '../lib/analytics';
 import { arabicDigits } from '../lib/format';
+import { REPORT_TERMS } from '../knowledge';
 import type { ConfidenceBand } from '../types';
 
 const BAND_AR: Record<ConfidenceBand, string> = { low: 'منخفضة', medium: 'متوسّطة', high: 'عالية', very_high: 'عالية جدًا' };
@@ -77,7 +78,7 @@ export function DiagnosePage() {
             </div>
 
             {/* A — Finding headline (editorial) */}
-            <p className="dossier__kicker">ما الذي نراه</p>
+            <p className="dossier__kicker">{REPORT_TERMS.finding.ar} · {REPORT_TERMS.finding.en}</p>
             <h1 className="dossier__headline">{session.finding.title}</h1>
             <div className="dossier__subrow">
               <span>أُعدّ لصاحب النشاط</span>
@@ -97,7 +98,7 @@ export function DiagnosePage() {
 
             {/* B — Reasoning trace */}
             <section className="dossier__section" aria-label="مسار الاستدلال">
-              <span className="os-label">كيف وصلنا إلى ذلك</span>
+              <span className="os-label">{REPORT_TERMS.reasoning.ar}</span>
               <ol className="trace">
                 {session.finding.reasoningTrace.map((step, i) => (
                   <li key={i}>
@@ -133,14 +134,14 @@ export function DiagnosePage() {
             </p>
 
             {/* I — Continue to opportunity */}
-            <StepNav onBack={() => goTo('input')} onNext={() => goTo('opportunity')} nextLabel="الفرصة ذات الأولوية ←" />
+            <StepNav onBack={() => goTo('input')} onNext={() => goTo('opportunity')} nextLabel={`${REPORT_TERMS.opportunity.ar} ←`} />
           </section>
         )}
 
         {/* ---------- OPPORTUNITY + bridge to action ---------- */}
         {state === 'opportunity' && session.opportunity && (
           <section>
-            <p className="section-label">الفرصة ذات الأولوية</p>
+            <p className="section-label">{REPORT_TERMS.opportunity.ar} · {REPORT_TERMS.opportunity.en}</p>
             <OpportunityCard
               opportunity={session.opportunity}
               basedOn={
