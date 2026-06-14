@@ -155,6 +155,15 @@ any customer alert**. **Scheduled jobs are not activated** — `scheduled_jobs` 
 (default `disabled`); `pg_cron` is intentionally **not** wired. Cron will be added later by
 scheduling a call to this function. Call: `POST { "business_id": "<uuid>", "report_request_id"? }`.
 
+#### Pipeline orchestrator stub (Phase 7)
+
+The `run-real-intelligence-pipeline` Edge Function chains the three internal functions in order —
+`build-evidence` → `compose-report` → `run-daily-snapshot` — for one `report_request_id`. These are
+**our own functions in the same project** (internal calls, not third-party APIs). It logs an
+`agent_runs` row (`orchestrator_v1`), returns each step's result, and **does not publish, does not
+notify the customer, does not call AI, and does not fetch external URLs**. Requires the three
+functions to be deployed. Call: `POST { "report_request_id": "<uuid>" }`.
+
 ### Deployment (controlled launch / pilot)
 
 This slice is a **static single-page app** — there is no server, database, or backend bundled.
