@@ -425,7 +425,7 @@ export function StructuredInputFlow({ onBackHome }: { onBackHome: () => void }) 
         onBack={onBackHome}
         backLabel="→ الرئيسية"
         onNext={() => void runDiagnostic()}
-        nextLabel="شخّص الآن ←"
+        nextLabel="احصل على تدقيق منصاتك ←"
         nextDisabled={!canDiagnose}
       />
     </section>

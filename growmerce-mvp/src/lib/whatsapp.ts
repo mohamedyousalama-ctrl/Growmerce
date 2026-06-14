@@ -37,6 +37,7 @@ export interface DiagnosticMessageArgs {
   businessName?: string;
   businessTypeLabel?: string;
   channelLabel?: string;
+  platforms?: string;
   problemLabel?: string;
   findingTitle?: string;
   opportunityTitle?: string;
@@ -44,17 +45,18 @@ export interface DiagnosticMessageArgs {
 }
 
 /**
- * Concise WhatsApp message carrying the diagnosis context (short enough for WhatsApp,
- * not over-exposing internals). Frame: review/verify on real data.
+ * Concise WhatsApp message carrying the platform-audit context (short enough for WhatsApp,
+ * not over-exposing internals). Frame: review/verify on real platform accounts.
  */
 export function buildDiagnosticMessage(a: DiagnosticMessageArgs): string {
-  const lines: string[] = ['مرحبًا جرومرس، أودّ مراجعة تشخيص نمو مبيعاتي على أرقامي الحقيقية.'];
+  const lines: string[] = ['مرحبًا جرومرس، أودّ مراجعة تدقيق حساباتي على المنصات على أرقامي الحقيقية.'];
   if (a.businessName) lines.push(`النشاط: ${a.businessName}${a.businessTypeLabel ? ` (${a.businessTypeLabel})` : ''}`);
   else if (a.businessTypeLabel) lines.push(`نوع النشاط: ${a.businessTypeLabel}`);
+  if (a.platforms) lines.push(`المنصّات: ${a.platforms}`);
   if (a.channelLabel) lines.push(`القناة الأساسية: ${a.channelLabel}`);
   if (a.problemLabel) lines.push(`المشكلة: ${a.problemLabel}`);
   if (a.findingTitle) lines.push(`التشخيص المبدئي: ${a.findingTitle}`);
-  if (a.opportunityTitle) lines.push(`الفرصة المقترحة: ${a.opportunityTitle}`);
+  if (a.opportunityTitle) lines.push(`أول عملية نمو: ${a.opportunityTitle}`);
   if (a.confidenceBand) lines.push(`الثقة: ${BAND_AR[a.confidenceBand]}`);
   lines.push('— تجربة تجريبية، والأرقام تُؤكَّد على بياناتي.');
   return lines.join('\n');

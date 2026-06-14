@@ -110,6 +110,7 @@ export function HandoffPage() {
     businessName: session.lead?.businessName,
     businessTypeLabel,
     channelLabel: primaryChannel?.label,
+    platforms: si.platformMetrics?.platforms,
     problemLabel: problemLbl,
     findingTitle: finding.title,
     opportunityTitle: session.opportunity?.title,
@@ -124,9 +125,11 @@ export function HandoffPage() {
         {/* ---------- LEAD (after value) ---------- */}
         {state === 'lead' && (
           <section>
-            <h1 className="hero__title" style={{ fontSize: 'var(--fs-h1)' }}>اختبر هذا التشخيص على بياناتك الحقيقية</h1>
+            <p className="section-label">تسليم تدقيق المنصات · Platform Audit Handoff</p>
+            <h1 className="hero__title" style={{ fontSize: 'var(--fs-h1)' }}>راجع تدقيق منصاتك مع فريق جرومرس</h1>
             <p className="muted">
-              رأيت التشخيص والأدلّة والثقة والفرصة. تابع لنراجعها مع فريق جرومرس على أرقامك، ونتّفق على أوّل إصلاح نشغّله.
+              سنراجع حساباتك ومنصاتك على أرقامك الحقيقية، ونحدّد أوّل عملية نمو يمكن تشغيلها — أين يتسرّب الإيراد،
+              ما الأدلّة المتاحة، درجة الثقة، البيانات الناقصة، وأوّل عملية نمو مقترحة.
             </p>
             <div style={{ marginTop: 'var(--space-5)' }}>
               <LeadForm
@@ -141,7 +144,7 @@ export function HandoffPage() {
         {/* ---------- HANDOFF (summary + Growth Operations + WhatsApp) ---------- */}
         {state === 'handoff' && session.handoff && (
           <section className="handoff">
-            <p className="section-label">التسليم — من البصيرة إلى التنفيذ</p>
+            <p className="section-label">تسليم تدقيق المنصات · Platform Audit Handoff</p>
             <h1 className="hero__title" style={{ fontSize: 'var(--fs-h1)' }}>لا نكتفي بالتشخيص — نشغّل الإصلاح.</h1>
 
             <HandoffSummary summary={session.handoff} />
