@@ -83,8 +83,8 @@ export function HandoffPage() {
     };
     setLead(withContext);
 
-    // Submit to the real sink if configured (always persists to localStorage as a fallback).
-    const result = await submitLead(withContext);
+    // Submit to the highest-priority configured sink (Supabase → endpoint → localStorage).
+    const result = await submitLead(withContext, { structuredInput: si, currentDemoFinding: finding });
     setSubmitResult(result);
     // Total failure (not even local storage) → surface the error on the form, stay put.
     if (!result.ok) throw new Error('lead_submit_failed');

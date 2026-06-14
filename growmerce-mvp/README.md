@@ -63,6 +63,43 @@ Intelligence System (real, evidence-backed, human-reviewed reports). **This is s
 Applying migrations later (when a project exists): `supabase db push` (Supabase CLI) or run the
 SQL files in order via the SQL editor.
 
+#### Lead / report-request persistence (Phase 1 Sprint 2 — optional, off by default)
+
+When Supabase is configured, a submitted lead is persisted to `contacts` + `businesses` +
+`consent_records` + `report_requests` through the **`submit-report-request` Edge Function** (which
+writes server-side with the service-role key, past deny-by-default RLS). **Nothing changes when
+Supabase is unconfigured** — the app keeps its current behavior, and the report is still the
+deterministic/demo finding (`getDiagnostic`). The persisted `report_request` is just stored as
+`queued`; no intelligence is generated yet.
+
+**Submission priority** (in `src/lib/leadSink.ts`): `localStorage` is always written first as a
+fallback, then the first configured remote sink is used —
+1. **Supabase Edge Function** (`VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY` set), else
+2. **Form endpoint** (`VITE_GROWMERCE_LEAD_ENDPOINT` set), else
+3. **localStorage only** (clearly flagged in the UI).
+
+A persistence failure never blocks the WhatsApp handoff.
+
+**Configure & deploy the function:**
+```bash
+# from growmerce-mvp/
+supabase link --project-ref <your-project-ref>
+supabase db push                                   # apply the schema migrations
+supabase functions deploy submit-report-request    # verify_jwt=false (public endpoint; see config.toml)
+supabase secrets set \
+  SUPABASE_SERVICE_ROLE_KEY=<service_role_key> \
+  GROWMERCE_ALLOWED_ORIGINS=https://your-app.vercel.app
+```
+Then set the client vars (`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`) in the host build env.
+
+**Expected payload** (frontend → function): `{ source, submittedAt, pageUrl, demoDiagnostic:true,
+consent:{granted,scope,textShown}, lead:{...}, context:{...}, structuredInput, currentDemoFinding }`.
+The function validates (name, whatsapp, business name, consent all required), trims/normalizes, and
+returns `{ ok, contact_id, business_id, report_request_id, status }`.
+
+**Security:** the client uses only the public anon key. The **service-role key is never a `VITE_`
+var or in the bundle** — it lives only in Supabase function secrets. No reviewer auth or agents yet.
+
 ### Deployment (controlled launch / pilot)
 
 This slice is a **static single-page app** — there is no server, database, or backend bundled.

@@ -1,0 +1,11 @@
+# Growmerce Supabase config (Real Intelligence System).
+# Minimal config for the submit-report-request Edge Function.
+
+project_id = "growmerce"
+
+[functions.submit-report-request]
+# Public, controlled-demo submission endpoint: the frontend calls it with the
+# anon key but no end-user session, so JWT verification is disabled here. The
+# function does its OWN validation and writes with the service-role key
+# (server-side secret). Do NOT enable verify_jwt until end-user auth exists.
+verify_jwt = false
