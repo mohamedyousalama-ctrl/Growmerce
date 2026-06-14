@@ -121,6 +121,18 @@ conservative and rule-assigned (URLs/notes/competitors → weak/contextual; manu
 moderate); nothing is treated as verified. It is idempotent (skips observations already converted)
 and logs an `agent_runs` row (`evidence_builder_v1`). Call: `POST { "report_request_id": "<uuid>" }`.
 
+#### Report engine skeleton (Phase 4)
+
+The `compose-report` Edge Function (migration 0006: `patterns_matched`, `reports`,
+`opportunities`, `report_validation_issues`) composes a **deterministic, evidence-only** draft
+report in the existing finding shape. It **uses only `evidence_items`** — **no AI, no LLM, no
+external calls, no invented numbers, no benchmarks**. If there is **no evidence it refuses** to
+create a report (`needs_evidence`). Confidence is **pure code and capped ≤ 60** (nothing is
+externally verified yet); missing-data and ruled-out are always conservative. A **validation gate**
+records issues unless every claim references an evidence id. Reports are stored as `in_review` and
+**are never shown to end users** — publication is human-review gated (Phase 5). It is **not a final
+real report yet.** Logs `compose_report_v1`. Call: `POST { "report_request_id": "<uuid>" }`.
+
 ### Deployment (controlled launch / pilot)
 
 This slice is a **static single-page app** — there is no server, database, or backend bundled.
