@@ -1,12 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import { Shell } from '../components/Shell';
 import { RecognitionCard } from '../components/RecognitionCard';
+import { PlatformVerticals } from '../components/PlatformVerticals';
+import { RevenueLeakPains } from '../components/RevenueLeakPains';
+import { ServicePackagesSection } from '../components/ServicePackagesSection';
 import { RECOGNITION_CARDS } from '../mock/recognition';
 import { useSession } from '../state/session';
 import { track } from '../lib/analytics';
+import { platformsByVertical, VERTICAL_LABELS, type Vertical } from '../knowledge';
 import type { PatternRecognition } from '../types';
 
-/** `/` — Recognition entry. Thin, calm, recognition-led. NOT a brochure homepage. */
+const VERTICAL_ORDER: Vertical[] = ['ecommerce', 'food_delivery', 'qcommerce'];
+
+/** `/` — platform-operator entry: who it's for, which platforms, what outcome, what next. */
 export function RecognitionPage() {
   const navigate = useNavigate();
   const { goTo, setInput } = useSession();
@@ -14,7 +20,6 @@ export function RecognitionPage() {
   const start = (pattern?: PatternRecognition) => {
     if (pattern) track('recognition_card_clicked', { key: pattern.key });
     track('diagnostic_started', { from: pattern ? 'recognition_card' : 'hero' });
-    // Seed the input step from the recognition card (continuity into "teaching" the system).
     const patch: Parameters<typeof setInput>[0] = {};
     if (pattern?.problemKey) patch.mainProblem = pattern.problemKey;
     if (pattern && pattern.vertical !== 'all') patch.businessType = pattern.vertical;
@@ -26,41 +31,67 @@ export function RecognitionPage() {
   return (
     <Shell>
       <div className="container">
+        {/* ---------- HERO (platform positioning, 5-second test) ---------- */}
         <section className="home-hero">
-          {/* editorial Arabic headline + primary statement */}
           <div>
-            <span className="home-hero__eyebrow">نظام ذكاء تجاري · لا وكالة تسويق</span>
-            <h1 className="home-hero__title">سؤالٌ واحد — لتخرج بدليلٍ، لا بوعد.</h1>
-            <p className="home-hero__latin">Bring one question. Leave with evidence — not a promise.</p>
+            <span className="home-hero__eyebrow">إدارة وتشغيل حسابات المنصات · لا وكالة تسويق</span>
+            <h1 className="home-hero__title">منتجاتك ومطاعمك موجودة على المنصات. جرومرس يضمن أنها تبيع فعلاً.</h1>
+            <p className="home-hero__latin">Your products and restaurants exist on the platforms. Growmerce makes sure they actually sell.</p>
             <p className="home-hero__body">
-              ليست لديك مشكلة زيارات على الأرجح، بل مشكلة <strong>تسرّب</strong>. نشخّص أين تتسرّب
-              مبيعاتك بالأدلّة، ونخبرك كم نحن متأكّدون — عبر الأسواق والمتاجر وتطبيقات التوصيل والتواصل وواتساب.
+              إدارة وتشغيل حسابات المنصات للمطاعم والعلامات التجارية وشركات التوزيع في الخليج ومصر — عبر
+              Amazon وNoon وJumia وTalabat وHungerStation وJahez وKeeta ومنصات التجارة السريعة.
             </p>
+
+            {/* platform groups above the fold (text chips — safe, no copyrighted logos) */}
+            <div className="platform-groups">
+              {VERTICAL_ORDER.map((v) => (
+                <div key={v} className="platform-group">
+                  <span className="platform-group__label">{VERTICAL_LABELS[v].ar}</span>
+                  <div className="platform-group__chips">
+                    {platformsByVertical(v).map((p) => (
+                      <span key={p.id} className="platform-chip">{p.name}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="platform-proof">نغطّي ١١ منصة في الخليج ومصر — من Amazon وNoon إلى Talabat وKeeta وKeemart.</p>
+
             <div className="home-hero__cta">
               <button type="button" className="btn btn--primary btn--lg" onClick={() => start()}>
-                شخّص تسرّب مبيعاتك ←
+                احصل على تدقيق مجاني لحساباتك على المنصات ←
+              </button>
+              <button type="button" className="btn btn--lg" onClick={() => start()}>
+                اكتشف أين تضيع المبيعات
               </button>
             </div>
           </div>
 
-          {/* dark command / intelligence preview (Direction A — Commerce Intelligence OS) */}
+          {/* dark platform-audit preview (Commerce Intelligence OS) */}
           <div className="cmd-preview" aria-hidden="true">
-            <span className="cmd-preview__label">سؤالك الأول</span>
+            <span className="cmd-preview__label">تدقيق المنصات</span>
             <div className="cmd-preview__input">
-              <span>أين يتسرّب الربح؟</span>
+              <span>أين يتسرّب الإيراد على منصاتك؟</span>
               <span className="cmd-preview__caret" />
             </div>
             <ul className="cmd-preview__rows">
-              <li><span className="cmd-preview__dot" /> تُحدّد قنواتك ومنافسيك</li>
-              <li><span className="cmd-preview__dot" /> تكشف موضع التسرّب بالأدلّة</li>
-              <li><span className="cmd-preview__dot" /> تحصل على تقرير قرار — والرقم</li>
+              <li><span className="cmd-preview__dot" /> Platform Revenue Leak — تسريب الإيراد</li>
+              <li><span className="cmd-preview__dot" /> Fail Rate / Buy Box / Stockout Risk</li>
+              <li><span className="cmd-preview__dot" /> First Growth Operation — أول عملية نمو</li>
             </ul>
             <div className="cmd-preview__foot">
-              <span>تقرير قرار · لا لوحة بيانات</span>
+              <span>تقرير تدقيق · لا لوحة بيانات</span>
               <span className="cmd-preview__active">الذكاء نشط — تجريبي</span>
             </div>
           </div>
         </section>
+
+        {/* ---------- Stage 2: three platform verticals ---------- */}
+        <PlatformVerticals onAudit={() => start()} />
+
+        {/* ---------- Stage 3: revenue-leak pains + commission burden ---------- */}
+        <RevenueLeakPains />
 
         {/* recognition cards = secondary proof of problem recognition */}
         <section>
@@ -71,6 +102,9 @@ export function RecognitionPage() {
             ))}
           </div>
         </section>
+
+        {/* ---------- Stage 8: services + pricing ---------- */}
+        <ServicePackagesSection onAudit={() => start()} />
       </div>
     </Shell>
   );

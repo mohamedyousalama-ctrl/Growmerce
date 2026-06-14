@@ -724,3 +724,84 @@ body { letter-spacing: -0.003em; }
 
 /* methodology footer reads as a calm Arabic micro-note, not a stretched mono line */
 .dossier__foot { text-transform: none; }
+
+/* =========================================================================
+   PLATFORM POSITIONING (Stages 1–3, 8) — platform operator website
+   ========================================================================= */
+
+/* hero platform-group chips */
+.platform-groups { display: grid; gap: var(--space-3); margin: var(--space-5) 0 var(--space-4); }
+.platform-group { display: flex; flex-direction: column; gap: var(--space-2); }
+.platform-group__label { font-family: var(--font-mono); font-size: var(--fs-label); text-transform: uppercase; color: var(--color-ink-tertiary); }
+.platform-group__chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.platform-chip {
+  font-family: var(--font-mono); font-size: var(--fs-small); color: var(--color-ink);
+  background: var(--color-surface); border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill); padding: 3px 12px;
+}
+.platform-chip--sm { font-size: var(--fs-label); padding: 2px 9px; }
+.platform-proof { font-size: var(--fs-small); color: var(--color-ink-secondary); margin-bottom: var(--space-4); }
+
+/* generic section titles */
+.verticals__title, .pains__title, .services__title { font-family: var(--font-display); font-size: var(--fs-h1); margin-bottom: var(--space-2); }
+.verticals__sub, .services__sub { max-width: 60ch; margin-bottom: var(--space-5); }
+.verticals, .pains, .services { padding-block: var(--space-7) var(--space-4); }
+
+/* three vertical cards */
+.verticals__grid { display: grid; gap: var(--space-4); grid-template-columns: 1fr; }
+@media (min-width: 860px) { .verticals__grid { grid-template-columns: 1fr 1fr 1fr; } }
+.vertical-card {
+  display: flex; flex-direction: column; gap: var(--space-3);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: var(--space-5); box-shadow: var(--shadow-card);
+}
+.vertical-card__title { font-family: var(--font-display); font-size: var(--fs-h3); }
+.vertical-card__en { margin-top: 2px; }
+.vertical-card__platforms { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--space-2); }
+.vertical-card__list { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.vertical-card__list li { font-size: var(--fs-small); color: var(--color-ink-secondary); padding-inline-start: var(--space-4); position: relative; }
+.vertical-card__list--problem li::before { content: "↘"; position: absolute; inset-inline-start: 0; color: var(--color-profit); font-family: var(--font-mono); }
+.vertical-card__list--manage li::before { content: "✓"; position: absolute; inset-inline-start: 0; color: var(--color-growth); font-family: var(--font-mono); }
+.vertical-card__cta { margin-top: auto; align-self: flex-start; }
+
+/* pain mirror */
+.pains__grid { display: grid; gap: var(--space-4); grid-template-columns: 1fr; }
+@media (min-width: 800px) { .pains__grid { grid-template-columns: 1fr 1fr 1fr; } }
+.pain-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+.pain-card__title { font-family: var(--font-display); font-size: var(--fs-h3); }
+.pain-card__tags, .addons__chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--space-2); }
+.metric-tag {
+  font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: 0.02em;
+  color: var(--color-brand-strong); background: var(--color-brand-tint);
+  border: 1px solid var(--color-brand-bright); border-radius: var(--radius-sm); padding: 2px 8px;
+}
+.burden-illustration {
+  margin-top: var(--space-5); background: var(--color-dark); color: var(--color-dark-ink);
+  border: 1px solid var(--color-dark-border); border-radius: var(--radius-lg); padding: var(--space-5);
+  background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 22px 22px;
+}
+.burden-illustration .os-label { color: var(--color-dark-ink-secondary); }
+.burden-illustration__calc { font-size: var(--fs-h3); margin: var(--space-2) 0; color: #fff; }
+.burden-illustration .hint { color: var(--color-dark-ink-tertiary); }
+
+/* services + pricing */
+.services__grid, .pricing__grid { display: grid; gap: var(--space-4); grid-template-columns: 1fr; }
+@media (min-width: 760px) { .services__grid { grid-template-columns: 1fr 1fr; } .pricing__grid { grid-template-columns: 1fr 1fr 1fr; } }
+.service-card, .pricing-card {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2);
+}
+.service-card__title, .pricing-card__title { font-family: var(--font-display); font-size: var(--fs-h3); }
+.service-card__list, .pricing-card__list { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.service-card__list li, .pricing-card__list li { font-size: var(--fs-small); color: var(--color-ink-secondary); padding-inline-start: var(--space-4); position: relative; }
+.service-card__list li::before, .pricing-card__list li::before { content: "·"; position: absolute; inset-inline-start: 4px; color: var(--color-brand); }
+.pricing-card { border-color: var(--color-border-strong); }
+.services__pricing-title { font-family: var(--font-display); font-size: var(--fs-h2); margin: var(--space-6) 0 var(--space-4); }
+.addons { margin-top: var(--space-5); }
+.pricing-note { margin-top: var(--space-3); max-width: 70ch; }
+.services__cta { margin-top: var(--space-5); }
+
+@media (max-width: 620px) {
+  .verticals, .pains, .services { padding-block: var(--space-5) var(--space-3); }
+  .vertical-card, .pain-card, .service-card, .pricing-card, .burden-illustration { padding: var(--space-4); }
+}
