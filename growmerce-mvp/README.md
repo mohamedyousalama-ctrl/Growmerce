@@ -133,6 +133,17 @@ records issues unless every claim references an evidence id. Reports are stored 
 **are never shown to end users** — publication is human-review gated (Phase 5). It is **not a final
 real report yet.** Logs `compose_report_v1`. Call: `POST { "report_request_id": "<uuid>" }`.
 
+#### Human review skeleton (Phase 5)
+
+**Human review is required before a real report is published.** The `review-report` Edge Function
+(migration 0007: `report_reviews`) records each decision and transitions report status:
+`approve→approved`, `return_for_more_data`, `reject`, `edit` (stores a diff, keeps `in_review`), and
+`publish` — **`publish` only succeeds when `validation_status='passed'`** (else `409`). **No review
+UI is shipped** (to avoid touching the MVP routing); reviews are performed by calling the function
+(`POST { report_id, action, notes?, edited_finding? }`). This is an **internal skeleton** — there is
+**no reviewer auth yet; production MUST add authenticated reviewers and protect this endpoint**
+before launch. Real reports remain **not visible to end users**.
+
 ### Deployment (controlled launch / pilot)
 
 This slice is a **static single-page app** — there is no server, database, or backend bundled.
