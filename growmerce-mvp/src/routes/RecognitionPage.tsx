@@ -8,6 +8,7 @@ import { GrowthOpsProcess } from '../components/GrowthOpsProcess';
 import { ServicePackagesSection } from '../components/ServicePackagesSection';
 import { useSession } from '../state/session';
 import { track } from '../lib/analytics';
+import { buildWhatsAppLink, DEFAULT_WA_MESSAGE } from '../lib/whatsapp';
 import { platformById, type Vertical } from '../knowledge';
 import type { BusinessType } from '../types';
 
@@ -48,29 +49,26 @@ export function RecognitionPage() {
         {/* ---------- HERO ---------- */}
         <section className="home-hero">
           <div>
-            <span className="home-hero__eyebrow">تشغيل حساباتك على المنصات — لا حملات فقط</span>
-            <h1 className="home-hero__title">نجد أين تتسرّب مبيعاتك على المنصات — ثم نشغّل الإصلاح.</h1>
+            <span className="home-hero__eyebrow">تشخيص وتشغيل حساباتك على المنصات — لا حملات فقط</span>
+            <h1 className="home-hero__title">نحدّد أين تتسرّب مبيعاتك على المنصات — ثم نبدأ أول إصلاح تشغيلي.</h1>
             <p className="home-hero__body">
-              تدقيق وتشغيل لحسابات المطاعم، المتاجر، والعلامات التجارية عبر Amazon وNoon وTalabat وHungerStation
+              تدقيق وتشغيل لحسابات المطاعم والمتاجر والعلامات التجارية عبر Amazon وNoon وTalabat وHungerStation
               وKeeta وJumia ومنصات التجارة السريعة.
             </p>
 
             {/* active diagnostic entry */}
             <div className="hero-entry">
-              <p className="hero-entry__title">الصق رابط حسابك أو اختر منصة للبدء</p>
-              <div className="hero-entry__row">
-                <input
-                  className="hero-entry__input"
-                  inputMode="url"
-                  placeholder="رابط حسابك على Noon / Talabat / Amazon…"
-                  value={entryUrl}
-                  onChange={(e) => setEntryUrl(e.target.value)}
-                  aria-label="رابط حسابك على المنصة"
-                />
-                <button type="button" className="btn btn--primary" onClick={() => go({ url: entryUrl })}>
-                  ابدأ التدقيق المجاني
-                </button>
-              </div>
+              <p className="hero-entry__title">الصق رابط حسابك</p>
+              <input
+                className="hero-entry__input"
+                dir="auto"
+                inputMode="url"
+                placeholder="رابط حسابك على Noon / Talabat / Amazon…"
+                value={entryUrl}
+                onChange={(e) => setEntryUrl(e.target.value)}
+                aria-label="رابط حسابك على المنصة"
+              />
+              <p className="hero-entry__or">أو اختر منصة:</p>
               <div className="hero-entry__chips">
                 {QUICK_PLATFORMS.map((id) => (
                   <button key={id} type="button" className="platform-chip platform-chip--btn" onClick={() => startPlatform(id)}>
@@ -78,14 +76,13 @@ export function RecognitionPage() {
                   </button>
                 ))}
               </div>
+              <button type="button" className="btn btn--primary hero-entry__cta" onClick={() => go({ url: entryUrl })}>
+                ابدأ التدقيق المجاني ←
+              </button>
               <p className="hero-entry__journey hint">
-                اختر المنصة ← أجب على ٥ أسئلة ← استلم تقرير تدقيق أوّلي ← ناقش الإصلاح على واتساب
+                اختر المنصة ← أجب عن ٥ أسئلة ← استلم تقرير تدقيق أولي ← ناقش الإصلاح على واتساب
               </p>
               <p className="hint">نقطة بداية للتدقيق — لا يتم تحليل الرابط آليًا بعد (وضع تجريبي).</p>
-            </div>
-
-            <div className="home-hero__cta">
-              <button type="button" className="btn btn--lg" onClick={() => go()}>اكتشف موضع التسرّب</button>
             </div>
 
             <p className="platform-proof">نغطّي ١١ منصة في الخليج ومصر — من Amazon وNoon إلى Talabat وKeeta وKeemart.</p>
@@ -99,40 +96,54 @@ export function RecognitionPage() {
               <span>المدخل: حساب مطعم على Talabat</span>
               <span className="cmd-preview__caret" />
             </div>
-            <ul className="cmd-preview__rows">
-              <li><span className="cmd-preview__dot" /> فحص ترتيب القائمة</li>
-              <li><span className="cmd-preview__dot" /> مراجعة معدل الفشل (fail rate)</li>
-              <li><span className="cmd-preview__dot" /> قراءة وقت التحضير</li>
-              <li><span className="cmd-preview__dot" /> تقدير عبء العمولة والخصومات</li>
-              <li><span className="cmd-preview__dot" /> تحديد أوّل إصلاح تشغيلي</li>
+            <ul className="cmd-preview__rows cmd-preview__rows--progress">
+              <li className="is-done"><span className="cmd-preview__dot" /> قراءة الحساب</li>
+              <li className="is-done"><span className="cmd-preview__dot" /> فحص الإشارات</li>
+              <li className="is-active"><span className="cmd-preview__dot" /> تحديد موضع التسرّب</li>
+              <li><span className="cmd-preview__dot" /> تجهيز أول إصلاح</li>
             </ul>
+            <div className="cmd-preview__bar" aria-hidden><span /></div>
             <div className="cmd-preview__foot">
-              <span>الناتج: تقرير تدقيق + أول ٣ إصلاحات</span>
+              <span>الناتج: تقرير تدقيق أولي + ٣ إصلاحات مقترحة</span>
               <span className="cmd-preview__active">وضع تجريبي — مثال توضيحي</span>
             </div>
           </div>
         </section>
 
         {/* ---------- 2. Pain recognition ---------- */}
-        <RevenueLeakPains onAudit={() => go()} />
+        <div id="pains"><RevenueLeakPains onAudit={() => go()} /></div>
 
         {/* ---------- 3. Worked audit proof ---------- */}
-        <AuditProofPreview onAudit={() => go()} />
+        <div id="proof"><AuditProofPreview onAudit={() => go()} /></div>
 
         {/* ---------- 4. Platform verticals ---------- */}
-        <PlatformVerticals onAudit={(v) => go({ vertical: v })} />
+        <div id="platforms"><PlatformVerticals onAudit={(v) => go({ vertical: v })} /></div>
 
         {/* ---------- 5. Growth Operations explanation ---------- */}
-        <GrowthOpsProcess />
+        <div id="process"><GrowthOpsProcess /></div>
 
         {/* ---------- 6. Services / packages ---------- */}
-        <ServicePackagesSection onAudit={() => go()} />
+        <div id="pricing"><ServicePackagesSection onAudit={() => go()} /></div>
 
         {/* ---------- 7. Final CTA ---------- */}
         <section className="final-cta">
-          <h2 className="final-cta__title">ابدأ تدقيق منصاتك المجاني</h2>
-          <p className="muted">ستعرف: أين يتسرّب الإيراد · ما الأدلّة المتاحة · درجة الثقة · البيانات الناقصة · أوّل عملية نمو.</p>
-          <button type="button" className="btn btn--primary btn--lg" onClick={() => go()}>ابدأ التدقيق المجاني ←</button>
+          <h2 className="final-cta__title">ابدأ بتقرير تدقيق أولي لحساباتك</h2>
+          <p className="muted">
+            سنراجع المنصة التي تختارها، ونوضّح أين يتسرّب الإيراد، ما الأدلّة المتاحة، ما البيانات الناقصة،
+            وما أوّل إصلاح تشغيلي مقترح.
+          </p>
+          <div className="final-cta__actions">
+            <button type="button" className="btn btn--primary btn--lg" onClick={() => go()}>ابدأ التدقيق المجاني ←</button>
+            <a
+              className="btn btn--whatsapp btn--lg"
+              href={buildWhatsAppLink(DEFAULT_WA_MESSAGE)}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => track('whatsapp_clicked', { from: 'final_cta' })}
+            >
+              ناقش عبر واتساب
+            </a>
+          </div>
         </section>
       </div>
     </Shell>

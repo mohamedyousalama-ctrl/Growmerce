@@ -918,3 +918,62 @@ body { letter-spacing: -0.003em; }
   .hero-entry__row { flex-direction: column; }
   .hero-entry__row .btn { width: 100%; }
 }
+
+/* =========================================================================
+   HOMEPAGE PRECISION POLISH (header nav, hero entry, command progress,
+   verticals glossary, services Arabic-first, recommended badge, spacing)
+   ========================================================================= */
+
+/* header desktop anchor nav */
+.topbar__nav { display: none; }
+@media (min-width: 980px) {
+  .topbar__nav { display: flex; gap: var(--space-4); align-items: center; margin-inline: auto; }
+  .topbar__nav a { font-size: var(--fs-small); color: var(--color-ink-secondary); text-decoration: none; }
+  .topbar__nav a:hover { color: var(--color-brand-strong); }
+}
+
+/* hero entry: full-width input + or-label + full-width CTA */
+.hero-entry__input { width: 100%; }
+.hero-entry__or { margin-top: var(--space-3); font-size: var(--fs-small); color: var(--color-ink-tertiary); }
+.hero-entry__cta { margin-top: var(--space-3); }
+@media (min-width: 560px) { .hero-entry__cta { align-self: flex-start; } }
+@media (max-width: 560px) { .hero-entry__cta { width: 100%; } }
+
+/* command preview progress states */
+.cmd-preview__rows--progress li { opacity: 0.5; transition: opacity var(--motion-base); }
+.cmd-preview__rows--progress li.is-done { opacity: 1; }
+.cmd-preview__rows--progress li.is-done .cmd-preview__dot { background: var(--color-growth-soft); }
+.cmd-preview__rows--progress li.is-active { opacity: 1; }
+.cmd-preview__rows--progress li.is-active .cmd-preview__dot { background: var(--color-brand-bright); box-shadow: 0 0 0 3px rgba(157,153,240,0.25); }
+.cmd-preview__bar { height: 4px; border-radius: var(--radius-pill); background: var(--color-dark-3); overflow: hidden; margin: var(--space-3) 0; }
+.cmd-preview__bar span { display: block; block-size: 100%; inline-size: 62%; background: linear-gradient(90deg, var(--color-brand-soft), var(--color-brand-bright)); border-radius: var(--radius-pill); }
+
+/* verticals glossary line */
+.verticals__glossary { margin-top: var(--space-4); line-height: 1.9; max-width: 80ch; }
+.verticals__glossary b { color: var(--color-ink); font-weight: var(--fw-semibold); }
+
+/* dossier-mini confidence reason */
+.dossier-mini__conf-reason { font-family: var(--font-sans); font-size: var(--fs-small); color: var(--color-dark-ink-secondary); }
+
+/* services Arabic-first meta (tiny EN under AR title) */
+.service-card__meta, .pricing-card__meta { margin: 2px 0 var(--space-2); font-size: 0.66rem; }
+
+/* recommended pricing card */
+.pricing-card--recommended { border-color: var(--color-brand); box-shadow: 0 0 0 1px var(--color-brand-bright), var(--shadow-card); position: relative; }
+.pricing-card__badge {
+  position: absolute; top: calc(-1 * var(--space-3)); inset-inline-start: var(--space-4);
+  font-family: var(--font-mono); font-size: var(--fs-label); letter-spacing: 0.02em;
+  background: var(--color-brand); color: #fff; border-radius: var(--radius-pill); padding: 3px 12px;
+}
+.pricing-card__cta { margin-top: var(--space-3); align-self: flex-start; }
+
+/* final CTA actions */
+.final-cta__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; margin-top: var(--space-4); }
+
+/* Step 12 — tighten vertical rhythm ~20% */
+.verticals, .pains, .services, .audit-proof, .growthops-process { padding-block: var(--space-6) var(--space-3); }
+.home-hero { padding: var(--space-6) 0 var(--space-5); }
+.final-cta { margin: var(--space-6) 0 var(--space-3); }
+@media (max-width: 560px) {
+  .final-cta__actions .btn { width: 100%; }
+}

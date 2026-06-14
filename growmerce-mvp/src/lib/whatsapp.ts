@@ -56,7 +56,7 @@ export function buildDiagnosticMessage(a: DiagnosticMessageArgs): string {
   if (a.channelLabel) lines.push(`القناة الأساسية: ${a.channelLabel}`);
   if (a.problemLabel) lines.push(`المشكلة: ${a.problemLabel}`);
   if (a.findingTitle) lines.push(`التشخيص المبدئي: ${a.findingTitle}`);
-  if (a.opportunityTitle) lines.push(`أول عملية نمو: ${a.opportunityTitle}`);
+  if (a.opportunityTitle) lines.push(`أول إصلاح تشغيلي: ${a.opportunityTitle}`);
   if (a.confidenceBand) lines.push(`الثقة: ${BAND_AR[a.confidenceBand]}`);
   lines.push('— تجربة تجريبية، والأرقام تُؤكَّد على بياناتي.');
   return lines.join('\n');

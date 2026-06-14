@@ -34,7 +34,7 @@
   /* ---- Ink (text on paper) ---- */
   --color-ink: #16171a;            /* primary text, near-black */
   --color-ink-secondary: #55544e;  /* warm secondary */
-  --color-ink-tertiary: #8c8a82;   /* warm tertiary / hints */
+  --color-ink-tertiary: #797469;   /* warm tertiary / hints (contrast-bumped) */
   --color-ink-on-brand: #ffffff;
 
   /* ---- Brand / intelligence hue (INDIGO — the Commerce Intelligence OS signature) ---- */

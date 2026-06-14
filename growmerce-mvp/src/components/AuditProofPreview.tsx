@@ -1,13 +1,13 @@
-/** Stage 6 — worked audit proof: finding → evidence → confidence → first fix. Example only. */
+/** Stage 6 — worked audit proof: finding → evidence → confidence → missing data → first fix. Example only. */
 export function AuditProofPreview({ onAudit }: { onAudit: () => void }) {
   const evidence = [
-    'الأصناف الأكثر ظهوراً ليست بالضرورة الأعلى هامشاً.',
-    'العروض قد ترفع الطلبات لكنها تخفض متوسط الربح.',
-    'غياب بيانات الهامش يمنع رفع الثقة في التشخيص.',
+    'الأصناف الأكثر ظهورًا ليست الأعلى هامشًا.',
+    'العرض الأكثر طلبًا قد يخفض متوسط الربح بعد العمولة.',
+    'لا توجد بيانات تكلفة كافية لرفع الثقة فوق «متوسطة».',
   ];
   return (
     <section className="audit-proof">
-      <p className="section-label">مثال من تقرير التدقيق</p>
+      <p className="section-label">كيف يبدو التقرير؟</p>
       <h2 className="audit-proof__title">مثال من تقرير التدقيق</h2>
       <p className="muted audit-proof__sub">
         لا نبدأ بالخدمات. نبدأ بتحديد التسرّب، ثم نثبت ما نعرفه وما نحتاجه قبل التنفيذ.
@@ -18,21 +18,24 @@ export function AuditProofPreview({ onAudit }: { onAudit: () => void }) {
 
         <div className="dossier-mini__block">
           <span className="os-label">الملاحظة</span>
-          <p className="dossier-mini__finding">قائمة التوصيل قد تدفع العملاء إلى أصناف أقل ربحية.</p>
+          <p className="dossier-mini__finding">ترتيب قائمة التوصيل قد يدفع العملاء إلى أصناف أقل ربحية.</p>
         </div>
 
-        <div className="dossier-mini__grid">
-          <div className="dossier-mini__block">
-            <span className="os-label">الأدلّة</span>
-            <ul className="dossier-mini__list">
-              {evidence.map((e, i) => <li key={i}>{e}</li>)}
-            </ul>
-          </div>
-          <div className="dossier-mini__block">
-            <span className="os-label">مستوى الثقة</span>
-            <p className="dossier-mini__conf">متوسط</p>
-            <p className="hint">يحتاج تأكيدًا من بيانات الطلبات والهامش قبل رفع الثقة.</p>
-          </div>
+        <div className="dossier-mini__block">
+          <span className="os-label">الأدلّة</span>
+          <ul className="dossier-mini__list">
+            {evidence.map((e, i) => <li key={i}>{e}</li>)}
+          </ul>
+        </div>
+
+        <div className="dossier-mini__block">
+          <span className="os-label">مستوى الثقة</span>
+          <p className="dossier-mini__conf">ثقة متوسطة <span className="dossier-mini__conf-reason">— بسبب نقص بيانات الهامش</span></p>
+        </div>
+
+        <div className="dossier-mini__block">
+          <span className="os-label">البيانات الناقصة</span>
+          <p className="muted">تكلفة الأصناف، صافي الربح بعد العمولة، أداء العروض.</p>
         </div>
 
         <div className="dossier-mini__op">
@@ -41,7 +44,7 @@ export function AuditProofPreview({ onAudit }: { onAudit: () => void }) {
         </div>
 
         <button type="button" className="btn btn--primary dossier-mini__cta" onClick={onAudit}>
-          ابدأ تدقيقًا مشابهًا ←
+          افحص حسابك بنفس المنهج ←
         </button>
       </article>
     </section>

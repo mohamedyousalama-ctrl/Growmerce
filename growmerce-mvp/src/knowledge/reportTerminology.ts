@@ -9,7 +9,7 @@ export const REPORT_TERMS = {
   confidence: { ar: 'درجة الثقة في التشخيص', en: 'Diagnostic Confidence' },
   missingData: { ar: 'البيانات المطلوبة قبل رفع الثقة', en: 'Data Needed Before Full Confidence' },
   ruledOut: { ar: 'فرضيات لم تثبت بعد', en: 'Hypotheses Not Proven Yet' },
-  opportunity: { ar: 'أول عملية نمو مقترحة', en: 'First Growth Operation' },
+  opportunity: { ar: 'أول إصلاح تشغيلي', en: 'First Growth Operation' },
   handoff: { ar: 'تسليم تدقيق المنصات', en: 'Platform Audit Handoff' },
   reasoning: { ar: 'كيف وصلنا إلى ذلك', en: 'How we reached this' },
   pattern: { ar: 'النمط المطابق على المنصة', en: 'Platform Pattern Matched' },

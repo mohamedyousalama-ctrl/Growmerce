@@ -9,7 +9,7 @@ const VERTICALS: Array<{
 }> = [
   {
     v: 'ecommerce',
-    title: 'أسواق إلكترونية',
+    title: 'أسواق التجارة الإلكترونية',
     problems: 'Buy Box، صحة الحساب، PPC، ODR، الكتالوج.',
     cta: 'ابدأ تدقيق السوق الإلكتروني',
   },
@@ -30,10 +30,10 @@ const VERTICALS: Array<{
 export function PlatformVerticals({ onAudit }: { onAudit: (vertical?: Vertical) => void }) {
   return (
     <section className="verticals">
-      <p className="section-label">ثلاثة أنواع من المنصات</p>
-      <h2 className="verticals__title">ثلاثة أنواع من المنصات</h2>
+      <p className="section-label">اختر نوع المنصة</p>
+      <h2 className="verticals__title">اختر نوع المنصة التي تريد تدقيقها</h2>
       <p className="muted verticals__sub">
-        أسواق إلكترونية، تطبيقات توصيل، وتجارة سريعة — تُدار بنظام تشغيل نمو واحد.
+        أسواق التجارة الإلكترونية، تطبيقات التوصيل، والتجارة السريعة — تُدار بنظام تشغيل نمو واحد.
       </p>
 
       <div className="verticals__grid">
@@ -49,7 +49,7 @@ export function PlatformVerticals({ onAudit }: { onAudit: (vertical?: Vertical) 
             </header>
 
             <div className="vertical-card__col">
-              <p className="os-label">أين يتسرّب الإيراد</p>
+              <p className="os-label">ما نفحصه</p>
               <p className="muted">{problems}</p>
             </div>
 
@@ -59,6 +59,13 @@ export function PlatformVerticals({ onAudit }: { onAudit: (vertical?: Vertical) 
           </article>
         ))}
       </div>
+
+      {/* compact jargon glossary — keeps the cards clean without tooltips */}
+      <p className="verticals__glossary hint">
+        مصطلحات نراقبها: <b>Buy Box</b> صندوق الشراء الفائز · <b>MQI</b> جودة القائمة · <b>VFD</b> خصومات ممولة من البائع ·
+        <b> ODR</b> معدل مشاكل الطلبات · <b>PPC</b> إعلانات الدفع بالنقرة · <b>Fill Rate</b> نسبة تنفيذ الطلبات ·
+        <b> PO</b> أمر شراء من المنصة.
+      </p>
     </section>
   );
 }
