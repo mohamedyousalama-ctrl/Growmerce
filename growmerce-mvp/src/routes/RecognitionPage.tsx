@@ -57,6 +57,7 @@ export function RecognitionPage() {
             </div>
 
             <p className="platform-proof">نغطّي ١١ منصة في الخليج ومصر — من Amazon وNoon إلى Talabat وKeeta وKeemart.</p>
+            <p className="hint platform-lens">تدقيق مبني على معايير المنصات وخبرة التشغيل — قراءة بالأدلّة، لا وعود نتائج مضمونة.</p>
 
             <div className="home-hero__cta">
               <button type="button" className="btn btn--primary btn--lg" onClick={() => start()}>
