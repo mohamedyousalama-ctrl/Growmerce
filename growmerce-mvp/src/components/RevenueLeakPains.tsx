@@ -1,27 +1,27 @@
-/** Stage 3 — pain mirror + commission burden illustration (static, cautious wording). */
+/** Stage 5 — sharpened pain mirror ("does this happen in your accounts?") + commission example. */
 const PAINS = [
   {
-    title: 'تدفع عمولات عالية ولا تعرف صافي الربح الحقيقي',
-    body: 'GMV مرتفع لا يعني ربحًا. بين العمولة (take rate) والإنفاق الإعلاني والخصومات، قد يكون صافيك أقل بكثير مما تظن.',
-    tags: ['GMV', 'Commission Burden', 'Ad Spend'],
+    title: 'الطلبات تزيد… لكن الهامش يتآكل.',
+    body: 'الخصومات والعمولات والحملات قد ترفع GMV، لكنها تخفي صافي الربح الحقيقي.',
+    tags: ['GMV', 'Commission', 'Discounts'],
   },
   {
-    title: 'ظهورك ينخفض قبل أن تعرف السبب',
-    body: 'fail rate أو فقدان Buy Box أو غرامة نفاد المخزون أو تدهور AHR/MQI — كلها تكبت ترتيبك بصمت قبل أن تظهر في المبيعات.',
-    tags: ['Fail Rate', 'Buy Box', 'Stockout Penalty', 'AHR', 'MQI'],
+    title: 'الظهور ينخفض قبل أن تعرف السبب.',
+    body: 'Fail rate، ضعف القائمة، خسارة Buy Box، أو نفاد المخزون قد يخفض ترتيبك بصمت.',
+    tags: ['Fail Rate', 'Buy Box', 'Stockout', 'MQI'],
   },
   {
-    title: 'تدير منصات كثيرة بفريق صغير',
-    body: 'لكل منصة لوحة وقواعد مختلفة. التشتّت بين Amazon وNoon وTalabat وQ-Commerce يجعل التسريبات تمرّ دون أن تُلاحظ.',
-    tags: ['Fragmented Dashboards', 'Multi-Platform'],
+    title: 'تدير منصات كثيرة بفريق صغير.',
+    body: 'كل منصة لها قواعد ولوحة ومؤشّرات مختلفة — والتسرّب يمرّ بينها.',
+    tags: ['Multi-Platform', 'Fragmented Dashboards'],
   },
 ];
 
-export function RevenueLeakPains() {
+export function RevenueLeakPains({ onAudit }: { onAudit: () => void }) {
   return (
     <section className="pains">
-      <p className="section-label">أين يتسرّب الإيراد؟</p>
-      <h2 className="pains__title">أين يتسرّب الإيراد على منصاتك؟</h2>
+      <p className="section-label">هل يحدث هذا في حساباتك؟</p>
+      <h2 className="pains__title">هل يحدث هذا في حساباتك؟</h2>
 
       <div className="pains__grid">
         {PAINS.map((p, i) => (
@@ -31,6 +31,7 @@ export function RevenueLeakPains() {
             <div className="pain-card__tags">
               {p.tags.map((t) => <span key={t} className="metric-tag">{t}</span>)}
             </div>
+            <button type="button" className="btn pain-card__cta" onClick={onAudit}>افحص هذا التسرّب ←</button>
           </article>
         ))}
       </div>
@@ -42,7 +43,7 @@ export function RevenueLeakPains() {
           GMV شهري <strong className="num-ar">٣٠٠٬٠٠٠</strong> ر.س × عمولة <strong className="num-ar">٢٥٪</strong> ={' '}
           <strong className="num-ar">٧٥٬٠٠٠</strong> ر.س رسوم منصة — قبل الإعلانات والخصومات.
         </p>
-        <p className="hint">إذا لم تكن تقيس هذا يوميًا، قد يكون التسريب أكبر من المتوقّع. (مثال توضيحي، لا وعد بالتوفير.)</p>
+        <p className="hint">إذا لم تكن تقيس هذا يوميًا، قد يكون التسرّب أكبر من المتوقّع. (مثال توضيحي.)</p>
       </div>
     </section>
   );

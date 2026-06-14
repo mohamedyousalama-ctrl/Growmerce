@@ -13,17 +13,17 @@ export interface ServiceTier {
 
 export const SERVICE_TIERS: ServiceTier[] = [
   {
-    id: 'onboarding', name_ar: 'خدمات الإطلاق والتسجيل', name_en: 'Onboarding Services',
+    id: 'onboarding', name_ar: 'إطلاق الحسابات وتجهيزها', name_en: 'Onboarding Services',
     summary_ar: 'تسجيل الحساب وتجهيز الكتالوج/القائمة والمحتوى والامتثال.',
     includes: ['تسجيل الحساب/المتجر', 'تجميع المستندات وKYC', 'إعداد القائمة/الكتالوج', 'محتوى عربي/إنجليزي', 'إعداد نموذج التنفيذ', 'تدريب على بوابة المنصة'],
   },
   {
-    id: 'operations', name_ar: 'إدارة التشغيل المستمرة', name_en: 'Ongoing Operations Management',
+    id: 'operations', name_ar: 'إدارة التشغيل اليومي', name_en: 'Ongoing Operations Management',
     summary_ar: 'مراقبة يومية وانضباط تشغيلي وتقارير وتواصل مع مدير الحساب.',
     includes: ['مراقبة fail rate/النفاد/القوائم يوميًا', 'دقّة القائمة/الكتالوج', 'تقرير أداء أسبوعي', 'تواصل مع AM المنصة', 'إدارة تقويم العروض'],
   },
   {
-    id: 'growth', name_ar: 'النمو والإعلان', name_en: 'Growth & Advertising',
+    id: 'growth', name_ar: 'النمو والحملات', name_en: 'Growth & Advertising',
     summary_ar: 'حملات مدفوعة وهندسة قائمة وتسعير وذكاء تنافسي ومحتوى.',
     includes: ['PPC/إعلانات مموّلة', 'هندسة القائمة', 'استراتيجية التسعير', 'ذكاء تنافسي', 'A+ content/تصوير/محتوى ثنائي اللغة'],
   },
@@ -71,6 +71,18 @@ export const ADDONS: string[] = [
   'إطلاق Jumia مصر',
   'مراقبة أسعار المنافسين',
   'تقرير GMV/الأرباح الشهري',
+];
+
+/** Grouped add-ons (4 categories) — easier to scan than a flat chip dump. */
+export interface AddonGroup {
+  title_ar: string;
+  items: string[];
+}
+export const ADDON_GROUPS: AddonGroup[] = [
+  { title_ar: 'إعلانات ومنصات', items: ['إدارة Amazon PPC', 'إدارة Noon Ads', 'تقويم VFD على Talabat/Jahez'] },
+  { title_ar: 'المحتوى والقوائم', items: ['تصوير القائمة', 'محتوى عربي/إنجليزي', 'إعادة بناء الكتالوج'] },
+  { title_ar: 'التوسّع', items: ['تجهيز انضمام Keeta', 'جاهزية Keemart', 'إطلاق Jumia مصر'] },
+  { title_ar: 'الرقابة والتقارير', items: ['مراقبة أسعار المنافسين', 'تقرير GMV/الأرباح', 'مراقبة نفاد المخزون'] },
 ];
 
 export const PRICING_NOTE_AR =

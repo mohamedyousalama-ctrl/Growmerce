@@ -3,33 +3,64 @@ import { Link } from 'react-router-dom';
 import { buildWhatsAppLink, DEFAULT_WA_MESSAGE } from '../lib/whatsapp';
 import { track } from '../lib/analytics';
 
-/** App shell: calm topbar (bilingual wordmark + persistent WhatsApp) + content + quiet footer. */
+/** App shell: topbar (wordmark + clear audit CTA + WhatsApp) + content + mobile sticky CTA + footer. */
 export function Shell({ children }: { children: ReactNode }) {
+  const waLink = buildWhatsAppLink(DEFAULT_WA_MESSAGE);
   return (
     <div className="app-shell">
       <header className="topbar">
         <Link to="/" className="brand" aria-label="جرومرس — الرئيسية" style={{ textDecoration: 'none' }}>
           <span className="brand__mark">جرومرس</span>
-          <span className="brand__desc">نظام ذكاء تجاري</span>
+          <span className="brand__desc">تشغيل نمو المبيعات عبر المنصات</span>
         </Link>
-        <a
-          className="wa-action"
-          href={buildWhatsAppLink(DEFAULT_WA_MESSAGE)}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="ناقش عبر واتساب"
-          onClick={() => track('whatsapp_clicked', { from: 'topbar' })}
-        >
-          <span className="wa-action__dot" aria-hidden />
-          ناقش عبر واتساب
-        </a>
+        <div className="topbar__actions">
+          <Link
+            to="/diagnose"
+            className="btn btn--primary btn--sm"
+            onClick={() => track('diagnostic_started', { from: 'topbar' })}
+          >
+            ابدأ التدقيق
+          </Link>
+          <a
+            className="wa-action"
+            href={waLink}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="ناقش عبر واتساب"
+            onClick={() => track('whatsapp_clicked', { from: 'topbar' })}
+          >
+            <span className="wa-action__dot" aria-hidden />
+            واتساب
+          </a>
+        </div>
       </header>
 
       <main className="main">{children}</main>
 
+      {/* mobile sticky CTA — easy audit action + WhatsApp */}
+      <nav className="mobile-cta" aria-label="إجراءات سريعة">
+        <Link
+          to="/diagnose"
+          className="btn btn--primary"
+          onClick={() => track('diagnostic_started', { from: 'mobile_sticky' })}
+        >
+          ابدأ التدقيق
+        </Link>
+        <a
+          className="btn btn--whatsapp"
+          href={waLink}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="ناقش عبر واتساب"
+          onClick={() => track('whatsapp_clicked', { from: 'mobile_sticky' })}
+        >
+          واتساب
+        </a>
+      </nav>
+
       <footer className="footer">
-        <p>جرومرس — تشغيل نمو المبيعات أونلاين، مدفوعًا بالذكاء التجاري</p>
-        <p className="footer__tagline">Find the leak → Prove it → Operate the fix</p>
+        <p>جرومرس — تشغيل نمو المبيعات عبر المنصات</p>
+        <p className="footer__tagline">نجد التسرّب ← نثبّته ← نشغّل الإصلاح</p>
         <p className="footer__demo">
           نسخة تجريبية (MVP): الذكاء هنا محاكى لإثبات التجربة، والروابط والبيانات للعرض فقط — وليست تكاملات أو بيانات حقيقية.
         </p>
