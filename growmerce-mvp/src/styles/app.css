@@ -977,3 +977,31 @@ body { letter-spacing: -0.003em; }
 @media (max-width: 560px) {
   .final-cta__actions .btn { width: 100%; }
 }
+
+/* =========================================================================
+   FINAL COMMERCIAL POLISH — outlined WhatsApp, selectable cards, glossary
+   ========================================================================= */
+
+/* outlined WhatsApp secondary (green accent, not filled) — keeps primary dominant */
+.btn--whatsapp-outline {
+  background: transparent; color: var(--color-growth);
+  border: 1px solid var(--color-growth);
+}
+.btn--whatsapp-outline:hover { background: var(--color-growth-tint); border-color: var(--color-growth); }
+
+/* commission proof headline inside the dark card */
+.burden-illustration__headline { font-family: var(--font-display); font-size: var(--fs-h3); color: #fff; margin-bottom: var(--space-3); }
+
+/* glossary label readability */
+.verticals__glossary { margin-top: var(--space-4); line-height: 2; max-width: 84ch; font-size: var(--fs-small); color: var(--color-ink-secondary); }
+.verticals__glossary b { color: var(--color-ink); font-weight: var(--fw-semibold); }
+.verticals__glossary-label { font-family: var(--font-mono); color: var(--color-ink-tertiary); }
+
+/* platform cards feel selectable */
+.vertical-card { transition: transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); }
+.vertical-card:hover, .vertical-card:focus-within {
+  transform: translateY(-3px); border-color: var(--color-brand); box-shadow: var(--shadow-raised);
+}
+
+/* package CTA on tiers 2–3 aligns like the recommended one */
+.pricing-card__cta { margin-top: var(--space-3); align-self: flex-start; }

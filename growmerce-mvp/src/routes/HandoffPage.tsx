@@ -145,7 +145,7 @@ export function HandoffPage() {
         {state === 'handoff' && session.handoff && (
           <section className="handoff">
             <p className="section-label">تسليم تدقيق المنصات · Platform Audit Handoff</p>
-            <h1 className="hero__title" style={{ fontSize: 'var(--fs-h1)' }}>لا نكتفي بالتشخيص — نشغّل الإصلاح.</h1>
+            <h1 className="hero__title" style={{ fontSize: 'var(--fs-h1)' }}>لا نكتفي بالتشخيص — ننفّذ أول إصلاح تشغيلي.</h1>
 
             <HandoffSummary summary={session.handoff} />
 

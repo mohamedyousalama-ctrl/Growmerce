@@ -26,7 +26,7 @@ export function OpportunityBridge({
 
       <div className="bridge__block">
         <strong className="hint">لماذا التنفيذ مهم</strong>
-        <p className="muted">التشخيص يحدّد الفرصة؛ التنفيذ هو ما يحرّك الرقم فعليًا. لا نكتفي بالقول — نشغّل الإصلاح معك.</p>
+        <p className="muted">التشخيص يحدّد الفرصة؛ التنفيذ هو ما يحرّك الرقم فعليًا. لا نكتفي بالقول — ننفّذ أول إصلاح تشغيلي معك.</p>
       </div>
 
       <div className="bridge__block">

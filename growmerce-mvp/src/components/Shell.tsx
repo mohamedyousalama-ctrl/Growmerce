@@ -11,13 +11,13 @@ export function Shell({ children }: { children: ReactNode }) {
       <header className="topbar">
         <Link to="/" className="brand" aria-label="جرومرس — الرئيسية" style={{ textDecoration: 'none' }}>
           <span className="brand__mark">جرومرس</span>
-          <span className="brand__desc">تشخيص وتشغيل نمو المبيعات على المنصات</span>
+          <span className="brand__desc">تدقيق وتشغيل حساباتك على المنصات</span>
         </Link>
         <nav className="topbar__nav" aria-label="أقسام الصفحة">
           <a href="#pains">المشكلة</a>
           <a href="#proof">مثال التقرير</a>
           <a href="#platforms">المنصات</a>
-          <a href="#process">كيف نعمل</a>
+          <a href="#process">مسار التشغيل</a>
           <a href="#pricing">الباقات</a>
         </nav>
         <div className="topbar__actions">
@@ -67,7 +67,7 @@ export function Shell({ children }: { children: ReactNode }) {
 
       <footer className="footer">
         <p>جرومرس — تشغيل نمو المبيعات عبر المنصات</p>
-        <p className="footer__tagline">نجد التسرّب ← نثبّته ← نشغّل الإصلاح</p>
+        <p className="footer__tagline">نجد التسرّب ← نثبت السبب ← ننفّذ أول إصلاح تشغيلي</p>
         <p className="footer__demo">
           نسخة تجريبية (MVP): الذكاء هنا محاكى لإثبات التجربة، والروابط والبيانات للعرض فقط — وليست تكاملات أو بيانات حقيقية.
         </p>

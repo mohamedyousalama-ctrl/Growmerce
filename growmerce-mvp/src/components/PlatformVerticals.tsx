@@ -10,19 +10,19 @@ const VERTICALS: Array<{
   {
     v: 'ecommerce',
     title: 'أسواق التجارة الإلكترونية',
-    problems: 'Buy Box، صحة الحساب، PPC، ODR، الكتالوج.',
+    problems: 'Buy Box، صحة الحساب، الكتالوج، PPC، ODR، نفاد المخزون.',
     cta: 'ابدأ تدقيق السوق الإلكتروني',
   },
   {
     v: 'food_delivery',
     title: 'تطبيقات توصيل الطعام',
-    problems: 'Fail rate، MQI، وقت التحضير، ترتيب القائمة، VFD.',
+    problems: 'ترتيب القائمة، الصور، وقت التحضير، معدل الفشل، MQI، VFD.',
     cta: 'ابدأ تدقيق تطبيق التوصيل',
   },
   {
     v: 'qcommerce',
     title: 'التجارة السريعة والمتاجر المظلمة',
-    problems: 'نفاد المخزون، Fill Rate، التغطية، PO، التوفّر.',
+    problems: 'التوفر، نفاد المخزون، Fill Rate، التغطية، PO، جاهزية التوسع.',
     cta: 'ابدأ تدقيق التجارة السريعة',
   },
 ];
@@ -33,7 +33,7 @@ export function PlatformVerticals({ onAudit }: { onAudit: (vertical?: Vertical) 
       <p className="section-label">اختر نوع المنصة</p>
       <h2 className="verticals__title">اختر نوع المنصة التي تريد تدقيقها</h2>
       <p className="muted verticals__sub">
-        أسواق التجارة الإلكترونية، تطبيقات التوصيل، والتجارة السريعة — تُدار بنظام تشغيل نمو واحد.
+        كل نوع منصة له مؤشرات مختلفة، لكن الهدف واحد: تقليل التسرب ورفع الأداء التشغيلي.
       </p>
 
       <div className="verticals__grid">
@@ -49,7 +49,7 @@ export function PlatformVerticals({ onAudit }: { onAudit: (vertical?: Vertical) 
             </header>
 
             <div className="vertical-card__col">
-              <p className="os-label">ما نفحصه</p>
+              <p className="os-label">ما نراجعه</p>
               <p className="muted">{problems}</p>
             </div>
 
@@ -61,10 +61,11 @@ export function PlatformVerticals({ onAudit }: { onAudit: (vertical?: Vertical) 
       </div>
 
       {/* compact jargon glossary — keeps the cards clean without tooltips */}
-      <p className="verticals__glossary hint">
-        مصطلحات نراقبها: <b>Buy Box</b> صندوق الشراء الفائز · <b>MQI</b> جودة القائمة · <b>VFD</b> خصومات ممولة من البائع ·
-        <b> ODR</b> معدل مشاكل الطلبات · <b>PPC</b> إعلانات الدفع بالنقرة · <b>Fill Rate</b> نسبة تنفيذ الطلبات ·
-        <b> PO</b> أمر شراء من المنصة.
+      <p className="verticals__glossary">
+        <span className="verticals__glossary-label">مصطلحات نراقبها أثناء التدقيق:</span>{' '}
+        <b>Buy Box</b> = صندوق الشراء الفائز · <b>MQI</b> = جودة القائمة · <b>VFD</b> = خصومات ممولة ·
+        <b> ODR</b> = معدل مشاكل الطلبات · <b>PPC</b> = إعلانات مدفوعة · <b>Fill Rate</b> = توفر وتنفيذ الطلبات ·
+        <b> PO</b> = أمر شراء من المنصة
       </p>
     </section>
   );

@@ -49,26 +49,28 @@ export function RecognitionPage() {
         {/* ---------- HERO ---------- */}
         <section className="home-hero">
           <div>
-            <span className="home-hero__eyebrow">تشخيص وتشغيل حساباتك على المنصات — لا حملات فقط</span>
-            <h1 className="home-hero__title">نحدّد أين تتسرّب مبيعاتك على المنصات — ثم نبدأ أول إصلاح تشغيلي.</h1>
+            <span className="home-hero__eyebrow">تدقيق وتشغيل حساباتك على المنصات — لا حملات فقط</span>
+            <h1 className="home-hero__title">نحدّد أين تتسرّب مبيعاتك وربحك على المنصات — ثم نبدأ أول إصلاح تشغيلي.</h1>
             <p className="home-hero__body">
-              تدقيق وتشغيل لحسابات المطاعم والمتاجر والعلامات التجارية عبر Amazon وNoon وTalabat وHungerStation
+              للمطاعم والمتاجر والعلامات التجارية التي تبيع عبر Amazon وNoon وTalabat وHungerStation
               وKeeta وJumia ومنصات التجارة السريعة.
+              <br />
+              نراجع الحساب، القائمة/الكتالوج، الظهور، العمولة، الخصومات، الإعلانات، ومؤشرات صحة الحساب.
             </p>
 
             {/* active diagnostic entry */}
             <div className="hero-entry">
-              <p className="hero-entry__title">الصق رابط حسابك</p>
+              <p className="hero-entry__title">ابدأ بتدقيق حساب واحد</p>
+              <p className="hero-entry__or">الصق رابط حسابك أو اختر المنصة</p>
               <input
                 className="hero-entry__input"
                 dir="auto"
                 inputMode="url"
-                placeholder="رابط حسابك على Noon / Talabat / Amazon…"
+                placeholder="مثال: رابط المتجر أو صفحة المطعم على المنصة"
                 value={entryUrl}
                 onChange={(e) => setEntryUrl(e.target.value)}
-                aria-label="رابط حسابك على المنصة"
+                aria-label="الصق رابط حسابك أو اختر المنصة"
               />
-              <p className="hero-entry__or">أو اختر منصة:</p>
               <div className="hero-entry__chips">
                 {QUICK_PLATFORMS.map((id) => (
                   <button key={id} type="button" className="platform-chip platform-chip--btn" onClick={() => startPlatform(id)}>
@@ -80,7 +82,7 @@ export function RecognitionPage() {
                 ابدأ التدقيق المجاني ←
               </button>
               <p className="hero-entry__journey hint">
-                اختر المنصة ← أجب عن ٥ أسئلة ← استلم تقرير تدقيق أولي ← ناقش الإصلاح على واتساب
+                اختر المنصة ← أجب عن ٥ أسئلة تشغيلية ← استلم تقرير تدقيق أولي ← ناقش أول إصلاح على واتساب
               </p>
               <p className="hint">نقطة بداية للتدقيق — لا يتم تحليل الرابط آليًا بعد (وضع تجريبي).</p>
             </div>
@@ -97,14 +99,15 @@ export function RecognitionPage() {
               <span className="cmd-preview__caret" />
             </div>
             <ul className="cmd-preview__rows cmd-preview__rows--progress">
-              <li className="is-done"><span className="cmd-preview__dot" /> قراءة الحساب</li>
-              <li className="is-done"><span className="cmd-preview__dot" /> فحص الإشارات</li>
-              <li className="is-active"><span className="cmd-preview__dot" /> تحديد موضع التسرّب</li>
-              <li><span className="cmd-preview__dot" /> تجهيز أول إصلاح</li>
+              <li className="is-done"><span className="cmd-preview__dot" /> قراءة الحساب والقائمة</li>
+              <li className="is-done"><span className="cmd-preview__dot" /> فحص الظهور ومؤشرات الصحة</li>
+              <li className="is-active"><span className="cmd-preview__dot" /> تقدير عبء العمولة والخصومات</li>
+              <li><span className="cmd-preview__dot" /> تحديد موضع تسرّب الإيراد أو الربح</li>
+              <li><span className="cmd-preview__dot" /> اقتراح أول إصلاح تشغيلي</li>
             </ul>
             <div className="cmd-preview__bar" aria-hidden><span /></div>
             <div className="cmd-preview__foot">
-              <span>الناتج: تقرير تدقيق أولي + ٣ إصلاحات مقترحة</span>
+              <span>الناتج: تقرير تدقيق أولي + أولويات إصلاح قابلة للتنفيذ</span>
               <span className="cmd-preview__active">وضع تجريبي — مثال توضيحي</span>
             </div>
           </div>
@@ -127,7 +130,7 @@ export function RecognitionPage() {
 
         {/* ---------- 7. Final CTA ---------- */}
         <section className="final-cta">
-          <h2 className="final-cta__title">ابدأ بتقرير تدقيق أولي لحساباتك</h2>
+          <h2 className="final-cta__title">ابدأ بتدقيق أولي لحساباتك على المنصات</h2>
           <p className="muted">
             سنراجع المنصة التي تختارها، ونوضّح أين يتسرّب الإيراد، ما الأدلّة المتاحة، ما البيانات الناقصة،
             وما أوّل إصلاح تشغيلي مقترح.
@@ -135,7 +138,7 @@ export function RecognitionPage() {
           <div className="final-cta__actions">
             <button type="button" className="btn btn--primary btn--lg" onClick={() => go()}>ابدأ التدقيق المجاني ←</button>
             <a
-              className="btn btn--whatsapp btn--lg"
+              className="btn btn--whatsapp-outline btn--lg"
               href={buildWhatsAppLink(DEFAULT_WA_MESSAGE)}
               target="_blank"
               rel="noreferrer"

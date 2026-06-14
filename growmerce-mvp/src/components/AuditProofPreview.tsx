@@ -10,7 +10,7 @@ export function AuditProofPreview({ onAudit }: { onAudit: () => void }) {
       <p className="section-label">كيف يبدو التقرير؟</p>
       <h2 className="audit-proof__title">مثال من تقرير التدقيق</h2>
       <p className="muted audit-proof__sub">
-        لا نبدأ بالخدمات. نبدأ بتحديد التسرّب، ثم نثبت ما نعرفه وما نحتاجه قبل التنفيذ.
+        لا نبدأ بحملة أو خصم. نبدأ بتحديد موضع التسرب، ثم نوضح الأدلة والبيانات الناقصة قبل أي تنفيذ.
       </p>
 
       <article className="dossier-mini">
@@ -18,7 +18,7 @@ export function AuditProofPreview({ onAudit }: { onAudit: () => void }) {
 
         <div className="dossier-mini__block">
           <span className="os-label">الملاحظة</span>
-          <p className="dossier-mini__finding">ترتيب قائمة التوصيل قد يدفع العملاء إلى أصناف أقل ربحية.</p>
+          <p className="dossier-mini__finding">ترتيب قائمة التوصيل قد يدفع العملاء إلى أصناف عالية الطلب لكنها أقل ربحية.</p>
         </div>
 
         <div className="dossier-mini__block">

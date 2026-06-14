@@ -1,16 +1,19 @@
 import { SERVICE_TIERS, PRICING_PACKAGES, ADDON_GROUPS, PRICING_NOTE_AR } from '../knowledge';
+import { buildWhatsAppLink, DEFAULT_WA_MESSAGE } from '../lib/whatsapp';
+import { track } from '../lib/analytics';
 
-/** Stages 9–10 — services reframed as the execution path after diagnosis; grouped add-ons. */
+/** Stages 9–10 — execution paths after diagnosis; grouped add-ons; starter audit is the star. */
 export function ServicePackagesSection({ onAudit }: { onAudit: () => void }) {
+  const waLink = buildWhatsAppLink(DEFAULT_WA_MESSAGE);
   return (
     <section className="services">
-      <p className="section-label">من التشخيص إلى التشغيل اليومي</p>
-      <h2 className="services__title">من التشخيص إلى التشغيل اليومي</h2>
+      <p className="section-label">مسار التشغيل بعد التدقيق</p>
+      <h2 className="services__title">اختر مسار التشغيل بعد التدقيق</h2>
       <p className="muted services__sub">
-        بعد أن نعرف موضع التسرّب، نختار مسار التشغيل المناسب — من إطلاق الحسابات إلى التشغيل اليومي والنمو والتوسّع.
+        بعد أن نعرف موضع التسرب، نختار المسار المناسب: تجهيز حساب، تشغيل يومي، حملات نمو، أو توسّع متعدد المنصات.
       </p>
 
-      {/* service tiers = execution path (Arabic-first) */}
+      {/* execution paths (Arabic-first) */}
       <div className="services__grid">
         {SERVICE_TIERS.map((t) => (
           <article key={t.id} className="service-card">
@@ -24,8 +27,8 @@ export function ServicePackagesSection({ onAudit }: { onAudit: () => void }) {
         ))}
       </div>
 
-      {/* pricing packages — starter audit is the recommended first step */}
-      <h3 className="services__pricing-title">الباقات</h3>
+      {/* work tracks — starter audit is the recommended first step */}
+      <h3 className="services__pricing-title">مسارات العمل مع جرومرس</h3>
       <div className="pricing__grid">
         {PRICING_PACKAGES.map((p) => {
           const recommended = p.id === 'starter';
@@ -38,8 +41,18 @@ export function ServicePackagesSection({ onAudit }: { onAudit: () => void }) {
               <ul className="pricing-card__list">
                 {p.includes.slice(0, 5).map((x, i) => <li key={i}>{x}</li>)}
               </ul>
-              {recommended && (
+              {recommended ? (
                 <button type="button" className="btn btn--primary pricing-card__cta" onClick={onAudit}>ابدأ من هنا ←</button>
+              ) : (
+                <a
+                  className="btn btn--whatsapp-outline pricing-card__cta"
+                  href={waLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => track('whatsapp_clicked', { from: `pricing_${p.id}` })}
+                >
+                  {p.id === 'growth_ops' ? 'ناقش التشغيل' : 'ناقش التوسع'}
+                </a>
               )}
             </article>
           );
