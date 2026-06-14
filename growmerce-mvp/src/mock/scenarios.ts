@@ -21,10 +21,15 @@ import type {
 } from '../types';
 import { problemLabel } from './catalog';
 
-type Scenario = 'restaurant' | 'marketplace' | 'ecommerce' | 'generic';
+type Scenario = 'restaurant' | 'marketplace' | 'ecommerce' | 'qcommerce' | 'generic';
 
 /* ---------- scenario selection ---------- */
 function selectScenario(si: StructuredInput): Scenario {
+  // Stage 4 platform vertical takes precedence when chosen.
+  if (si.platformVertical === 'qcommerce') return 'qcommerce';
+  if (si.platformVertical === 'food_delivery') return 'restaurant';
+  if (si.platformVertical === 'ecommerce') return 'marketplace';
+
   switch (si.businessType) {
     case 'restaurant':
       return 'restaurant';
@@ -115,8 +120,8 @@ function restaurantFinding(si: StructuredInput): DiagnosticFinding {
   return {
     id: fid,
     patternKey: 'delivery_menu_merchandising',
-    title: 'قائمتك على تطبيق التوصيل تُخفي أصنافك الأعلى ربحًا.',
-    systemNarrative: `لا تبدو المشكلة في حجم الطلب بقدر ما هي في العرض: الأصناف التي يجب أن تتصدّر مدفونة، وبعض أصناف الذروة تنفد. ${flavor(si)}`.trim(),
+    title: 'قائمتك على تطبيق التوصيل تُخفي أصنافك الأعلى ربحًا — وجودة القائمة (MQI) تكبت ترتيبك.',
+    systemNarrative: `لا تبدو المشكلة في حجم الطلب بقدر ما هي في العرض: الأصناف التي يجب أن تتصدّر مدفونة، وبعض أصناف الذروة تنفد، وعبء العمولة يأكل هامشك دون نمو في GMV. ${flavor(si)}`.trim(),
     reasoningTrace: [
       'قرأنا السياق: حدّدنا نوع النشاط (مطعم/توصيل) والقناة الأساسية.',
       'فصلنا بين مشكلة المبيعات ومشكلة الربح.',
@@ -211,8 +216,8 @@ function marketplaceFinding(si: StructuredInput): DiagnosticFinding {
   return {
     id: fid,
     patternKey: 'review_density_gap',
-    title: 'ظهورك في السوق ضعيف بسبب تراجع حداثة التقييمات، لا بسبب ضعف منتجك.',
-    systemNarrative: `تقييماتك تبدو جيدة للإنسان لكنها ضعيفة أمام خوارزمية السوق التي تكافئ الحداثة. ${flavor(si)}`.trim(),
+    title: 'ظهورك على السوق (Amazon/Noon/Jumia) يتراجع — مخاطر Buy Box وصحة الحساب وحداثة التقييمات.',
+    systemNarrative: `تقييماتك تبدو جيدة للإنسان لكنها ضعيفة أمام خوارزمية السوق التي تكافئ الحداثة، بينما قد تفقد Buy Box وتتراجع صحة الحساب (AHR/ODR). ${flavor(si)}`.trim(),
     reasoningTrace: [
       'قرأنا السياق: حدّدنا أنك بائع في سوق إلكتروني وقناتك الأساسية.',
       'فصلنا بين ضعف الظهور وضعف المنتج.',
@@ -363,6 +368,93 @@ function ecommerceFinding(si: StructuredInput): DiagnosticFinding {
   };
 }
 
+/* ---------- Q-COMMERCE / DARK STORE ---------- */
+function qcommerceFinding(si: StructuredInput): DiagnosticFinding {
+  const fid = 'finding_qcommerce';
+  const m = si.platformMetrics ?? {};
+  const hasMetrics = !!(m.fillRate || m.oosRate || m.availabilityScore);
+  const evidence: EvidenceItem[] = [
+    {
+      id: id('ev'),
+      claim: 'إشارات على نفاد مخزون (OOS) متكرّر يهدّد الظهور ويعرّضك لغرامات نفاد.',
+      type: 'stockout_signal',
+      source: hasMetrics ? 'المقاييس التي أدخلتها' : 'افتراض مرجعي لفئة التجارة السريعة',
+      tier: hasMetrics ? 2 : 3,
+      strength: hasMetrics ? 'moderate' : 'weak',
+      supports: fid,
+      provenance: hasMetrics ? 'user' : 'benchmark',
+    },
+    {
+      id: id('ev'),
+      claim: 'ضعف fill rate وتغطية المخزون بالعُقد يقلّلان الطلبات المنفّذة.',
+      type: 'fill_rate',
+      source: 'مُستنتج من نموذج المتاجر المظلمة',
+      tier: 3,
+      strength: 'weak',
+      supports: fid,
+      provenance: 'inferred',
+    },
+  ];
+
+  return {
+    id: fid,
+    patternKey: 'stockout_penalty_risk',
+    title: 'نفاد المخزون وضعف fill rate يكبتان ظهورك على المتاجر المظلمة (Q-Commerce).',
+    systemNarrative:
+      `على منصات التجارة السريعة، التوفّر هو المبيعات: نفاد المخزون (OOS) يسبّب غرامات وكبت ظهور، وضعف fill rate يقلّل الطلبات المنفّذة. ${flavor(si)}`.trim(),
+    reasoningTrace: [
+      'قرأنا السياق: علامة FMCG/توزيع على منصات التجارة السريعة (Talabat Mart/Noon Minutes/InstaShop/Keemart).',
+      'فصلنا بين ضعف الطلب وضعف التوفّر/التنفيذ.',
+      'فحصنا الاحتمالات: نفاد المخزون، fill rate، تغطية الخدمة، أو المخزون الراكد.',
+      'طابقنا الحالة مع نمط مخاطر غرامة نفاد المخزون وضعف fill rate.',
+      'استبعدنا تفسيرات أضعف لا تدعمها الإشارات.',
+      'حدّدنا ما نحتاجه لرفع الثقة على بيانات العُقد الفعلية.',
+    ],
+    patternMatch: {
+      patternKey: 'stockout_penalty_risk',
+      name: 'مخاطر غرامة نفاد المخزون وضعف fill rate',
+      family: 'أنماط التجارة السريعة — التوفّر والتنفيذ',
+      description: 'التوفّر على العُقد ضعيف فتُفقد طلبات جاهزة وتُفرض غرامات نفاد تكبت الظهور.',
+      whyFits: 'نوع نشاطك (FMCG/Q-Commerce) ومنصّاتك تتطابق مع هذا النمط المتكرّر.',
+      whatWeakens: 'لو أظهرت بيانات العُقد توفّرًا مرتفعًا وfill rate قويًا، يضعف هذا النمط.',
+    },
+    evidence,
+    confidence: medium('qcommerce', si, {
+      raisedBy: ['تطابق نموذج التجارة السريعة مع النمط', 'إشارتان على التوفّر والتنفيذ'],
+      reducedBy: ['لا تتوفّر بيانات OOS/fill rate فعلية بعد'],
+      wouldImprove: ['مشاركة OOS rate ودرجة التوفّر', 'مشاركة fill rate وتغطية المخزون بالعُقد'],
+      capReason: 'بدون بيانات العُقد الفعلية، يبقى سقف الثقة عند المتوسّط.',
+    }),
+    missingData: [
+      { id: id('md'), what: 'OOS rate ودرجة التوفّر', whyItMatters: 'تؤكّد حجم مخاطر النفاد.', confidenceImpact: 'ترفع الثقة فوق المتوسّط.', provideNext: 'شارك OOS rate لكل عُقدة.' },
+      { id: id('md'), what: 'fill rate وتغطية المخزون', whyItMatters: 'تحدّد ضعف التنفيذ بدقّة.', confidenceImpact: 'تتيح ترجيح السبب الأقوى.', provideNext: 'شارك fill rate وأيام التغطية.' },
+    ],
+    ruledOut: [
+      { id: id('ro'), hypothesis: 'المشكلة في ضعف الطلب على الفئة.', whyRuledOut: 'الطلب قائم؛ التوفّر/التنفيذ هو ما يكبت الطلبات.', basis: 'إشارة التوفّر مقابل غياب إشارة ضعف الطلب.' },
+      { id: id('ro'), hypothesis: 'المشكلة في السعر فقط.', whyRuledOut: 'النفاد وضعف fill rate أقوى تفسيرًا من فجوة السعر.', basis: 'لا دليل كافٍ على حساسية سعرية حادّة.' },
+    ],
+    verificationSteps: [
+      'شارك OOS rate ودرجة التوفّر لكل عُقدة.',
+      'شارك fill rate والتزام تنفيذ أوامر الشراء (PO).',
+      'شارك قائمة SKU بطيئة الحركة (المخزون الراكد).',
+      'شارك تغطية الخدمة مقابل خريطة الطلب.',
+    ],
+    opportunity: {
+      id: id('opp'),
+      title: 'ضبط قواعد تغطية المخزون ومراقبة OOS لمنع الغرامات واستعادة الظهور.',
+      impact: { qualitative: 'تقليل الغرامات ورفع الطلبات المنفّذة', range: '٥٪–١٢٪ (تقدير)', isEstimate: true },
+      priority: 'now',
+      effort: 'medium',
+      confidence: { band: 'medium', score: 60, provenance: 'demo' },
+      whyItMatters: 'على التجارة السريعة، حماية التوفّر أرخص من شراء طلبٍ جديد.',
+      firstAction: 'فعّل قواعد حدّ إعادة الطلب لأهم SKU، وراقب OOS يوميًا على العُقد الأعلى طلبًا.',
+      evidenceRefs: evidence.map((e) => e.id),
+      provenance: 'demo',
+    },
+    provenance: 'demo',
+  };
+}
+
 /* ---------- GENERIC (guarded, lower confidence) ---------- */
 function genericFinding(si: StructuredInput): DiagnosticFinding {
   const fid = 'finding_generic';
@@ -450,6 +542,7 @@ function medium(
     restaurant: 58,
     marketplace: 60,
     ecommerce: 56,
+    qcommerce: 57,
   };
   const score = Math.min(69, base[scenario] + richnessBump(si));
   const band: ConfidenceBand = 'medium';
@@ -475,6 +568,8 @@ export function buildFinding(si: StructuredInput): DiagnosticFinding {
       return marketplaceFinding(si);
     case 'ecommerce':
       return ecommerceFinding(si);
+    case 'qcommerce':
+      return qcommerceFinding(si);
     default:
       return genericFinding(si);
   }
