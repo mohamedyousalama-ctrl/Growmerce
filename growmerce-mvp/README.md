@@ -144,6 +144,17 @@ UI is shipped** (to avoid touching the MVP routing); reviews are performed by ca
 **no reviewer auth yet; production MUST add authenticated reviewers and protect this endpoint**
 before launch. Real reports remain **not visible to end users**.
 
+#### Daily intelligence skeleton (Phase 6)
+
+The `run-daily-snapshot` Edge Function (migration 0008: `daily_snapshots`, `alerts`,
+`growth_ops_actions`, `scheduled_jobs`) builds a point-in-time snapshot from **internal state only**
+(counts of data sources / evidence / reports), diffs it against the previous snapshot, and raises
+**internal** `alerts` (status `new`) for internal changes (new evidence, new data source, report
+ready for review, missing data unresolved). It **does not fetch external sites** and **does not send
+any customer alert**. **Scheduled jobs are not activated** — `scheduled_jobs` is a registry only
+(default `disabled`); `pg_cron` is intentionally **not** wired. Cron will be added later by
+scheduling a call to this function. Call: `POST { "business_id": "<uuid>", "report_request_id"? }`.
+
 ### Deployment (controlled launch / pilot)
 
 This slice is a **static single-page app** — there is no server, database, or backend bundled.
