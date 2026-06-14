@@ -218,14 +218,15 @@ export function StructuredInputFlow({ onBackHome }: { onBackHome: () => void }) 
       {/* ---------- Stage 4: optional platform-specific metrics (progressive disclosure) ---------- */}
       {advVertical && (
         <div className="panel subsection">
-          <Collapsible title="مقاييس المنصات المتقدّمة" hint="اختياري — يرفع دقّة التدقيق" count={advFilledCount}>
+          <Collapsible title="مقاييس المنصات المتقدّمة" hint="اختياري — أضف ما تعرفه فقط" count={advFilledCount} defaultOpen={false}>
             <p className="hint" style={{ marginBottom: 'var(--space-3)' }}>
-              كل رقم تضيفه يرفع الثقة ويقلّل البيانات الناقصة. اتركه فارغًا إن لم يتوفّر — سيظهر كبيانات ناقصة في التقرير.
+              كل رقم تعرفه يرفع الثقة ويقلّل البيانات الناقصة. اتركه فارغًا إن لم يتوفّر — لست مضطرًا لمعرفة كل المقاييس،
+              وما يبقى فارغًا سيظهر كبيانات ناقصة في التقرير.
             </p>
             <div className="market-grid">
               {advFields.map((f) => (
                 <div className="field" key={f.key}>
-                  <label htmlFor={`adv-${f.key}`}>{f.label}</label>
+                  <label htmlFor={`adv-${f.key}`}>{f.label} <span className="hint">— إن وُجد</span></label>
                   <input
                     id={`adv-${f.key}`}
                     value={si.platformMetrics?.[f.key] ?? ''}
@@ -238,15 +239,17 @@ export function StructuredInputFlow({ onBackHome }: { onBackHome: () => void }) 
         </div>
       )}
 
-      {/* ---------- Business type ---------- */}
-      <div className="panel subsection">
-        <h3 className="panel__title">نوع النشاط</h3>
-        <div className="chips">
-          {BUSINESS_TYPES.map((b) => (
-            <InputChip key={b.key} label={b.label} selected={si.businessType === b.key} onToggle={() => setBusinessType(b.key)} />
-          ))}
+      {/* ---------- Business type (only when no vertical chosen — the chooser sets it) ---------- */}
+      {!si.platformVertical && (
+        <div className="panel subsection">
+          <h3 className="panel__title">نوع النشاط</h3>
+          <div className="chips">
+            {BUSINESS_TYPES.map((b) => (
+              <InputChip key={b.key} label={b.label} selected={si.businessType === b.key} onToggle={() => setBusinessType(b.key)} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* ---------- Channels ---------- */}
       <div className="panel subsection">

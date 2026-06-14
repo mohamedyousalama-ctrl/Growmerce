@@ -805,3 +805,13 @@ body { letter-spacing: -0.003em; }
   .verticals, .pains, .services { padding-block: var(--space-5) var(--space-3); }
   .vertical-card, .pain-card, .service-card, .pricing-card, .burden-illustration { padding: var(--space-4); }
 }
+
+/* QA polish — mobile density for the platform-operator sections */
+@media (max-width: 620px) {
+  .home-hero__cta { flex-direction: column; align-items: stretch; }
+  .home-hero__cta .btn { width: 100%; }
+  .home-hero__title { font-size: var(--fs-h1); }
+  .burden-illustration__calc { font-size: var(--fs-body); line-height: 1.6; }
+  .platform-chip { font-size: var(--fs-label); padding: 2px 9px; }
+  .vertical-card__cta { width: 100%; }
+}

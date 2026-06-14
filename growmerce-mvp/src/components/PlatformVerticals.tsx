@@ -48,14 +48,14 @@ export function PlatformVerticals({ onAudit }: { onAudit: () => void }) {
             <div className="vertical-card__col">
               <p className="os-label">أين يتسرّب الإيراد</p>
               <ul className="vertical-card__list vertical-card__list--problem">
-                {problems.slice(0, 6).map((p, i) => <li key={i}>{p}</li>)}
+                {problems.slice(0, 5).map((p, i) => <li key={i}>{p}</li>)}
               </ul>
             </div>
 
             <div className="vertical-card__col">
               <p className="os-label">ما الذي نشغّله</p>
               <ul className="vertical-card__list vertical-card__list--manage">
-                {manages.slice(0, 6).map((m, i) => <li key={i}>{m}</li>)}
+                {manages.slice(0, 5).map((m, i) => <li key={i}>{m}</li>)}
               </ul>
             </div>
 
