@@ -112,6 +112,15 @@ and the report is still the deterministic demo finding. **File uploads are not e
 (metadata only; bucket is private, no public access, no object policies — service-role only). Real
 evidence generation arrives in a later sprint (Evidence Builder).
 
+#### Evidence Builder skeleton (Phase 3)
+
+The `build-evidence` Edge Function converts already-captured **user-provided** `raw_observations`
+into **draft** `evidence_items` (migration 0005). It **does not fetch URLs, parse files, run OCR,
+use AI, or call any external service**, and it **does not produce a report**. Strength/tier are
+conservative and rule-assigned (URLs/notes/competitors → weak/contextual; manual metrics →
+moderate); nothing is treated as verified. It is idempotent (skips observations already converted)
+and logs an `agent_runs` row (`evidence_builder_v1`). Call: `POST { "report_request_id": "<uuid>" }`.
+
 ### Deployment (controlled launch / pilot)
 
 This slice is a **static single-page app** — there is no server, database, or backend bundled.

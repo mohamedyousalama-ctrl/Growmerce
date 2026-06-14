@@ -9,3 +9,22 @@ project_id = "growmerce"
 # function does its OWN validation and writes with the service-role key
 # (server-side secret). Do NOT enable verify_jwt until end-user auth exists.
 verify_jwt = false
+
+# --- Internal/admin functions (Real Intelligence pipeline) ---
+# These are NOT called by the public site. They run with the service-role key.
+# verify_jwt=false keeps them callable by tooling/cron; protect them with a
+# secret / allow-list / network rules before any real launch.
+[functions.build-evidence]
+verify_jwt = false
+
+[functions.compose-report]
+verify_jwt = false
+
+[functions.review-report]
+verify_jwt = false
+
+[functions.run-daily-snapshot]
+verify_jwt = false
+
+[functions.run-real-intelligence-pipeline]
+verify_jwt = false
