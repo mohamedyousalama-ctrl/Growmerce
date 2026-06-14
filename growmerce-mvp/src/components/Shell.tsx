@@ -22,7 +22,7 @@ export function Shell({ children }: { children: ReactNode }) {
         </nav>
         <div className="topbar__actions">
           <Link
-            to="/diagnose"
+            to="/audit"
             className="btn btn--primary btn--sm"
             onClick={() => track('diagnostic_started', { from: 'topbar' })}
           >
@@ -47,7 +47,7 @@ export function Shell({ children }: { children: ReactNode }) {
       {/* mobile sticky CTA — easy audit action + WhatsApp */}
       <nav className="mobile-cta" aria-label="إجراءات سريعة">
         <Link
-          to="/diagnose"
+          to="/audit"
           className="btn btn--primary"
           onClick={() => track('diagnostic_started', { from: 'mobile_sticky' })}
         >

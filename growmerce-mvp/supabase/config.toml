@@ -3,6 +3,11 @@
 
 project_id = "growmerce"
 
+[functions.create-upload-url]
+# Public, controlled-demo endpoint: returns a signed upload URL for the private
+# report-uploads bucket. Service-role used server-side only; no public storage policy.
+verify_jwt = false
+
 [functions.submit-report-request]
 # Public, controlled-demo submission endpoint: the frontend calls it with the
 # anon key but no end-user session, so JWT verification is disabled here. The

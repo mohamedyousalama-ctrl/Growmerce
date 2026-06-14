@@ -174,7 +174,7 @@ Deno.serve(async (req: Request) => {
       .insert({
         business_id: businessId,
         contact_id: contactId,
-        mode: "auto_draft",
+        mode: clip(body?.mode, 40) || "auto_draft", // e.g. 'human_review' for the free audit intake
         status: "queued", // server-owned; client status is never trusted
         submitted_payload: body ?? {},
         structured_input: body?.structuredInput ?? {},
@@ -241,6 +241,25 @@ Deno.serve(async (req: Request) => {
       }
     }
 
+    // 6) uploaded files — METADATA ONLY (binary upload happens later via create-upload-url).
+    let filesStored = 0;
+    const files: any[] = Array.isArray(body?.files) ? body.files.slice(0, 10) : [];
+    for (const f of files) {
+      try {
+        const { error: fErr } = await supabase.from("uploaded_files").insert({
+          report_request_id: reportRequestId,
+          original_filename: clip(f?.name, 400) || "ملف",
+          mime_type: clip(f?.type, 120) || null,
+          size_bytes: typeof f?.size === "number" ? Math.round(f.size) : null,
+          upload_status: "pending",
+          metadata: { source: "free_platform_audit" },
+        });
+        if (!fErr) filesStored += 1;
+      } catch {
+        // skip; never fail the submission
+      }
+    }
+
     return json(
       {
         ok: true,
@@ -249,6 +268,7 @@ Deno.serve(async (req: Request) => {
         report_request_id: reportRequestId,
         status: rr.status,
         sources_stored: sourcesStored,
+        files_stored: filesStored,
       },
       200,
       cors,

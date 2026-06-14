@@ -6,37 +6,26 @@ import { RevenueLeakPains } from '../components/RevenueLeakPains';
 import { AuditProofPreview } from '../components/AuditProofPreview';
 import { GrowthOpsProcess } from '../components/GrowthOpsProcess';
 import { ServicePackagesSection } from '../components/ServicePackagesSection';
-import { useSession } from '../state/session';
 import { track } from '../lib/analytics';
 import { buildWhatsAppLink, DEFAULT_WA_MESSAGE } from '../lib/whatsapp';
 import { platformById, type Vertical } from '../knowledge';
-import type { BusinessType } from '../types';
 
-const VERT_TO_BT: Record<Vertical, BusinessType> = {
-  ecommerce: 'marketplace_seller',
-  food_delivery: 'restaurant',
-  qcommerce: 'retail',
-};
 const QUICK_PLATFORMS = ['amazon', 'noon', 'jumia', 'talabat', 'hungerstation', 'jahez', 'keeta', 'keemart'];
 
-/** `/` — active Commerce Intelligence entry: feel the problem → start a free platform audit. */
+/** `/` — active Commerce Intelligence entry: feel the problem → start the free platform audit. */
 export function RecognitionPage() {
   const navigate = useNavigate();
-  const { goTo, setInput } = useSession();
   const [entryUrl, setEntryUrl] = useState('');
 
+  // Start the free audit intake (carry vertical/platform/link as query params).
   const go = (opts?: { vertical?: Vertical; platform?: string; url?: string }) => {
     track('diagnostic_started', { from: opts?.platform ? 'hero_platform' : opts?.vertical ? 'vertical' : 'hero' });
-    const patch: Parameters<typeof setInput>[0] = {};
-    if (opts?.vertical) {
-      patch.platformVertical = opts.vertical;
-      patch.businessType = VERT_TO_BT[opts.vertical];
-    }
-    if (opts?.platform) patch.platformMetrics = { platforms: opts.platform };
-    if (opts?.url?.trim()) patch.links = { storeUrl: opts.url.trim() }; // captured, NOT analyzed
-    if (Object.keys(patch).length) setInput(patch);
-    goTo('input');
-    navigate('/diagnose');
+    const q = new URLSearchParams();
+    if (opts?.vertical) q.set('v', opts.vertical);
+    if (opts?.platform) q.set('p', opts.platform);
+    if (opts?.url?.trim()) q.set('l', opts.url.trim());
+    const qs = q.toString();
+    navigate(`/audit${qs ? `?${qs}` : ''}`);
   };
   const startPlatform = (id: string) => {
     const p = platformById(id);
@@ -89,6 +78,11 @@ export function RecognitionPage() {
 
             <p className="platform-proof">نغطّي ١١ منصة في الخليج ومصر — من Amazon وNoon إلى Talabat وKeeta وKeemart.</p>
             <p className="hint direct-channels">قنوات مباشرة أيضًا: WhatsApp · Instagram · TikTok · الطلب المباشر.</p>
+            <p className="hint">
+              <a href="/diagnose" onClick={(e) => { e.preventDefault(); navigate('/diagnose'); }} style={{ color: 'var(--color-brand-strong)' }}>
+                شاهد مثالًا تفاعليًا لطريقة قراءة التقرير
+              </a>{' '}— مثال توضيحي، ليس التقرير النهائي.
+            </p>
           </div>
 
           {/* dark mini diagnostic preview (Commerce Intelligence OS) */}
